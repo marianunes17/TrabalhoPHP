@@ -18,7 +18,7 @@
             <div class="col-12 col-sm-8 mb-5">
                 <div class="contact-form">
                     <div id="success"></div>
-                    <form name="sentMessage" id="contactForm"  action="" method="POST">
+                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
                         <div class="control-group">
                             <input type="text" class="form-control p-4" id="name" placeholder="Nome" required="required" data-validation-required-message="Please enter your name" />
                             <p class="help-block text-danger"></p>

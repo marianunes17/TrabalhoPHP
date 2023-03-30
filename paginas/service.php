@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 
-<?php 
-    require 'head.php'; 
+<?php
+require 'head.php';
 
-    require_once('basedados.php');
-    require_once('../basedados/basedados.h');
+require_once('basedados.php');
+require_once('../basedados/basedados.h');
 
-    $sqlServico = "SELECT * FROM servicos";
-    $retval = mysqli_query( $conn, $sqlServico );
-    if(! $retval ){
-    die('Could not get data: ' . mysqli_error($conn));// se não funcionar dá erro
-    }
+$sqlServico = "SELECT * FROM servicos";
+$retval = mysqli_query($conn, $sqlServico);
+if (!$retval) {
+    die('Could not get data: ' . mysqli_error($conn)); // se não funcionar dá erro
+}
 
 ?>
- 
+
 <title> PetShop </title>
 
 <body>
@@ -27,13 +27,13 @@
             <div class="d-flex flex-column text-center mb-5">
                 <h1 class="display-4 m-0"><span class="text-primary">Serviços</span> </h1>
             </div>
-            <div class="row pb-3">  
-            
-            
-            
-            <?php
-                while($row = mysqli_fetch_array($retval)){
-                echo '  <div class="col-md-12 col-lg-6 mb-4">
+            <div class="row pb-3">
+
+
+
+                <?php
+                while ($row = mysqli_fetch_array($retval)) {
+                    echo '  <div class="col-md-12 col-lg-6 mb-4">
                             <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
                                 <h3 class="flaticon-grooming display-3 font-weight-normal text-secondary mb-3"></h3>
                                 <h3 class="mb-3"> ' . $row['nome'] . ' </h3>
@@ -41,9 +41,9 @@
                             </div>
                         </div>';
                 }
-            ?>
-                
-                
+                ?>
+
+
             </div>
         </div>
     </div>

@@ -11,32 +11,32 @@
     <!-- Contact Start -->
     <div class="container-fluid pt-5">
         <div class="d-flex flex-column text-center mb-5 pt-5">
-            <h4 class="text-secondary mb-3">Contact Us</h4>
+            <h4 class="text-secondary mb-3">Contacta-nos</h4>
             <h1 class="display-4 m-0">Contact For <span class="text-primary">Any Query</span></h1>
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 mb-5">
                 <div class="contact-form">
                     <div id="success"></div>
-                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                    <form name="sentMessage" id="contactForm"  action="" method="POST">
                         <div class="control-group">
-                            <input type="text" class="form-control p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                            <input type="text" class="form-control p-4" id="name" placeholder="Nome" required="required" data-validation-required-message="Please enter your name" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                            <input type="email" class="form-control p-4" id="email" placeholder="Email" required="required" data-validation-required-message="Please enter your email" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <input type="text" class="form-control p-4" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                            <input type="text" class="form-control p-4" id="assunto" placeholder="Assunto" required="required" data-validation-required-message="Please enter a subject" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <textarea class="form-control p-4" rows="6" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                            <textarea class="form-control p-4" rows="6" id="mensagem" placeholder="Mensagem" required="required" data-validation-required-message="Please enter your message"></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div>
-                            <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Send Message</button>
+                            <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Enviar Mensagem</button>
                         </div>
                     </form>
                 </div>

@@ -11,20 +11,11 @@
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
                     <a href="index.php" class="nav-item nav-link active">Home</a>
-                    <a href="about.php" class="nav-item nav-link">About</a>
-                    <a href="service.php" class="nav-item nav-link">Service</a>
-                    <a href="price.php" class="nav-item nav-link">Price</a>
-                    <a href="booking.php" class="nav-item nav-link">Booking</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu rounded-0 m-0">
-                            <a href="blog.php" class="dropdown-item">Blog Grid</a>
-                            <a href="single.php" class="dropdown-item">Blog Detail</a>
-                        </div>
-                    </div>
-                    <a href="contact.php" class="nav-item nav-link">Contact</a>
+                    <a href="about.php" class="nav-item nav-link">Sobre</a>
+                    <a href="service.php" class="nav-item nav-link">Serviços</a>                    
+                    <a href="contact.php" class="nav-item nav-link">Contactos</a>
                 </div>
-                <a href="" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Get Quote</a>
+                <a href="login.php" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Login</a>
             </div>
         </nav>
     </div>

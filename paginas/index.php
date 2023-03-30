@@ -284,7 +284,7 @@
     <div class="container-fluid bg-light pt-5 pb-4">
         <div class="container py-5">
             <div class="d-flex flex-column text-center mb-5">
-                <h4 class="text-secondary mb-3">Pricing Plan</h4>
+                <h4 class="text-secondary mb-3">Preços</h4>
                 <h1 class="display-4 m-0">Choose the <span class="text-primary">Best Price</span></h1>
             </div>
             <div class="row">
@@ -293,22 +293,14 @@
                         <div class="card-header position-relative border-0 p-0 mb-4">
                             <img class="card-img-top" src="img/price-1.jpg" alt="">
                             <div class="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100" style="top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5);">
-                                <h3 class="text-primary mb-3">Basic</h3>
+                                <h3 class="text-primary mb-3">Basico</h3>
                                 <h1 class="display-4 text-white mb-0">
-                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>49<small class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mo</small>
+                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">€</small>49
                                 </h1>
                             </div>
                         </div>
-                        <div class="card-body text-center p-0">
-                            <ul class="list-group list-group-flush mb-4">
-                                <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Feeding</li>
-                                <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Boarding</li>
-                                <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i>Spa & Grooming</li>
-                                <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i>Veterinary Medicine</li>
-                            </ul>
-                        </div>
                         <div class="card-footer border-0 p-0">
-                            <a href="" class="btn btn-primary btn-block p-3" style="border-radius: 0;">Signup Now</a>
+                            <a href="" class="btn btn-primary btn-block p-3" style="border-radius: 0;">Contratar serviço</a>
                         </div>
                     </div>
                 </div>
@@ -319,20 +311,12 @@
                             <div class="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100" style="top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5);">
                                 <h3 class="text-secondary mb-3">Standard</h3>
                                 <h1 class="display-4 text-white mb-0">
-                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>99<small class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mo</small>
+                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">€</small>99
                                 </h1>
                             </div>
                         </div>
-                        <div class="card-body text-center p-0">
-                            <ul class="list-group list-group-flush mb-4">
-                                <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Feeding</li>
-                                <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Boarding</li>
-                                <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Spa & Grooming</li>
-                                <li class="list-group-item p-2"><i class="fa fa-times text-danger mr-2"></i>Veterinary Medicine</li>
-                            </ul>
-                        </div>
                         <div class="card-footer border-0 p-0">
-                            <a href="" class="btn btn-secondary btn-block p-3" style="border-radius: 0;">Signup Now</a>
+                            <a href="" class="btn btn-secondary btn-block p-3" style="border-radius: 0;">Contratar serviço</a>
                         </div>
                     </div>
                 </div>
@@ -343,20 +327,13 @@
                             <div class="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100" style="top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5);">
                                 <h3 class="text-primary mb-3">Premium</h3>
                                 <h1 class="display-4 text-white mb-0">
-                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">$</small>149<small class="align-bottom" style="font-size: 16px; line-height: 40px;">/ Mo</small>
+                                    <small class="align-top" style="font-size: 22px; line-height: 45px;">€</small>149
                                 </h1>
                             </div>
                         </div>
-                        <div class="card-body text-center p-0">
-                            <ul class="list-group list-group-flush mb-4">
-                                <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Feeding</li>
-                                <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Boarding</li>
-                                <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Spa & Grooming</li>
-                                <li class="list-group-item p-2"><i class="fa fa-check text-secondary mr-2"></i>Veterinary Medicine</li>
-                            </ul>
-                        </div>
+
                         <div class="card-footer border-0 p-0">
-                            <a href="" class="btn btn-primary btn-block p-3" style="border-radius: 0;">Signup Now</a>
+                            <a href="" class="btn btn-primary btn-block p-3" style="border-radius: 0;">Contratar serviço</a>
                         </div>
                     </div>
                 </div>
@@ -369,16 +346,16 @@
     <!-- Team Start -->
     <div class="container mt-5 pt-5 pb-3">
         <div class="d-flex flex-column text-center mb-5">
-            <h4 class="text-secondary mb-3">Team Member</h4>
-            <h1 class="display-4 m-0">Meet Our <span class="text-primary">Team Member</span></h1>
+            <h4 class="text-secondary mb-3">Equipa</h4>
+            <h1 class="display-4 m-0">Conheça a nossa <span class="text-primary">Equipa</span></h1>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
                     <img class="card-img-top" src="img/team-1.jpg" alt="">
                     <div class="card-body text-center p-0">
                         <div class="team-text d-flex flex-column justify-content-center bg-light">
-                            <h5>Mollie Ross</h5>
+                            <h5>João</h5>
                             <i>Founder & CEO</i>
                         </div>
                         <div class="team-social d-flex align-items-center justify-content-center bg-dark">
@@ -390,12 +367,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
                     <img class="card-img-top" src="img/team-2.jpg" alt="">
                     <div class="card-body text-center p-0">
                         <div class="team-text d-flex flex-column justify-content-center bg-light">
-                            <h5>Jennifer Page</h5>
+                            <h5>Joana</h5>
                             <i>Chef Executive</i>
                         </div>
                         <div class="team-social d-flex align-items-center justify-content-center bg-dark">
@@ -407,7 +384,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
                     <img class="card-img-top" src="img/team-3.jpg" alt="">
                     <div class="card-body text-center p-0">
@@ -424,23 +401,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="img/team-4.jpg" alt="">
-                    <div class="card-body text-center p-0">
-                        <div class="team-text d-flex flex-column justify-content-center bg-light">
-                            <h5>Lilly Fry</h5>
-                            <i>Trainer</i>
-                        </div>
-                        <div class="team-social d-flex align-items-center justify-content-center bg-dark">
-                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
     <!-- Team End -->
@@ -450,16 +411,16 @@
     <div class="container-fluid bg-light my-5 p-0 py-5">
         <div class="container p-0 py-5">
             <div class="d-flex flex-column text-center mb-5">
-                <h4 class="text-secondary mb-3">Testimonial</h4>
-                <h1 class="display-4 m-0">Our Client <span class="text-primary">Says</span></h1>
+                <h4 class="text-secondary mb-3">Testemunhos</h4>
+                <h1 class="display-4 m-0">O que os nossos clientes <span class="text-primary">dizem</span></h1>
             </div>
             <div class="owl-carousel testimonial-carousel">
                 <div class="bg-white mx-3 p-4">
                     <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
                         <img class="img-fluid" src="img/testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="ml-3">
-                            <h5>Client Name</h5>
-                            <i>Profession</i>
+                            <h5>Afonso</h5>
+                            <i>Professor</i>
                         </div>
                     </div>
                     <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
@@ -468,8 +429,8 @@
                     <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
                         <img class="img-fluid" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="ml-3">
-                            <h5>Client Name</h5>
-                            <i>Profession</i>
+                            <h5>Ana</h5>
+                            <i>Médica</i>
                         </div>
                     </div>
                     <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
@@ -478,8 +439,8 @@
                     <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
                         <img class="img-fluid" src="img/testimonial-3.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="ml-3">
-                            <h5>Client Name</h5>
-                            <i>Profession</i>
+                            <h5>Luís</h5>
+                            <i>Mecanico</i>
                         </div>
                     </div>
                     <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
@@ -488,8 +449,8 @@
                     <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
                         <img class="img-fluid" src="img/testimonial-4.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="ml-3">
-                            <h5>Client Name</h5>
-                            <i>Profession</i>
+                            <h5>Raquel</h5>
+                            <i>Relojoeira</i>
                         </div>
                     </div>
                     <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
@@ -498,64 +459,6 @@
         </div>
     </div>
     <!-- Testimonial End -->
-
-
-    <!-- Blog Start -->
-    <div class="container pt-5">
-        <div class="d-flex flex-column text-center mb-5">
-            <h4 class="text-secondary mb-3">Pet Blog</h4>
-            <h1 class="display-4 m-0"><span class="text-primary">Updates</span> From Blog</h1>
-        </div>
-        <div class="row pb-3">
-            <div class="col-lg-4 mb-4">
-                <div class="card border-0 mb-2">
-                    <img class="card-img-top" src="img/blog-1.jpg" alt="">
-                    <div class="card-body bg-light p-4">
-                        <h4 class="card-title text-truncate">Diam amet eos at no eos</h4>
-                        <div class="d-flex mb-3">
-                            <small class="mr-2"><i class="fa fa-user text-muted"></i> Admin</small>
-                            <small class="mr-2"><i class="fa fa-folder text-muted"></i> Web Design</small>
-                            <small class="mr-2"><i class="fa fa-comments text-muted"></i> 15</small>
-                        </div>
-                        <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est diam eos, rebum sit vero stet justo</p>
-                        <a class="font-weight-bold" href="">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card border-0 mb-2">
-                    <img class="card-img-top" src="img/blog-2.jpg" alt="">
-                    <div class="card-body bg-light p-4">
-                        <h4 class="card-title text-truncate">Diam amet eos at no eos</h4>
-                        <div class="d-flex mb-3">
-                            <small class="mr-2"><i class="fa fa-user text-muted"></i> Admin</small>
-                            <small class="mr-2"><i class="fa fa-folder text-muted"></i> Web Design</small>
-                            <small class="mr-2"><i class="fa fa-comments text-muted"></i> 15</small>
-                        </div>
-                        <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est diam eos, rebum sit vero stet justo</p>
-                        <a class="font-weight-bold" href="">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card border-0 mb-2">
-                    <img class="card-img-top" src="img/blog-3.jpg" alt="">
-                    <div class="card-body bg-light p-4">
-                        <h4 class="card-title text-truncate">Diam amet eos at no eos</h4>
-                        <div class="d-flex mb-3">
-                            <small class="mr-2"><i class="fa fa-user text-muted"></i> Admin</small>
-                            <small class="mr-2"><i class="fa fa-folder text-muted"></i> Web Design</small>
-                            <small class="mr-2"><i class="fa fa-comments text-muted"></i> 15</small>
-                        </div>
-                        <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est diam eos, rebum sit vero stet justo</p>
-                        <a class="font-weight-bold" href="">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Blog End -->
-
 
     <?php require 'footer.php'; ?>
 

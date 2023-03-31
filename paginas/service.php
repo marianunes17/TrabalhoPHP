@@ -29,15 +29,13 @@ if (!$retval) {
             </div>
             <div class="row pb-3">
 
-
-
                 <?php
                 while ($row = mysqli_fetch_array($retval)) {
                     echo '  <div class="col-md-12 col-lg-6 mb-4">
                             <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
                                 <h3 class="flaticon-grooming display-3 font-weight-normal text-secondary mb-3"></h3>
-                                <h3 class="mb-3"> ' . $row['nome'] . ' </h3>
-                                <p>' . $row['descricao'] . '</p>   
+                                <h3 class="mb-3 text-capitalize"> ' . $row['nome'] . ' </h3>
+                                <p class="text-capitalize">' . $row['descricao'] . '</p>   
                             </div>
                         </div>';
                 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<?php require 'head.php';
+<?php
 require 'head.php';
 
 require_once('basedados.php');
@@ -13,7 +13,7 @@ $sqlServico1 = mysqli_query($conn, $sqlServico);
 $sqlFuncionarios = "SELECT * FROM utilizadores WHERE tipo='funcionario'";
 $sqlFuncionarios1 = mysqli_query($conn, $sqlFuncionarios);
 
-if (!$sqlServico1 || $qlFuncionarios1) {
+if (!$sqlServico1 || !$sqlFuncionarios1) {
     die('Could not get data: ' . mysqli_error($conn)); // se não funcionar dá erro
 }
 

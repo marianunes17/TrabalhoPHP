@@ -11,9 +11,9 @@
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
                     <a href="index.php" class="nav-item nav-link active">Home</a>
-                    <a href="about.php" class="nav-item nav-link">Sobre</a>
-                    <a href="service.php" class="nav-item nav-link">Serviços</a>                    
-                    <a href="contact.php" class="nav-item nav-link">Contactos</a>
+                    <a href="sobre.php" class="nav-item nav-link">Sobre</a>
+                    <a href="servicos.php" class="nav-item nav-link">Serviços</a>                    
+                    <a href="contactos.php" class="nav-item nav-link">Contactos</a>
                 </div>
                 <a href="login.php" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Login</a>
             </div>

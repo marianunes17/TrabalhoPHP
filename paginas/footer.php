@@ -22,10 +22,10 @@
                     <div class="col-md-6 mb-5">
                         <h5 class="text-primary mb-4">Popular Links</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Sobre</a>
-                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Serviços</a>
-                            <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Contactos</a>
+                            <a class="text-white mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-white mb-2" href="sobre.php"><i class="fa fa-angle-right mr-2"></i>Sobre</a>
+                            <a class="text-white mb-2" href="servicos.php"><i class="fa fa-angle-right mr-2"></i>Serviços</a>
+                            <a class="text-white" href="contactos.php"><i class="fa fa-angle-right mr-2"></i>Contactos</a>
                         </div>
                     </div>
                 </div>

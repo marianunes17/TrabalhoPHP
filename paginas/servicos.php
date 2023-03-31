@@ -7,15 +7,21 @@ require 'head.php';
 require_once('basedados.php');
 require_once('../basedados/basedados.h');
 
+
 $sqlServico = "SELECT * FROM servicos";
-$retval = mysqli_query($conn, $sqlServico);
-if (!$retval) {
+$sqlServico1 = mysqli_query($conn, $sqlServico);
+
+$sqlFuncionarios = "SELECT * FROM utilizadores WHERE tipo='funcionario'";
+$sqlFuncionarios1 = mysqli_query($conn, $sqlFuncionarios);
+
+if (!$sqlServico1 || !$sqlFuncionarios1) {
     die('Could not get data: ' . mysqli_error($conn)); // se não funcionar dá erro
 }
 
 ?>
 
-<title> PetShop </title>
+
+<title> PetShop | Serviços </title>
 
 <body>
     <?php require 'header.php'; ?>
@@ -30,7 +36,7 @@ if (!$retval) {
             <div class="row pb-3">
 
                 <?php
-                while ($row = mysqli_fetch_array($retval)) {
+                while ($row = mysqli_fetch_array($sqlServico1)) {
                     echo '  <div class="col-md-12 col-lg-6 mb-4">
                             <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
                                 <h3 class="flaticon-grooming display-3 font-weight-normal text-secondary mb-3"></h3>
@@ -46,6 +52,43 @@ if (!$retval) {
         </div>
     </div>
     <!-- Services End -->
+
+
+
+    <!-- Team Start -->
+    <div class="container mt-5 pt-5 pb-3">
+        <div class="d-flex flex-column text-center mb-5">
+            <h4 class="text-secondary mb-3">Equipa</h4>
+            <h1 class="display-4 m-0">Conheça a nossa <span class="text-primary">Equipa</span></h1>
+        </div>
+        <div class="row">
+            <?php
+            while ($row = mysqli_fetch_array($sqlFuncionarios1)) {
+                echo '
+            <div class="col-lg-4 col-md-6">
+                <div class="team card position-relative overflow-hidden border-0 mb-4">
+                    <img class="card-img-top" src="img/team-1.jpg" alt="">
+                    <div class="card-body text-center p-0">
+                        <div class="team-text d-flex flex-column justify-content-center bg-light">
+                            <h5 class="text-capitalize"> ' . $row['nome'] . ' </h5>
+                            <i>Founder & CEO</i>
+                        </div>
+                        <div class="team-social d-flex align-items-center justify-content-center bg-dark">
+                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+            }
+            ?>
+
+        </div>
+    </div>
+    <!-- Team End -->
+
 
 
     <!-- Testimonial Start -->

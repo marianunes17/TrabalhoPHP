@@ -1,7 +1,32 @@
 <!DOCTYPE html>
 <html>
 
-<?php require 'head.php'; ?>
+<?php 
+
+require 'head.php'; 
+
+require_once('basedados.php');
+require_once('../basedados/basedados.h');
+
+
+session_start();
+	
+	$utilizador = $_POST["utilizador"];
+	$password = $_POST["password"];
+
+
+    $sql = 'SELECT * FROM user WHERE utilizador LIKE \'' . $utilizador . '\' AND password = \'' . $password . '\'';
+	
+	$retval = mysqli_query( $conn, $sql );
+	if(! $retval ){
+		die('Could not get data: ' . mysqli_error($conn));// se não funcionar dá erro
+	}
+
+    if (($row = mysqli_fetch_array($retval)) != null) {
+		$_SESSION['utilizador'] = $utilizador;
+		$_SESSION['tipo'] = $row['tipo'];
+    }
+?>
 <title> PetShop </title>
 
 <body>

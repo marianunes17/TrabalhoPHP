@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 
-<?php require 'head.php';
- require_once('basedados.php');
+<?php 
+    require 'head.php';
     require_once('../basedados/basedados.h');
 
     $sqlServico = "SELECT * FROM servicos";

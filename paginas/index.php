@@ -4,7 +4,6 @@
 <?php
 require 'head.php';
 
-require_once('basedados.php');
 require_once('../basedados/basedados.h');
 
 $sqlServico = "SELECT * FROM servicos";

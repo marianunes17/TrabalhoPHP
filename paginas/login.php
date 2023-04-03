@@ -1,31 +1,12 @@
 <!DOCTYPE html>
 <html>
 
-<?php 
+<?php
 
-require 'head.php'; 
+require 'head.php';
 
-require_once('basedados.php');
 require_once('../basedados/basedados.h');
 
-
-session_start();
-	
-	$utilizador = $_POST["utilizador"];
-	$password = $_POST["password"];
-
-
-    $sql = 'SELECT * FROM user WHERE utilizador LIKE \'' . $utilizador . '\' AND password = \'' . $password . '\'';
-	
-	$retval = mysqli_query( $conn, $sql );
-	if(! $retval ){
-		die('Could not get data: ' . mysqli_error($conn));// se não funcionar dá erro
-	}
-
-    if (($row = mysqli_fetch_array($retval)) != null) {
-		$_SESSION['utilizador'] = $utilizador;
-		$_SESSION['tipo'] = $row['tipo'];
-    }
 ?>
 <title> PetShop </title>
 
@@ -42,13 +23,13 @@ session_start();
             <div class="col-12 col-sm-8 mb-5">
                 <div class="contact-form">
                     <div id="success"></div>
-                    <form name="login" id="loginForm"  action="" method="POST">
+                    <form name="login" id="loginForm" method="POST" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>">
                         <div class="control-group">
-                            <input type="email" class="form-control p-4" id="email" placeholder="Email" required="required" data-validation-required-message="Por favor, introduza o email" />
+                            <input type="text" class="form-control p-4" name="nome" placeholder="Nome" required="required" data-validation-required-message="Por favor, introduza o email" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <input type="password" class="form-control p-4" id="password" placeholder="Password" required="required" data-validation-required-message="Por favor, introduza a password" />
+                            <input type="password" class="form-control p-4" name="password" placeholder="Password" required="required" data-validation-required-message="Por favor, introduza a password" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div>
@@ -71,7 +52,40 @@ session_start();
 
 
 
-    <?php require 'footer.php'; ?>
+    <?php 
+    
+//Verificar se o utilizador já fez login
+if( isset($_SESSION['nome']) || isset($_SESSION['password'] ) ) {
+    header("Location: login.php");
+}
+
+
+$utilizador = $_POST['nome'];
+$password = $_POST['password'];
+
+
+$sql = "SELECT * FROM utilizadores WHERE  
+        nome='$utilizador' AND password='$password' ";
+$retval = mysqli_query($conn, $sql);
+if (!$retval) {
+    die('Could not get data: ' . mysqli_error($conn)); // se não funcionar dá erro
+}
+
+if( ($row = mysqli_fetch_array($retval)) != null ) {
+    $_SESSION['nome'] = $utilizador;
+
+    echo "A autenticar...";
+    
+    header("Location:index.php"); // Ir para a página do Home
+        
+}
+
+
+
+
+    require 'footer.php'; 
+    
+    ?>
 </body>
 
 </html>

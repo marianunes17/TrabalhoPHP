@@ -27,7 +27,7 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="img/carousel-1.jpg" alt="Image">
+                    <img class="w-100" src="carousel-1.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h3 class="text-white mb-3 d-none d-sm-block">Best Pet Services</h3>
@@ -39,7 +39,7 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="img/carousel-2.jpg" alt="Image">
+                    <img class="w-100" src="carousel-2.jpg" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h3 class="text-white mb-3 d-none d-sm-block">Best Pet Services</h3>
@@ -143,13 +143,13 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
             <div class="col-lg-5">
                 <div class="row px-3">
                     <div class="col-12 p-0">
-                        <img class="img-fluid w-100" src="img/about-1.jpg" alt="">
+                        <img class="img-fluid w-100" src="about-1.jpg" alt="">
                     </div>
                     <div class="col-6 p-0">
-                        <img class="img-fluid w-100" src="img/about-2.jpg" alt="">
+                        <img class="img-fluid w-100" src="about-2.jpg" alt="">
                     </div>
                     <div class="col-6 p-0">
-                        <img class="img-fluid w-100" src="img/about-3.jpg" alt="">
+                        <img class="img-fluid w-100" src="about-3.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -190,7 +190,7 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5">
-                <img class="img-fluid w-100" src="img/feature.jpg" alt="">
+                <img class="img-fluid w-100" src="feature.jpg" alt="">
             </div>
             <div class="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
                 <h4 class="text-secondary mb-3">Why Choose Us?</h4>
@@ -242,7 +242,7 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
                 echo '
             <div class="col-lg-4 col-md-6">
                 <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="img/team-1.jpg" alt="">
+                    <img class="card-img-top" src="team-1.jpg" alt="">
                     <div class="card-body text-center p-0">
                         <div class="team-text d-flex flex-column justify-content-center bg-light">
                             <h5 class="text-capitalize"> ' . $row['nome'] . ' </h5>
@@ -275,7 +275,7 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
             <div class="owl-carousel testimonial-carousel">
                 <div class="bg-white mx-3 p-4">
                     <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-                        <img class="img-fluid" src="img/testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid" src="testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="ml-3">
                             <h5>Afonso</h5>
                             <i>Professor</i>
@@ -285,7 +285,7 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
                 </div>
                 <div class="bg-white mx-3 p-4">
                     <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-                        <img class="img-fluid" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid" src="testimonial-2.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="ml-3">
                             <h5>Ana</h5>
                             <i>Médica</i>
@@ -295,7 +295,7 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
                 </div>
                 <div class="bg-white mx-3 p-4">
                     <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-                        <img class="img-fluid" src="img/testimonial-3.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid" src="testimonial-3.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="ml-3">
                             <h5>Luís</h5>
                             <i>Mecanico</i>
@@ -305,7 +305,7 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
                 </div>
                 <div class="bg-white mx-3 p-4">
                     <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
-                        <img class="img-fluid" src="img/testimonial-4.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid" src="testimonial-4.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="ml-3">
                             <h5>Raquel</h5>
                             <i>Relojoeira</i>

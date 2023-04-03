@@ -3,7 +3,6 @@
 
 <?php
 require 'head.php';
-
 require_once('../basedados/basedados.h');
 
 $sqlServico = "SELECT * FROM servicos";
@@ -67,7 +66,7 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
 
 
     <!-- Booking Start -->
-    <div class="container-fluid bg-light">
+    <div class="container-fluid bg-light pt-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12 py-5 py-lg-0 px-3 px-lg-5">

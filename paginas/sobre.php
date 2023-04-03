@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 
-<?php require 'head.php'; ?>
-<title> PetShop </title>
+<?php 
+require 'head.php'; 
+
+?>
+<title> PetShop | Sobre </title>
 
 <body>
     <?php require 'header.php'; ?>

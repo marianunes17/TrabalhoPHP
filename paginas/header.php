@@ -1,5 +1,5 @@
-<?php 
-session_start();?>
+
+
 <header>
 
     <!-- Navbar Start -->
@@ -27,7 +27,6 @@ session_start();?>
                         <i class="fas fa-user"></i>
                         <label class="text-capitalize"> '  . $_SESSION['nome'] . ' </label>
                     </a>
-                    <div class="dropdown-backdrop"></div>
                     <div class="dropdown-menu dropdown-menu-right bg-black mx-5"  aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item text-light" href="dadospessoais.php">Dados Pessoais</a>
                         <a class="dropdown-item text-light" href="verreservas.php">Reservas</a>
@@ -35,8 +34,7 @@ session_start();?>
 
 
                     if (($_SESSION['tipo'] == "admin")) {
-                        echo '  <a class="dropdown-item text-light" href="gestaoutilizadores.php">Gerir utilizadores</a>
-                                <a class="dropdown-item text-light" href="gestaoanimais.php">Gerir animais</a>
+                        echo '  <a class="dropdown-item text-light" href="gestao.php">Gestão</a>
                                 ';
                     }
 

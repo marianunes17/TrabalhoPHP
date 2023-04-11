@@ -20,3 +20,7 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="style.css" rel="stylesheet">
 </head>
+
+<?php 
+session_start();
+?>

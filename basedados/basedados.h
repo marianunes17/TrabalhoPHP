@@ -5,7 +5,7 @@
     $dbpass = '';
 	$bdname = 'criar_bd';
 
-    $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+    $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $bdname);
     if ($conn->connect_errno) {
 	   echo "Erro ao conectar ao MySQL.";
 	   exit;

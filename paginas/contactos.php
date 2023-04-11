@@ -1,38 +1,68 @@
 <!DOCTYPE html>
 <html>
 
-<?php require 'head.php'; ?>
+<?php 
+require 'head.php'; 
+
+
+?>
 <title> PetShop </title>
 
 <body>
     <?php require 'header.php'; ?>
 
 
+    <div class="row py-3 px-lg-5">
+            <div class="col-lg-12 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <div class="d-inline-flex flex-column text-center pr-4 border-right">
+                        <h6>Horario</h6>
+                        <p class="m-0">8.00 - 21.00PM</p>
+                    </div>
+                    <div class="d-inline-flex flex-column text-center px-4 border-right">
+                        <h6>Email</h6>
+                        <p class="m-0">petshop@email.com</p>
+                    </div>
+                    <div class="d-inline-flex flex-column text-center pl-4">
+                        <h6>Telefone</h6>
+                        <p class="m-0">961245666</p>
+                        <p class="m-0">271245666</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <!-- Contact Start -->
     <div class="container-fluid pt-5">
         <div class="d-flex flex-column text-center mb-5 pt-5">
-            <h4 class="text-secondary mb-3">Contacta-nos</h4>
-            <h1 class="display-4 m-0">Contact For <span class="text-primary">Any Query</span></h1>
+            <h1 class="display-4 m-0">Contacta-nos</h1>
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 mb-5">
                 <div class="contact-form">
-                    <div id="success"></div>
-                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                    <form name="sentMessage" id="contactForm" novalidate="novalidate" method="POST">
                         <div class="control-group">
-                            <input type="text" class="form-control p-4" id="name" placeholder="Nome" required="required" data-validation-required-message="Please enter your name" />
+                            <input type="text" class="form-control p-4 text-capitalize" placeholder="Nome" required="required" data-validation-required-message="Insira o nome" <?php
+                                                                                                                                                                                if (isset($_SESSION['nome'])) {
+                                                                                                                                                                                    echo "value='" . $_SESSION['nome'] . "'";
+                                                                                                                                                                                }
+                                                                                                                                                                                ?> />
+                            <p class="help-block text-danger"> </p>
+                        </div>
+                        <div class="control-group">
+                            <input type="email" class="form-control p-4" placeholder="Email" required="required" data-validation-required-message="Insira o email" <?php
+                                                                                                                                                                    if (isset($_SESSION['nome'])) {
+                                                                                                                                                                        echo "value='" . $_SESSION['email'] . "'";
+                                                                                                                                                                    }
+                                                                                                                                                                    ?> />
+                            <p class="help-block text-danger"> </p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control p-4" placeholder="Assunto" required="required" data-validation-required-message="Insira o assunto" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <input type="email" class="form-control p-4" id="email" placeholder="Email" required="required" data-validation-required-message="Please enter your email" />
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="control-group">
-                            <input type="text" class="form-control p-4" id="assunto" placeholder="Assunto" required="required" data-validation-required-message="Please enter a subject" />
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="control-group">
-                            <textarea class="form-control p-4" rows="6" id="mensagem" placeholder="Mensagem" required="required" data-validation-required-message="Please enter your message"></textarea>
+                            <textarea class="form-control p-4" rows="6" id="mensagem" placeholder="Mensagem" required="required" data-validation-required-message="Insira a mensagem"></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                         <div>

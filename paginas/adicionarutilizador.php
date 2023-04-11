@@ -14,7 +14,7 @@ if (isset($_POST['adicionar'])) {
 
 
     $alteraUtilizador = ("INSERT INTO utilizadores(nome, email, telemovel, tipo) values
-    ('$nomeutilizador', '$emailutilizador', '$telemovelutilizador', '$tipoutilizador') ");
+    ('$nomeutilizador', '$emailutilizador', $telemovelutilizador, '$tipoutilizador') ");
 
     $result = $conn->query($alteraUtilizador);
 }
@@ -34,7 +34,10 @@ if (isset($_POST['adicionar'])) {
                 <div class="col-12 col-sm-8 mb-5">
                     <div class="contact-form">
                         <form name="sentMessage" id="contactForm" novalidate="novalidate" method="POST">
-                            <div class="control-group">
+                        <input type="text" class="invisible" name="id" class="form-control p-4 text-capitalize"  placeholder="id"/>
+
+                        
+                        <div class="control-group">
                                 <div class="row justify-content-center  ">
                                     <div class="col-1 align-self-center">
                                         <label> Nome: </label>

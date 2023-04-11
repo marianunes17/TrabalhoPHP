@@ -14,7 +14,7 @@ if (isset($_POST['atualizar'])) {
 
 
     $alteraUtilizador =("UPDATE utilizadores SET nome = '$nomeutilizador',
-        email='$emailutilizador', telemovel='$telemovelutilizador',
+        email='$emailutilizador', telemovel=$telemovelutilizador,
         tipo='$tipoutilizador' WHERE id='$idutilizador'"
     );
     $result = $conn->query($alteraUtilizador);
@@ -27,7 +27,6 @@ if (isset($_GET['id'])) {
     $result = $conn->query ($sql);
 
     if($result->num_rows>0) {
-
         while ($row = $result->fetch_assoc()) {
             $idutilizador = $row['id'];
             $nomeutilizador = $row['nome'];
@@ -37,11 +36,7 @@ if (isset($_GET['id'])) {
         }
     }
 }
-
-
 ?>
-
-
 
 <title> PetShop | Editar utilizador <?php echo $nomeutilizador ?></title>
 
@@ -119,7 +114,5 @@ if (isset($_GET['id'])) {
     </div>
 
     <?php require "footer.php"; ?>
-
 </body>
-
 </html>

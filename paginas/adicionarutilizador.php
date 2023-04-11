@@ -7,14 +7,15 @@ require_once('../basedados/basedados.h');
 
 if (isset($_POST['adicionar'])) {
     $nomeutilizador = $_POST['nome'];
+    $password = $_POST['nome'];
     $emailutilizador = $_POST['email'];
     $telemovelutilizador = $_POST['telemovel'];
     $tipoutilizador = $_POST['tipo'];
     $idutilizador = $_POST['id'];
 
 
-    $alteraUtilizador = ("INSERT INTO utilizadores(nome, email, telemovel, tipo) values
-    ('$nomeutilizador', '$emailutilizador', $telemovelutilizador, '$tipoutilizador') ");
+    $alteraUtilizador = ("INSERT INTO utilizadores(nome, password, email, telemovel, tipo) values
+    ('$nomeutilizador','$password', '$emailutilizador', $telemovelutilizador, '$tipoutilizador') ");
 
     $result = $conn->query($alteraUtilizador);
 }
@@ -22,7 +23,9 @@ if (isset($_POST['adicionar'])) {
 
 
 
-<title> PetShop | Editar utilizador <?php echo $nomeutilizador ?></title>
+<title> PetShop | Editar utilizador
+    <?php echo $nomeutilizador ?>
+</title>
 
 <body>
     <?php require 'header.php'; ?>
@@ -34,20 +37,23 @@ if (isset($_POST['adicionar'])) {
                 <div class="col-12 col-sm-8 mb-5">
                     <div class="contact-form">
                         <form name="sentMessage" id="contactForm" novalidate="novalidate" method="POST">
-                        <input type="text" class="invisible" name="id" class="form-control p-4 text-capitalize"  placeholder="id"/>
+                            <input type="text" class="invisible" name="id" class="form-control p-4 text-capitalize"
+                                placeholder="id" />
 
-                        
-                        <div class="control-group">
+                            <div class="control-group">
                                 <div class="row justify-content-center  ">
                                     <div class="col-1 align-self-center">
                                         <label> Nome: </label>
                                     </div>
                                     <div class="col-11">
-                                        <input type="text" name="nome" class="form-control p-4 text-capitalize" placeholder="Nome" required="required" data-validation-required-message="Nome" />
+                                        <input type="text" name="nome" class="form-control p-4 text-capitalize"
+                                            placeholder="Nome" required="required"
+                                            data-validation-required-message="Nome" />
                                     </div>
                                     <p class="help-block text-danger"> </p>
                                 </div>
                             </div>
+
 
                             <div class="control-group">
                                 <div class="row justify-content-center  ">
@@ -55,7 +61,8 @@ if (isset($_POST['adicionar'])) {
                                         <label> Email: </label>
                                     </div>
                                     <div class="col-11">
-                                        <input type="email" name="email" class="form-control p-4" placeholder="Email" required="required" data-validation-required-message="Email" />
+                                        <input type="email" name="email" class="form-control p-4" placeholder="Email"
+                                            required="required" data-validation-required-message="Email" />
                                     </div>
                                     <p class="help-block text-danger"> </p>
                                 </div>
@@ -67,7 +74,9 @@ if (isset($_POST['adicionar'])) {
                                         <label> Telemovel: </label>
                                     </div>
                                     <div class="col-11">
-                                        <input type="telemovel" name="telemovel" class="form-control p-4" placeholder="Telemovel" required="required" data-validation-required-message="Telemóvel" />
+                                        <input type="telemovel" name="telemovel" class="form-control p-4"
+                                            placeholder="Telemovel" required="required"
+                                            data-validation-required-message="Telemóvel" />
                                         <p class="help-block text-danger"> </p>
                                     </div>
                                 </div>
@@ -80,15 +89,18 @@ if (isset($_POST['adicionar'])) {
                                         <label> Tipo: </label>
                                     </div>
                                     <div class="col-11">
-                                        <input type="tipo" name="tipo" class="form-control p-4" placeholder="Tipo" required="required" data-validation-required-message="Tipo" />
+                                        <input type="tipo" name="tipo" class="form-control p-4" placeholder="Tipo"
+                                            required="required" data-validation-required-message="Tipo" />
                                         <p class="help-block text-danger"> </p>
                                     </div>
                                 </div>
                             </div>
 
                             <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton" name='adicionar'>Guardar</button>
-                                <a class="btn btn-primary py-3 px-5" id="sendMessageButton" href="gestao.php">Cancelar</a>
+                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton"
+                                    name='adicionar'>Guardar</button>
+                                <a class="btn btn-primary py-3 px-5" id="sendMessageButton"
+                                    href="gestao.php">Cancelar</a>
                             </div>
                         </form>
                     </div>

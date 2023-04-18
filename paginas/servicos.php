@@ -142,19 +142,25 @@ if (!$sqlServicoInfo || !$sqlFuncionariosInfo) {
                     <div class="bg-primary py-5 px-4 px-sm-5">
                         <form class="py-5">
                             <div class="form-group">
-                                <input type="text" class="form-control border-0 p-4" placeholder="Your Name" required="required" />
+                                <input type="text" class="form-control border-0 p-4" placeholder="Your Name"
+                                    required="required" />
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control border-0 p-4" placeholder="Your Email" required="required" />
+                                <input type="email" class="form-control border-0 p-4" placeholder="Your Email"
+                                    required="required" />
                             </div>
                             <div class="form-group">
                                 <div class="date" id="date" data-target-input="nearest">
-                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input" placeholder="Reservation Date" data-target="#date" data-toggle="datetimepicker" />
+                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input"
+                                        placeholder="Reservation Date" data-target="#date"
+                                        data-toggle="datetimepicker" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="time" id="time" data-target-input="nearest">
-                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input" placeholder="Reservation Time" data-target="#time" data-toggle="datetimepicker" />
+                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input"
+                                        placeholder="Reservation Time" data-target="#time"
+                                        data-toggle="datetimepicker" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -174,7 +180,8 @@ if (!$sqlServicoInfo || !$sqlFuncionariosInfo) {
                 <div class="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
                     <h4 class="text-secondary mb-3">Going for a vacation?</h4>
                     <h1 class="display-4 mb-4">Book For <span class="text-primary">Your Pet</span></h1>
-                    <p>Labore vero lorem eos sed aliquy ipsum aliquy sed. Vero dolore dolore takima ipsum lorem rebum</p>
+                    <p>Labore vero lorem eos sed aliquy ipsum aliquy sed. Vero dolore dolore takima ipsum lorem rebum
+                    </p>
                     <div class="row py-2">
                         <div class="col-sm-6">
                             <div class="d-flex flex-column">

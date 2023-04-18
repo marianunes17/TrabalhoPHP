@@ -5,17 +5,17 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
-$animais = mysqli_query($conn, "SELECT * FROM animais WHERE dono='" . $_SESSION["id"] . "'");
+$animais = mysqli_query($conn, "SELECT * FROM animais WHERE idDono='" . $_SESSION["id"] . "'");
 $animaisInfo = mysqli_fetch_array($animais);
 
-$reservas = mysqli_query($conn, "SELECT * FROM reservas WHERE dono='" . $_SESSION["id"] . "'");
+$reservas = mysqli_query($conn, "SELECT * FROM reservas WHERE idAnimal='" . $_SESSION["id"] . "'");
 $reservasInfo = mysqli_fetch_array($reservas);
 
 
 $servicoFuncionario = mysqli_query($conn, "SELECT * FROM servicos s 
                                             JOIN servicosfuncionarios sf
-                                            ON s.id = sf.servico AND
-                                            sf.funcionario='". $_SESSION["id"] . "'");
+                                            ON s.id = sf.idServico AND
+                                            sf.idFuncionario='". $_SESSION["id"] . "'");
 $servicoFuncionarioInfo = mysqli_fetch_assoc($servicoFuncionario);
 
 
@@ -139,7 +139,7 @@ $servicoFuncionarioInfo = mysqli_fetch_assoc($servicoFuncionario);
                 <!-- -------------------------- RESERVAS -------------------------- -->
                 <div class="tab-pane fade py-4" id="reservas" role="tabpanel" aria-labelledby="reservas-tab" tabindex="0">
                     <?php
-                    if ($reservasInfo['dono'] == $SESSION['id']) {
+                    if ($reservasInfo['idDono'] == $SESSION['id']) {
                         while ($reservasInfo = mysqli_fetch_array($animais)) {
                     ?>
 

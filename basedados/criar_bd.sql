@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 11-Abr-2023 às 09:59
+-- Tempo de geração: 19-Abr-2023 às 00:21
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -33,14 +33,14 @@ CREATE TABLE `animais` (
   `tipo` enum('cão','gato') NOT NULL,
   `raca` text NOT NULL,
   `pelo` enum('curto','longo') NOT NULL,
-  `dono` int(11) NOT NULL
+  `idDono` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `animais`
 --
 
-INSERT INTO `animais` (`id`, `nome`, `tipo`, `raca`, `pelo`, `dono`) VALUES
+INSERT INTO `animais` (`id`, `nome`, `tipo`, `raca`, `pelo`, `idDono`) VALUES
 (1, 'Snoopy', 'cão', 'Épagneul Breton', 'curto', 4),
 (2, 'Riscas', 'gato', '', 'curto', 4),
 (3, 'Flocky', 'cão', 'Podengo', 'curto', 2);
@@ -53,19 +53,18 @@ INSERT INTO `animais` (`id`, `nome`, `tipo`, `raca`, `pelo`, `dono`) VALUES
 
 CREATE TABLE `reservas` (
   `id` int(11) NOT NULL,
-  `animal` int(11) NOT NULL,
   `dataInicio` datetime NOT NULL,
   `dataFim` datetime NOT NULL,
-  `servico` int(11) NOT NULL,
-  `dono` int(11) NOT NULL
+  `idAnimal` int(11) NOT NULL,
+  `idServico` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `reservas`
 --
 
-INSERT INTO `reservas` (`id`, `animal`, `dataInicio`, `dataFim`, `servico`, `dono`) VALUES
-(1, 1, '2023-06-30 11:31:45', '2023-06-30 12:01:45', 1, 0);
+INSERT INTO `reservas` (`id`, `dataInicio`, `dataFim`, `idAnimal`, `idServico`) VALUES
+(1, '2023-06-30 11:31:45', '2023-06-30 12:01:45', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -100,15 +99,15 @@ INSERT INTO `servicos` (`id`, `nome`, `descricao`, `duracao`, `preco`, `imagem`)
 
 CREATE TABLE `servicosfuncionarios` (
   `id` int(11) NOT NULL,
-  `funcionario` int(11) NOT NULL,
-  `servico` int(11) NOT NULL
+  `idFuncionario` int(11) NOT NULL,
+  `idServico` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `servicosfuncionarios`
 --
 
-INSERT INTO `servicosfuncionarios` (`id`, `funcionario`, `servico`) VALUES
+INSERT INTO `servicosfuncionarios` (`id`, `idFuncionario`, `idServico`) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
@@ -131,8 +130,8 @@ CREATE TABLE `utilizadores` (
   `password` text NOT NULL,
   `email` text NOT NULL,
   `telemovel` int(13) NOT NULL,
-  `tipo` enum('cliente','funcionario','admin') NOT NULL,
-  `imagem` varchar(60) NOT NULL
+  `tipo` enum('cliente','funcionario','admin') DEFAULT NULL,
+  `imagem` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -144,7 +143,11 @@ INSERT INTO `utilizadores` (`id`, `nome`, `password`, `email`, `telemovel`, `tip
 (2, 'cliente', 'cliente', 'cliente@gmail.com', 2147483647, 'cliente', ''),
 (3, 'joana', 'joana', 'joana@hotmail.com', 968254821, 'funcionario', 'funcionario1.jpg'),
 (4, 'maria', 'maria', 'maria@hotmail.com', 938247327, 'funcionario', 'funcionario2.jpg'),
-(5, 'admin', 'admin', 'admin@hotmail.com', 936925333, 'admin', '');
+(5, 'admin', 'admin', 'admin@hotmail.com', 936925333, 'admin', ''),
+(6, 'teste', '', 'teste', 91, 'funcionario', NULL),
+(7, 'm', '', 'm@m', 9, 'funcionario', NULL),
+(8, 'j', '', 'j@mail.com', 8, 'funcionario', NULL),
+(9, 'p', 'p', 'p@mail.com', 9, '', NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -155,15 +158,15 @@ INSERT INTO `utilizadores` (`id`, `nome`, `password`, `email`, `telemovel`, `tip
 --
 ALTER TABLE `animais`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `dono` (`dono`);
+  ADD KEY `dono` (`idDono`);
 
 --
 -- Índices para tabela `reservas`
 --
 ALTER TABLE `reservas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `servico` (`servico`),
-  ADD KEY `animal` (`animal`);
+  ADD KEY `servico` (`idServico`),
+  ADD KEY `animal` (`idAnimal`);
 
 --
 -- Índices para tabela `servicos`
@@ -177,8 +180,8 @@ ALTER TABLE `servicos`
 --
 ALTER TABLE `servicosfuncionarios`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `funcionario` (`funcionario`),
-  ADD KEY `servicosfuncionarios_ibfk_2` (`servico`);
+  ADD KEY `funcionario` (`idFuncionario`),
+  ADD KEY `servicosfuncionarios_ibfk_2` (`idServico`);
 
 --
 -- Índices para tabela `utilizadores`
@@ -221,7 +224,7 @@ ALTER TABLE `servicosfuncionarios`
 -- AUTO_INCREMENT de tabela `utilizadores`
 --
 ALTER TABLE `utilizadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restrições para despejos de tabelas
@@ -231,21 +234,21 @@ ALTER TABLE `utilizadores`
 -- Limitadores para a tabela `animais`
 --
 ALTER TABLE `animais`
-  ADD CONSTRAINT `animais_ibfk_1` FOREIGN KEY (`dono`) REFERENCES `utilizadores` (`id`);
+  ADD CONSTRAINT `animais_ibfk_1` FOREIGN KEY (`iddono`) REFERENCES `utilizadores` (`id`);
 
 --
 -- Limitadores para a tabela `reservas`
 --
 ALTER TABLE `reservas`
-  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`servico`) REFERENCES `servicos` (`id`),
-  ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`animal`) REFERENCES `animais` (`id`);
+  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`idServico`) REFERENCES `servicos` (`id`),
+  ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`idAnimal`) REFERENCES `animais` (`id`);
 
 --
 -- Limitadores para a tabela `servicosfuncionarios`
 --
 ALTER TABLE `servicosfuncionarios`
-  ADD CONSTRAINT `servicosfuncionarios_ibfk_1` FOREIGN KEY (`funcionario`) REFERENCES `utilizadores` (`id`),
-  ADD CONSTRAINT `servicosfuncionarios_ibfk_2` FOREIGN KEY (`servico`) REFERENCES `servicos` (`id`);
+  ADD CONSTRAINT `servicosfuncionarios_ibfk_1` FOREIGN KEY (`idFuncionario`) REFERENCES `utilizadores` (`id`),
+  ADD CONSTRAINT `servicosfuncionarios_ibfk_2` FOREIGN KEY (`idServico`) REFERENCES `servicos` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

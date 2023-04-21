@@ -55,34 +55,36 @@ $reservasInfo = mysqli_fetch_array($reservas);
                         <tbody>
                             <?php
                             while ($reservasInfo = mysqli_fetch_array($reservas)) {
-                                ?>
+                                if ($_SESSION['id'] == $reservasInfo['dono']) {
+                                    ?>
 
-                                <tr>
-                                    <td scope="row">
-                                        <?php echo $reservasInfo['id'] ?>
-                                    </td>
-                                    <td scope="row">
-                                        <?php echo $reservasInfo['animal'] ?>
-                                    </td>
-                                    <td scope="row">
-                                        <?php echo $reservasInfo['dataInicio'] ?>
-                                    </td>
-                                    <td scope="row">
-                                        <?php echo $reservasInfo['dataFim'] ?>
-                                    </td>
-                                    <td scope="row">
-                                        <?php echo $reservasInfo['servico'] ?>
-                                    </td>
-                                    <td scope="row"> <a type="button" class="btn btn-primary"
-                                            href="editarutilizador.php?id=<?php echo $reservasInfo['id']; ?>">Editar</a>
-                                    </td>
-                                    <td scope="row"> <a type="button" class="btn btn-primary"
-                                            href="eliminarutilizador.php?id=<?php echo $reservasInfo['id']; ?>">Eliminar</a>
-                                    </td>
+                                    <tr>
+                                        <td scope="row">
+                                            <?php echo $reservasInfo['id'] ?>
+                                        </td>
+                                        <td scope="row">
+                                            <?php echo $reservasInfo['animal'] ?>
+                                        </td>
+                                        <td scope="row">
+                                            <?php echo $reservasInfo['dataInicio'] ?>
+                                        </td>
+                                        <td scope="row">
+                                            <?php echo $reservasInfo['dataFim'] ?>
+                                        </td>
+                                        <td scope="row">
+                                            <?php echo $reservasInfo['servico'] ?>
+                                        </td>
+                                        <td scope="row"> <a type="button" class="btn btn-primary"
+                                                href="editarutilizador.php?id=<?php echo $reservasInfo['id']; ?>">Editar</a>
+                                        </td>
+                                        <td scope="row"> <a type="button" class="btn btn-primary"
+                                                href="eliminarutilizador.php?id=<?php echo $reservasInfo['id']; ?>">Eliminar</a>
+                                        </td>
 
-                                </tr>
+                                    </tr>
 
-                            <?php } ?>
+                                <?php }
+                            } ?>
                         </tbody>
                     </table>
 

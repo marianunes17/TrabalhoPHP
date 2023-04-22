@@ -17,7 +17,7 @@ $reservas = mysqli_query($conn, "SELECT * FROM reservas r
                                  JOIN servicosfuncionarios sf
                                  ON s.id = sf.idServico AND
                                  sf.idFuncionario='" . $_SESSION["id"] . "'");
-$reservasInfo = mysqli_fetch_array($utilizadores);
+$reservasInfo = mysqli_fetch_array($reservas);
 ?>
 
 <title> PetShop | Gerir </title>
@@ -32,27 +32,23 @@ $reservasInfo = mysqli_fetch_array($utilizadores);
             <!--Navbar-->
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <?php if (($_SESSION['tipo'] == "administrador")) {
-                    ?>
+                <?php if (($_SESSION['tipo'] == "admin")) { ?>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="utilizadores-tab" data-bs-toggle="tab" href="#utilizadores"
-                            type="button" role="tab" aria-controls="utilizadores" aria-selected="true"> Gerir Utilizadores
+                        <button class="nav-link active" id="utilizadores-tab" data-bs-toggle="tab" href="#utilizadores" type="button" role="tab" aria-controls="utilizadores" aria-selected="true"> Gerir Utilizadores
                     </li>
                 <?php } ?>
 
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="reservas-tab" data-bs-toggle="tab" data-bs-target="#reservas"
-                        type="button" role="tab" aria-controls="reservas-tab" aria-selected="false">Gerir
+                    <button class="nav-link" id="reservas-tab" data-bs-toggle="tab" data-bs-target="#reservas" type="button" role="tab" aria-controls="reservas-tab" aria-selected="false">Gerir
                         Reservas</button>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
 
                 <!-- -------------------------- UTILIZADORES -------------------------- -->
-                <?php if (($_SESSION['tipo'] == "administrador")) { ?>
+                <?php if (($_SESSION['tipo'] == "admin")) { ?>
 
-                    <div class="tab-pane fade show active opacity-100 py-4" id="utilizadores" role="tabpanel"
-                        aria-labelledby="utilizadores-tab">
+                    <div class="tab-pane fade show active opacity-100 py-4" id="utilizadores" role="tabpanel" aria-labelledby="utilizadores-tab">
                         <a type="button" class="btn btn-primary float-right" href="adicionarutilizador.php">Adicionar</a>
 
 
@@ -71,7 +67,7 @@ $reservasInfo = mysqli_fetch_array($utilizadores);
                             <tbody>
                                 <?php
                                 while ($utilizadoresInfo = mysqli_fetch_array($utilizadores)) {
-                                    ?>
+                                ?>
 
                                     <tr>
                                         <td scope="row ">
@@ -86,27 +82,23 @@ $reservasInfo = mysqli_fetch_array($utilizadores);
                                         <td scope="row">
                                             <?php echo "<label class='text-capitalize font-weight-normal'>" . $utilizadoresInfo['tipo'] . " </label>"; ?>
                                         </td>
-                                        <td scope="row"> <a type="button" class="btn btn-primary"
-                                                href="editarutilizador.php?id=<?php echo $utilizadoresInfo['id']; ?>">Editar</a>
+                                        <td scope="row"> 
+                                            <a type="button" class="btn btn-primary" href="editarutilizador.php?id=<?php echo $utilizadoresInfo['id']; ?>">Editar</a>
+                                        </td>                                        
+                                        <td scope="row"> 
+                                            <a type="button" class="btn btn-primary" href="eliminarutilizador.php?id=<?php echo $utilizadoresInfo['id']; ?>">Eliminar</a>
                                         </td>
-                                        <td scope="row"> <a type="button" class="btn btn-primary"
-                                                href="eliminarutilizador.php?id=<?php echo $utilizadoresInfo['id']; ?>">Eliminar</a>
-                                        </td>
-
                                     </tr>
 
                                 <?php } ?>
                             </tbody>
                         </table>
-
                     </div>
                 <?php } ?>
 
                 <!-- -------------------------- RESERVAS -------------------------- -->
-                <div class="tab-pane fade opacity-100 py-4" id="reservas" role="tabpanel"
-                    aria-labelledby="reservas-tab">
+                <div class="tab-pane fade opacity-100 py-4" id="reservas" role="tabpanel" aria-labelledby="reservas-tab">
                     <a type="button" class="btn btn-primary float-right" href="adicionarreserva.php">Adicionar</a>
-
 
                     <table class="table">
                         <thead>
@@ -122,11 +114,8 @@ $reservasInfo = mysqli_fetch_array($utilizadores);
                                  -->
                             </tr>
                         </thead>
-                        <tbody>
 
-                            <?php
-                            while ($reservasInfo = mysqli_fetch_array($reservas)) {
-                                ?>
+                        <tbody>
                                 <tr>
                                     <td scope="row">
                                         <?php echo "<label class='text-capitalize font-weight-normal'>" . $reservasInfo['nomeAnimal'] . " </label>"; ?>
@@ -147,7 +136,6 @@ $reservasInfo = mysqli_fetch_array($utilizadores);
                             </td>
                             -->
                                 </tr>
-                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

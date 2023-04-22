@@ -7,7 +7,7 @@ require_once('../basedados/basedados.h');
 
 if (isset($_POST['adicionar'])) {
     $nomeutilizador = $_POST['nome'];
-    $password = $_POST['nomeUtilizador'];
+    $password = $_POST['nome'];
     $emailutilizador = $_POST['email'];
     $telemovelutilizador = $_POST['telemovel'];
     $tipoutilizador = $_POST['tipo'];

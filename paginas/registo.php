@@ -1,7 +1,27 @@
 <!DOCTYPE html>
 <html>
 
-<?php require 'head.php'; ?>
+<?php
+require 'head.php';
+
+require_once('../basedados/basedados.h');
+
+if (isset($_POST['registar'])) {
+    $nomeutilizador = $_POST['nome'];
+    $password = $_POST['password'];
+    $emailutilizador = $_POST['email'];
+    $telemovelutilizador = $_POST['telemovel'];
+
+
+    $alteraUtilizador = ("INSERT INTO utilizadores(nomeUtilizador, password, email, telemovel, tipo) values
+    ('$nomeutilizador','$password', '$emailutilizador', $telemovelutilizador, '') ");
+
+    $result = $conn->query($alteraUtilizador);
+}
+
+
+
+?>
 <title> PetShop </title>
 
 <body>
@@ -18,31 +38,33 @@
                 <div class="contact-form">
                     <div id="success"></div>
                     <form name="registo" id="registoFrom" action="" method="POST">
-                        
-                    <div class="control-group">
-                            <input type="email" class="form-control p-4" id="email" placeholder="Email" required="required" data-validation-required-message="Por favor, introduza o email" />
+
+                        <div class="control-group">
+                            <input type="text" class="form-control p-4" name="nome" id="nome" placeholder="Nome" required="required" data-validation-required-message="Por favor, introduza o nome" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div class="control-group">
+                            <input type="email" class="form-control p-4" name="email" id="email" placeholder="Email" required="required" data-validation-required-message="Por favor, introduza o email" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div class="control-group">
+                            <input type="passsword" class="form-control p-4" name="password" id="passsword" placeholder="Passsword" required="required" data-validation-required-message="Por favor, introduza a password" />
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="control-group">
-                            <input type="text" class="form-control p-4" id="nome" placeholder="Nome" required="required" data-validation-required-message="Por favor, introduza o nome" />
+                            <input type="phone" class="form-control p-4" name="telemovel" id="telemovel" placeholder="Telemovel" required="required" data-validation-required-message="Por favor, introduza o telemóvel" />
                             <p class="help-block text-danger"></p>
                         </div>
-                        <div class="control-group">
-                            <input type="passsword" class="form-control p-4" id="passsword" placeholder="Passsword" required="required" data-validation-required-message="Por favor, introduza a password" />
-                            <p class="help-block text-danger"></p>
-                        </div>
-                        <div class="control-group">
-                            <input type="phone" class="form-control p-4" id="telemovel" placeholder="Telemovel" required="required" data-validation-required-message="Por favor, introduza o telemóvel" />
-                            <p class="help-block text-danger"></p>
-                        </div>
-                       
+
                         <div>
-                            <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Registar</button>
+                            <button class="btn btn-primary py-3 px-5" type="submit" name="registar" id="sendMessageButton">Registar</button>
                         </div>
                     </form>
                 </div>
             </div>
-           
+
             <div class="col-12 col-sm-8 mb-5 ">
                 <a href="login.php">
                     <h6 class="text-secondary mb-3 text-right">Login</h6>

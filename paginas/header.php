@@ -32,7 +32,7 @@
                         ';
 
 
-                    if (($_SESSION['tipo'] == "administrador" || $_SESSION['tipo'] == "funcionario")) {
+                    if (($_SESSION['tipo'] == "admin" || $_SESSION['tipo'] == "funcionario")) {
                         echo '  <a class="dropdown-item text-light" href="gestao.php">Gestão</a>
                                 ';
                     }

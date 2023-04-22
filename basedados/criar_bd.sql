@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 22-Abr-2023 às 18:03
+-- Tempo de geração: 22-Abr-2023 às 18:06
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -127,14 +127,14 @@ INSERT INTO `servicosfuncionarios` (`id`, `idFuncionario`, `idServico`) VALUES
 
 CREATE TABLE `tipoutilizador` (
   `id` int(11) NOT NULL,
-  `nome` varchar(30) NOT NULL
+  `nomeTipoUtilizador` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `tipoutilizador`
 --
 
-INSERT INTO `tipoutilizador` (`id`, `nome`) VALUES
+INSERT INTO `tipoutilizador` (`id`, `nomeTipoUtilizador`) VALUES
 (1, 'cliente'),
 (2, 'funcionario'),
 (3, 'administrador');

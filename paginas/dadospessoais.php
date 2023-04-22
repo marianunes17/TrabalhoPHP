@@ -80,10 +80,10 @@ $servicoFuncionarioInfo = mysqli_fetch_assoc($servicoFuncionario);
                             <?php
                             if ($_SESSION['tipo'] == 'funcionario') {
                                 echo '
-                                        <div class="col-1">
-                                            <label class="font-weight-bold"> Serviço: </label>
-                                        </div>
-                                        <div class="col-11">';
+                                    <div class="col-1">
+                                        <label class="font-weight-bold"> Serviço: </label>
+                                    </div>
+                                    <div class="col-11">';
                                 while ($servicoFuncionarioInfo = mysqli_fetch_array($servicoFuncionario)) {
                                     echo '<label class="text-capitalize font-weight-normal""> ' .  $servicoFuncionarioInfo['nomeServico'] . '</label> <br>';
                                 }

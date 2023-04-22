@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 22-Abr-2023 às 19:14
+-- Tempo de geração: 23-Abr-2023 às 00:23
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -131,22 +131,22 @@ CREATE TABLE `utilizadores` (
   `password` text NOT NULL,
   `email` text NOT NULL,
   `telemovel` int(13) NOT NULL,
-  `imagem` varchar(60) DEFAULT NULL,
-  `tipo` enum('cliente','funcionario','administrador') NOT NULL
+  `tipo` enum('cliente','funcionario','admin') NOT NULL,
+  `imagem` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `utilizadores`
 --
 
-INSERT INTO `utilizadores` (`id`, `nomeUtilizador`, `password`, `email`, `telemovel`, `imagem`, `tipo`) VALUES
-(1, 'joao', 'joao', 'joao@hotmail.com', 961234567, 'funcionario3.jpg', 'funcionario'),
-(2, 'cliente', 'cliente', 'cliente@gmail.com', 2147483647, '', 'cliente'),
-(3, 'joana', 'joana', 'joana@hotmail.com', 968254821, 'funcionario1.jpg', 'funcionario'),
-(4, 'maria', 'maria', 'maria@hotmail.com', 938247327, 'funcionario2.jpg', 'funcionario'),
-(5, 'admin', 'admin', 'admin@hotmail.com', 936925333, '', 'administrador'),
-(6, 'teste', '', 'teste', 91, NULL, 'cliente'),
-(8, 'j', '', 'j@mail.com', 8, NULL, 'cliente');
+INSERT INTO `utilizadores` (`id`, `nomeUtilizador`, `password`, `email`, `telemovel`, `tipo`, `imagem`) VALUES
+(1, 'joao', 'joao', 'joao@hotmail.com', 961234567, 'funcionario', 'funcionario3.jpg'),
+(2, 'cliente', 'cliente', 'cliente@gmail.com', 2147483647, 'cliente', ''),
+(3, 'joana', 'joana', 'joana@hotmail.com', 968254821, 'funcionario', 'funcionario1.jpg'),
+(4, 'maria', 'maria', 'maria@hotmail.com', 938247327, 'funcionario', 'funcionario2.jpg'),
+(5, 'admin', 'admin', 'admin@hotmail.com', 936925333, 'admin', ''),
+(6, 'teste', '', 'teste', 91, 'cliente', NULL),
+(8, 'j', '', 'j@mail.com', 8, 'cliente', NULL);
 
 --
 -- Índices para tabelas despejadas

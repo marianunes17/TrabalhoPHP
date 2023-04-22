@@ -36,6 +36,10 @@ if (isset($_GET['id'])) {
         }
     }
 }
+
+$utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
+$utilizadoresInfo = mysqli_fetch_array($utilizadores);
+
 ?>
 
 <title> PetShop | Editar utilizador
@@ -62,8 +66,7 @@ if (isset($_GET['id'])) {
                     <div class="contact-form">
                         <form name="sentMessage" id="contactForm" novalidate="novalidate" method="POST">
 
-                            <input type="text" class="invisible" name="id" class="form-control p-4 text-capitalize"
-                                placeholder="id" <?php echo "value='" . $idutilizador . "'"; ?> />
+                            <input type="text" class="invisible" name="id" class="form-control p-4 text-capitalize" placeholder="id" <?php echo "value='" . $idutilizador . "'"; ?> />
 
                             <div class="control-group">
                                 <div class="row justify-content-center  ">
@@ -71,9 +74,7 @@ if (isset($_GET['id'])) {
                                         <label> Nome: </label>
                                     </div>
                                     <div class="col-11">
-                                        <input type="text" name="nomeutilizador" class="form-control p-4 text-capitalize"
-                                            placeholder="Nome" required="required"
-                                            data-validation-required-message="Nome" <?php echo "value='" . $nomeutilizador . "'"; ?> />
+                                        <input type="text" name="nomeutilizador" class="form-control p-4 text-capitalize" placeholder="Nome" required="required" data-validation-required-message="Nome" <?php echo "value='" . $nomeutilizador . "'"; ?> />
                                     </div>
                                     <p class="help-block text-danger"> </p>
                                 </div>
@@ -85,8 +86,7 @@ if (isset($_GET['id'])) {
                                         <label> Email: </label>
                                     </div>
                                     <div class="col-11">
-                                        <input type="email" name="email" class="form-control p-4" placeholder="Email"
-                                            required="required" data-validation-required-message="Email" <?php echo "value='" . $emailutilizador . "'"; ?> />
+                                        <input type="email" name="email" class="form-control p-4" placeholder="Email" required="required" data-validation-required-message="Email" <?php echo "value='" . $emailutilizador . "'"; ?> />
                                     </div>
                                     <p class="help-block text-danger"> </p>
                                 </div>
@@ -98,33 +98,33 @@ if (isset($_GET['id'])) {
                                         <label> Telemovel: </label>
                                     </div>
                                     <div class="col-11">
-                                        <input type="telemovel" name="telemovel" class="form-control p-4"
-                                            placeholder="Telemovel" required="required"
-                                            data-validation-required-message="Telemóvel" <?php echo "value='" . $telemovelutilizador . "'"; ?> />
+                                        <input type="telemovel" name="telemovel" class="form-control p-4" placeholder="Telemovel" required="required" data-validation-required-message="Telemóvel" <?php echo "value='" . $telemovelutilizador . "'"; ?> />
                                         <p class="help-block text-danger"> </p>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="control-group">
-                                <div class="row justify-content-center  ">
-                                    <div class="col-1 align-self-center">
-                                        <label> Tipo: </label>
-                                    </div>
-                                    <div class="col-11">
-                                        <input type="tipo" name="tipo" class="form-control p-4" placeholder="Telemovel"
-                                            required="required" data-validation-required-message="Tipo" <?php echo "value='" . $tipoutilizador . "'"; ?> />
-                                        <p class="help-block text-danger"> </p>
+                            <?php if ($_SESSION['tipo'] == 'admin') { ?>
+                                <div class="control-group">
+                                    <div class="row justify-content-center  ">
+                                        <div class="col-1 align-self-center">
+                                            <label> Tipo: </label>
+                                        </div>
+                                        <div class="col-11 form-group">
+                                            <select class="form-select">
+                                                <option name="tipo" value="cliente"> Cliente </option>
+                                                <option name="tipo" value="funcionario"> Funcionario </option>
+                                                <option name="tipo" value="admin"> Administrador </option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php } ?>
 
                             <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton"
-                                    name='atualizar'>Guardar</button>
-                                <a class="btn btn-primary py-3 px-5" id="sendMessageButton"
-                                    href="gestao.php">Cancelar</a>
+                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton" name='atualizar'>Guardar</button>
+                                <a class="btn btn-primary py-3 px-5" id="sendMessageButton" href="gestao.php">Cancelar</a>
                             </div>
                         </form>
                     </div>

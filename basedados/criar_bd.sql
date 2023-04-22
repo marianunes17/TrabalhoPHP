@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 22-Abr-2023 às 11:23
+-- Tempo de geração: 22-Abr-2023 às 18:03
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -65,7 +65,7 @@ CREATE TABLE `reservas` (
 
 INSERT INTO `reservas` (`id`, `dataInicio`, `dataFim`, `idAnimal`, `idServico`) VALUES
 (1, '2023-06-30 11:31:45', '2023-06-30 12:01:45', 1, 1),
-(3, '2023-04-22 02:50:54', '2023-04-22 02:50:54', 2, 3);
+(2, '2023-04-22 02:50:54', '2023-04-22 02:50:54', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -114,10 +114,30 @@ INSERT INTO `servicosfuncionarios` (`id`, `idFuncionario`, `idServico`) VALUES
 (3, 1, 3),
 (4, 1, 5),
 (5, 3, 5),
-(9, 4, 1),
-(10, 3, 3),
-(14, 4, 3),
-(15, 3, 1);
+(6, 4, 1),
+(7, 3, 3),
+(8, 4, 3),
+(9, 3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tipoutilizador`
+--
+
+CREATE TABLE `tipoutilizador` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tipoutilizador`
+--
+
+INSERT INTO `tipoutilizador` (`id`, `nome`) VALUES
+(1, 'cliente'),
+(2, 'funcionario'),
+(3, 'administrador');
 
 -- --------------------------------------------------------
 
@@ -131,7 +151,7 @@ CREATE TABLE `utilizadores` (
   `password` text NOT NULL,
   `email` text NOT NULL,
   `telemovel` int(13) NOT NULL,
-  `tipo` enum('cliente','funcionario','admin') DEFAULT NULL,
+  `idTipo` int(11) DEFAULT NULL,
   `imagem` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -139,15 +159,14 @@ CREATE TABLE `utilizadores` (
 -- Extraindo dados da tabela `utilizadores`
 --
 
-INSERT INTO `utilizadores` (`id`, `nomeUtilizador`, `password`, `email`, `telemovel`, `tipo`, `imagem`) VALUES
-(1, 'joao', 'joao', 'joao@hotmail.com', 961234567, 'funcionario', 'funcionario3.jpg'),
-(2, 'cliente', 'cliente', 'cliente@gmail.com', 2147483647, 'cliente', ''),
-(3, 'joana', 'joana', 'joana@hotmail.com', 968254821, 'funcionario', 'funcionario1.jpg'),
-(4, 'maria', 'maria', 'maria@hotmail.com', 938247327, 'funcionario', 'funcionario2.jpg'),
-(5, 'admin', 'admin', 'admin@hotmail.com', 936925333, 'admin', ''),
-(6, 'teste', '', 'teste', 91, 'funcionario', NULL),
-(7, 'm', '', 'm@m', 9, 'funcionario', NULL),
-(8, 'j', '', 'j@mail.com', 8, 'funcionario', NULL);
+INSERT INTO `utilizadores` (`id`, `nomeUtilizador`, `password`, `email`, `telemovel`, `idTipo`, `imagem`) VALUES
+(1, 'joao', 'joao', 'joao@hotmail.com', 961234567, 2, 'funcionario3.jpg'),
+(2, 'cliente', 'cliente', 'cliente@gmail.com', 2147483647, 1, ''),
+(3, 'joana', 'joana', 'joana@hotmail.com', 968254821, 2, 'funcionario1.jpg'),
+(4, 'maria', 'maria', 'maria@hotmail.com', 938247327, 2, 'funcionario2.jpg'),
+(5, 'admin', 'admin', 'admin@hotmail.com', 936925333, 3, ''),
+(6, 'teste', '', 'teste', 91, 2, NULL),
+(8, 'j', '', 'j@mail.com', 8, 2, NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -184,13 +203,20 @@ ALTER TABLE `servicosfuncionarios`
   ADD KEY `servicosfuncionarios_ibfk_2` (`idServico`);
 
 --
+-- Índices para tabela `tipoutilizador`
+--
+ALTER TABLE `tipoutilizador`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `utilizadores`
 --
 ALTER TABLE `utilizadores`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `password_2` (`password`,`email`,`nomeUtilizador`) USING HASH,
   ADD KEY `password_3` (`password`(768)),
-  ADD KEY `email` (`email`(768)) USING HASH;
+  ADD KEY `email` (`email`(768)) USING HASH,
+  ADD KEY `idTipo` (`idTipo`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -221,6 +247,12 @@ ALTER TABLE `servicosfuncionarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT de tabela `tipoutilizador`
+--
+ALTER TABLE `tipoutilizador`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de tabela `utilizadores`
 --
 ALTER TABLE `utilizadores`
@@ -249,6 +281,12 @@ ALTER TABLE `reservas`
 ALTER TABLE `servicosfuncionarios`
   ADD CONSTRAINT `servicosfuncionarios_ibfk_1` FOREIGN KEY (`idFuncionario`) REFERENCES `utilizadores` (`id`),
   ADD CONSTRAINT `servicosfuncionarios_ibfk_2` FOREIGN KEY (`idServico`) REFERENCES `servicos` (`id`);
+
+--
+-- Limitadores para a tabela `utilizadores`
+--
+ALTER TABLE `utilizadores`
+  ADD CONSTRAINT `utilizadores_ibfk_1` FOREIGN KEY (`idTipo`) REFERENCES `tipoutilizador` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

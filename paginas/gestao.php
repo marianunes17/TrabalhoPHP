@@ -62,17 +62,17 @@ $reservasInfo = mysqli_fetch_array($utilizadores);
                             ?>
 
                                 <tr>
-                                    <td scope="row">
-                                        <?php echo $utilizadoresInfo['nomeUtilizador'] ?>
+                                    <td scope="row ">
+                                        <?php echo "<label class=' text-capitalize font-weight-normal'>" . $utilizadoresInfo['nomeUtilizador'] . " </label>"; ?>
                                     </td>
                                     <td scope="row">
-                                        <?php echo $utilizadoresInfo['email'] ?>
+                                        <?php echo "<label class=' text-capitalize font-weight-normal'>" . $utilizadoresInfo['email'] . " </label>"; ?>
                                     </td>
                                     <td scope="row">
-                                        <?php echo $utilizadoresInfo['telemovel'] ?>
+                                        <?php echo "<label class=' text-capitalize font-weight-normal'>" . $utilizadoresInfo['telemovel'] . " </label>"; ?>
                                     </td>
                                     <td scope="row">
-                                        <?php echo $utilizadoresInfo['tipo'] ?>
+                                        <?php echo "<label class='text-capitalize font-weight-normal'>" . $utilizadoresInfo['tipo'] . " </label>"; ?>
                                     </td>
                                     <td scope="row"> <a type="button" class="btn btn-primary" href="editarutilizador.php?id=<?php echo $utilizadoresInfo['id']; ?>">Editar</a>
                                     </td>
@@ -100,7 +100,7 @@ $reservasInfo = mysqli_fetch_array($utilizadores);
                                 <th scope="col">Inicio</th>
                                 <th scope="col">Fim</th>
                                 <th scope="col">Serviço</th>
-                                  <!-- 
+                                <!-- 
                                 <th scope="col">Funcionário</th>
                                 <th scope="col">Editar</th>
                                 <th scope="col">Eliminar</th>
@@ -114,16 +114,16 @@ $reservasInfo = mysqli_fetch_array($utilizadores);
                             ?>
                                 <tr>
                                     <td scope="row">
-                                        <?php echo $reservasInfo['nomeAnimal'] ?>
+                                        <?php echo "<label class='text-capitalize font-weight-normal'>" . $reservasInfo['nomeAnimal'] . " </label>"; ?>
                                     </td>
                                     <td scope="row">
-                                        <?php echo $reservasInfo['dataInicio'] ?>
+                                        <?php echo "<label class='text-capitalize font-weight-normal'>" . $reservasInfo['dataInicio'] . " </label>"; ?>
                                     </td>
                                     <td scope="row">
-                                        <?php echo $reservasInfo['dataFim'] ?>
+                                        <?php echo "<label class='text-capitalize font-weight-normal'>" . $reservasInfo['dataFim'] . " </label>"; ?>
                                     </td>
                                     <td scope="row">
-                                        <?php echo $reservasInfo['nomeServico'] ?>
+                                        <?php echo "<label class='text-capitalize font-weight-normal'>" . $reservasInfo['nomeServico'] . " </label>"; ?>
                                     </td>
                                     <!-- 
                             <td scope="row"> <a type="button" class="btn btn-primary" href="editarutilizador.php?id=<?php echo $reserva['id']; ?>">Editar</a>

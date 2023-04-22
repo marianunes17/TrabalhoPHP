@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 19-Abr-2023 às 00:21
+-- Tempo de geração: 22-Abr-2023 às 11:23
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `animais` (
   `id` int(11) NOT NULL,
-  `nome` text NOT NULL,
+  `nomeAnimal` text NOT NULL,
   `tipo` enum('cão','gato') NOT NULL,
   `raca` text NOT NULL,
   `pelo` enum('curto','longo') NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `animais` (
 -- Extraindo dados da tabela `animais`
 --
 
-INSERT INTO `animais` (`id`, `nome`, `tipo`, `raca`, `pelo`, `idDono`) VALUES
+INSERT INTO `animais` (`id`, `nomeAnimal`, `tipo`, `raca`, `pelo`, `idDono`) VALUES
 (1, 'Snoopy', 'cão', 'Épagneul Breton', 'curto', 4),
 (2, 'Riscas', 'gato', '', 'curto', 4),
 (3, 'Flocky', 'cão', 'Podengo', 'curto', 2);
@@ -64,7 +64,8 @@ CREATE TABLE `reservas` (
 --
 
 INSERT INTO `reservas` (`id`, `dataInicio`, `dataFim`, `idAnimal`, `idServico`) VALUES
-(1, '2023-06-30 11:31:45', '2023-06-30 12:01:45', 1, 1);
+(1, '2023-06-30 11:31:45', '2023-06-30 12:01:45', 1, 1),
+(3, '2023-04-22 02:50:54', '2023-04-22 02:50:54', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,7 @@ INSERT INTO `reservas` (`id`, `dataInicio`, `dataFim`, `idAnimal`, `idServico`) 
 
 CREATE TABLE `servicos` (
   `id` int(11) NOT NULL,
-  `nome` text NOT NULL,
+  `nomeServico` text NOT NULL,
   `descricao` text NOT NULL,
   `duracao` int(11) NOT NULL,
   `preco` int(11) NOT NULL,
@@ -85,7 +86,7 @@ CREATE TABLE `servicos` (
 -- Extraindo dados da tabela `servicos`
 --
 
-INSERT INTO `servicos` (`id`, `nome`, `descricao`, `duracao`, `preco`, `imagem`) VALUES
+INSERT INTO `servicos` (`id`, `nomeServico`, `descricao`, `duracao`, `preco`, `imagem`) VALUES
 (1, 'Banho de cão', 'Lavagem do pelo feita com shampoo especifico para cada tipo de pelo', 30, 30, 'banhocao.png'),
 (2, 'Corte de cão', 'Escovagem de pelo para remover os pelos portes e corte do pelo', 60, 50, 'cortecao.png'),
 (3, 'Banho de gato', 'Lavagem do pelo feita com shampoo adequado para cada tipo de pelo e/ou raça', 30, 25, 'banhogato.png'),
@@ -126,7 +127,7 @@ INSERT INTO `servicosfuncionarios` (`id`, `idFuncionario`, `idServico`) VALUES
 
 CREATE TABLE `utilizadores` (
   `id` int(11) NOT NULL,
-  `nome` text NOT NULL,
+  `nomeUtilizador` text NOT NULL,
   `password` text NOT NULL,
   `email` text NOT NULL,
   `telemovel` int(13) NOT NULL,
@@ -138,7 +139,7 @@ CREATE TABLE `utilizadores` (
 -- Extraindo dados da tabela `utilizadores`
 --
 
-INSERT INTO `utilizadores` (`id`, `nome`, `password`, `email`, `telemovel`, `tipo`, `imagem`) VALUES
+INSERT INTO `utilizadores` (`id`, `nomeUtilizador`, `password`, `email`, `telemovel`, `tipo`, `imagem`) VALUES
 (1, 'joao', 'joao', 'joao@hotmail.com', 961234567, 'funcionario', 'funcionario3.jpg'),
 (2, 'cliente', 'cliente', 'cliente@gmail.com', 2147483647, 'cliente', ''),
 (3, 'joana', 'joana', 'joana@hotmail.com', 968254821, 'funcionario', 'funcionario1.jpg'),
@@ -146,8 +147,7 @@ INSERT INTO `utilizadores` (`id`, `nome`, `password`, `email`, `telemovel`, `tip
 (5, 'admin', 'admin', 'admin@hotmail.com', 936925333, 'admin', ''),
 (6, 'teste', '', 'teste', 91, 'funcionario', NULL),
 (7, 'm', '', 'm@m', 9, 'funcionario', NULL),
-(8, 'j', '', 'j@mail.com', 8, 'funcionario', NULL),
-(9, 'p', 'p', 'p@mail.com', 9, '', NULL);
+(8, 'j', '', 'j@mail.com', 8, 'funcionario', NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -188,7 +188,7 @@ ALTER TABLE `servicosfuncionarios`
 --
 ALTER TABLE `utilizadores`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `password_2` (`password`,`email`,`nome`) USING HASH,
+  ADD UNIQUE KEY `password_2` (`password`,`email`,`nomeUtilizador`) USING HASH,
   ADD KEY `password_3` (`password`(768)),
   ADD KEY `email` (`email`(768)) USING HASH;
 
@@ -200,13 +200,13 @@ ALTER TABLE `utilizadores`
 -- AUTO_INCREMENT de tabela `animais`
 --
 ALTER TABLE `animais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `servicos`
@@ -234,7 +234,7 @@ ALTER TABLE `utilizadores`
 -- Limitadores para a tabela `animais`
 --
 ALTER TABLE `animais`
-  ADD CONSTRAINT `animais_ibfk_1` FOREIGN KEY (`iddono`) REFERENCES `utilizadores` (`id`);
+  ADD CONSTRAINT `animais_ibfk_1` FOREIGN KEY (`idDono`) REFERENCES `utilizadores` (`id`);
 
 --
 -- Limitadores para a tabela `reservas`

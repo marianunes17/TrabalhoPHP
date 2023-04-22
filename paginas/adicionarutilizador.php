@@ -7,14 +7,14 @@ require_once('../basedados/basedados.h');
 
 if (isset($_POST['adicionar'])) {
     $nomeutilizador = $_POST['nome'];
-    $password = $_POST['nome'];
+    $password = $_POST['nomeUtilizador'];
     $emailutilizador = $_POST['email'];
     $telemovelutilizador = $_POST['telemovel'];
     $tipoutilizador = $_POST['tipo'];
     $idutilizador = $_POST['id'];
 
 
-    $alteraUtilizador = ("INSERT INTO utilizadores(nome, password, email, telemovel, tipo) values
+    $alteraUtilizador = ("INSERT INTO utilizadores(nomeUtilizador, password, email, telemovel, tipo) values
     ('$nomeutilizador','$password', '$emailutilizador', $telemovelutilizador, '$tipoutilizador') ");
 
     $result = $conn->query($alteraUtilizador);

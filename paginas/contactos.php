@@ -43,15 +43,15 @@ require 'head.php';
                     <form name="sentMessage" id="contactForm" novalidate="novalidate" method="POST">
                         <div class="control-group">
                             <input type="text" class="form-control p-4 text-capitalize" placeholder="Nome" required="required" data-validation-required-message="Insira o nome" <?php
-                                                                                                                                                                                if (isset($_SESSION['nome'])) {
-                                                                                                                                                                                    echo "value='" . $_SESSION['nome'] . "'";
+                                                                                                                                                                                if (isset($_SESSION['nomeUtilizador'])) {
+                                                                                                                                                                                    echo "value='" . $_SESSION['nomeUtilizador'] . "'";
                                                                                                                                                                                 }
                                                                                                                                                                                 ?> />
                             <p class="help-block text-danger"> </p>
                         </div>
                         <div class="control-group">
                             <input type="email" class="form-control p-4" placeholder="Email" required="required" data-validation-required-message="Insira o email" <?php
-                                                                                                                                                                    if (isset($_SESSION['nome'])) {
+                                                                                                                                                                    if (isset($_SESSION['nomeUtilizador'])) {
                                                                                                                                                                         echo "value='" . $_SESSION['email'] . "'";
                                                                                                                                                                     }
                                                                                                                                                                     ?> />

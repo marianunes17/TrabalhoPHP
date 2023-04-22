@@ -9,7 +9,7 @@ $password = $_POST['password'];
 
 
 $sql = "SELECT * FROM utilizadores WHERE 
-        nome='$utilizador' AND password='$password' ";
+        nomeUtilizador='$utilizador' AND password='$password' ";
 $retval = mysqli_query($conn, $sql);
 
 if (!$retval) {
@@ -18,7 +18,7 @@ if (!$retval) {
 
 
 if (($row = mysqli_fetch_array($retval)) != null) {
-    $_SESSION['nome'] = $utilizador;
+    $_SESSION['nomeUtilizador'] = $utilizador;
     $_SESSION['password'] = $row['password'];
     $_SESSION['email'] = $row['email'];
     $_SESSION['telemovel'] = $row['telemovel'];

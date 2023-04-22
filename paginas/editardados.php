@@ -16,7 +16,7 @@ require_once('../basedados/basedados.h');
 
     <div class="container-fluid bg-light pt-5">
         <?php
-        if (!isset($_SESSION["nome"])) {
+        if (!isset($_SESSION["nomeUtilizador"])) {
             echo '<meta http-equiv="refresh" content="0; url=index.php">';
         } else { ?>
 
@@ -35,8 +35,8 @@ require_once('../basedados/basedados.h');
                                     </div>
                                     <div class="col-11">
                                         <input type="text" class="form-control p-4 text-capitalize" placeholder="Nome" required="required" data-validation-required-message="Nome" <?php
-                                                                                                                                                                                    if (isset($_SESSION['nome'])) {
-                                                                                                                                                                                        echo "value='" . $_SESSION['nome'] . "'";
+                                                                                                                                                                                    if (isset($_SESSION['nomeUtilizador'])) {
+                                                                                                                                                                                        echo "value='" . $_SESSION['nomeUtilizador'] . "'";
                                                                                                                                                                                     }
                                                                                                                                                                                     ?> />
                                     </div>
@@ -51,7 +51,7 @@ require_once('../basedados/basedados.h');
                                     </div>
                                     <div class="col-11">
                                         <input type="email" class="form-control p-4" placeholder="Email" required="required" data-validation-required-message="Email" <?php
-                                                                                                                                                                        if (isset($_SESSION['nome'])) {
+                                                                                                                                                                        if (isset($_SESSION['nomeUtilizador'])) {
                                                                                                                                                                             echo "value='" . $_SESSION['email'] . "'";
                                                                                                                                                                         }
                                                                                                                                                                         ?> />
@@ -67,7 +67,7 @@ require_once('../basedados/basedados.h');
                                         </div>
                                         <div class="col-11">
                                             <input type="password" class="form-control p-4" placeholder="Password" required="required" data-validation-required-message="Password" <?php
-                                                                                                                                                                                    if (isset($_SESSION['nome'])) {
+                                                                                                                                                                                    if (isset($_SESSION['nomeUtilizador'])) {
                                                                                                                                                                                         echo "value='" . $_SESSION['password'] . "'";
                                                                                                                                                                                     }
                                                                                                                                                                                     ?> />
@@ -83,7 +83,7 @@ require_once('../basedados/basedados.h');
                                             </div>
                                             <div class="col-11">
                                                 <input type="telemovel" class="form-control p-4" placeholder="Telemovel" required="required" data-validation-required-message="Telemóvel" <?php
-                                                                                                                                                                                            if (isset($_SESSION['nome'])) {
+                                                                                                                                                                                            if (isset($_SESSION['nomeUtilizador'])) {
                                                                                                                                                                                                 echo "value='" . $_SESSION['telemovel'] . "'";
                                                                                                                                                                                             }
                                                                                                                                                                                             ?> />

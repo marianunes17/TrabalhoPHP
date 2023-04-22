@@ -32,7 +32,7 @@ $servicoFuncionarioInfo = mysqli_fetch_assoc($servicoFuncionario);
     <div class="container-fluid bg-light pt-5">
         <div class="container">
             <?php
-            if (!isset($_SESSION["nome"])) {
+            if (!isset($_SESSION["nomeUtilizador"])) {
                 echo '<meta http-equiv="refresh" content="0; url=index.php">';
             } else { ?>
 
@@ -62,7 +62,7 @@ $servicoFuncionarioInfo = mysqli_fetch_assoc($servicoFuncionario);
                                 <label class="font-weight-bold"> Nome: </label>
                             </div>
                             <div class="col-11 align-self-center">
-                                <label class='text-capitalize font-weight-normal'> <?php echo $_SESSION['nome'] ?> </label>
+                                <label class='text-capitalize font-weight-normal'> <?php echo $_SESSION['nomeUtilizador'] ?> </label>
                             </div>
 
 
@@ -90,7 +90,7 @@ $servicoFuncionarioInfo = mysqli_fetch_assoc($servicoFuncionario);
                         </div>
                         <div class="col-11">';
                                 while ($servicoFuncionarioInfo = mysqli_fetch_array($servicoFuncionario)) {
-                                        echo '<label class="text-capitalize font-weight-normal""> ' .  $servicoFuncionarioInfo['nome'] . '</label> <br>';
+                                        echo '<label class="text-capitalize font-weight-normal""> ' .  $servicoFuncionarioInfo['nomeServico'] . '</label> <br>';
                                 }
                             }
                             echo '</div>';
@@ -105,7 +105,7 @@ $servicoFuncionarioInfo = mysqli_fetch_assoc($servicoFuncionario);
                     ?>
 
                         <div class="row justify-content-center pb-2">
-                            <h4> <?php echo $animaisInfo['nome'] ?> </h4>
+                            <h4> <?php echo $animaisInfo['nomeAnimal'] ?> </h4>
 
 
                             <div class="col-1 align-self-center">
@@ -144,7 +144,7 @@ $servicoFuncionarioInfo = mysqli_fetch_assoc($servicoFuncionario);
                     ?>
 
                             <div class="row justify-content-center pb-2">
-                                <h4> <?php echo $reservasInfo['nome'] ?> </h4>
+                                <h4> <?php echo $reservasInfo['nomeAnimal'] ?> </h4>
 
 
                                 <div class="col-1 align-self-center">

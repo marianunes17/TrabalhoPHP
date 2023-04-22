@@ -20,16 +20,16 @@
                 </div>
 
                 <?php
-                if (isset($_SESSION['nome'])) {
+                if (isset($_SESSION['nomeUtilizador'])) {
                     echo '
                     <a  class="btn btn-lg btn-primary px-3 d-none d-lg-block nav-link dropdown-toggle" 
                     data-toggle="dropdown" href="#"   aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i>
-                        <label class="text-capitalize"> '  . $_SESSION['nome'] . ' </label>
+                        <label class="text-capitalize"> '  . $_SESSION['nomeUtilizador'] . ' </label>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right bg-black mx-5"  aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item text-light" href="dadospessoais.php">Dados Pessoais</a>
-                        <a class="dropdown-item text-light" href="verreservas.php">Reservas</a>
+                        <a class="dropdown-item text-light" href="reservas.php">Reservas</a>
                         ';
 
 

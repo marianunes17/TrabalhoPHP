@@ -127,7 +127,7 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
                             <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
                                 <img class="img-fluid w-50 align-self-center" src="' . $row['imagem'] . ' ">
                                 <h3 class="flaticon-grooming display-3 font-weight-normal text-secondary mb-3"></h3>
-                                <h3 class="mb-3 text-capitalize"> ' . $row['nome'] . ' </h3>
+                                <h3 class="mb-3 text-capitalize"> ' . $row['nomeUtilizador'] . ' </h3>
                                 <p>' . $row['descricao'] . '</p>   
                             </div>
                         </div>';

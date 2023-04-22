@@ -6,14 +6,14 @@ require 'head.php';
 require_once('../basedados/basedados.h');
 
 if (isset($_POST['atualizar'])) {
-    $nomeutilizador = $_POST['nome'];
+    $nomeutilizador = $_POST['nomeutilizador'];
     $emailutilizador = $_POST['email'];
     $telemovelutilizador = $_POST['telemovel'];
     $tipoutilizador = $_POST['tipo'];
     $idutilizador = $_POST['id'];
 
 
-    $alteraUtilizador = ("UPDATE utilizadores SET nome = '$nomeutilizador',
+    $alteraUtilizador = ("UPDATE utilizadores SET nomeUtilizador = '$nomeutilizador',
         email='$emailutilizador', telemovel=$telemovelutilizador,
         tipo='$tipoutilizador' WHERE id=$idutilizador"
     );
@@ -29,7 +29,7 @@ if (isset($_GET['id'])) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $idutilizador = $row['id'];
-            $nomeutilizador = $row['nome'];
+            $nomeutilizador = $row['nomeUtilizador'];
             $emailutilizador = $row['email'];
             $telemovelutilizador = $row['telemovel'];
             $tipoutilizador = $row['tipo'];
@@ -63,7 +63,7 @@ if (isset($_GET['id'])) {
                         <form name="sentMessage" id="contactForm" novalidate="novalidate" method="POST">
 
                             <input type="text" class="invisible" name="id" class="form-control p-4 text-capitalize"
-                                placeholder="id" />
+                                placeholder="id" <?php echo "value='" . $idutilizador . "'"; ?> />
 
                             <div class="control-group">
                                 <div class="row justify-content-center  ">
@@ -71,7 +71,7 @@ if (isset($_GET['id'])) {
                                         <label> Nome: </label>
                                     </div>
                                     <div class="col-11">
-                                        <input type="text" name="nome" class="form-control p-4 text-capitalize"
+                                        <input type="text" name="nomeutilizador" class="form-control p-4 text-capitalize"
                                             placeholder="Nome" required="required"
                                             data-validation-required-message="Nome" <?php echo "value='" . $nomeutilizador . "'"; ?> />
                                     </div>

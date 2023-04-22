@@ -67,7 +67,7 @@ $utilizadoresInfo = mysqli_fetch_array($utilizadores);
                                         <?php echo $utilizadoresInfo['id'] ?>
                                     </td>
                                     <td scope="row">
-                                        <?php echo $utilizadoresInfo['nome'] ?>
+                                        <?php echo $utilizadoresInfo['nomeUtilizador'] ?>
                                     </td>
                                     <td scope="row">
                                         <?php echo $utilizadoresInfo['email'] ?>

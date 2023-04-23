@@ -56,16 +56,17 @@ CREATE TABLE `reservas` (
   `dataInicio` datetime NOT NULL,
   `dataFim` datetime NOT NULL,
   `idAnimal` int(11) NOT NULL,
-  `idServico` int(11) NOT NULL
+  `idServico` int(11) NOT NULL,
+  `atendido` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `reservas`
 --
 
-INSERT INTO `reservas` (`id`, `dataInicio`, `dataFim`, `idAnimal`, `idServico`) VALUES
-(1, '2023-06-30 11:31:45', '2023-06-30 12:01:45', 1, 1),
-(2, '2023-04-22 02:50:54', '2023-04-22 02:50:54', 2, 3);
+INSERT INTO `reservas` (`id`, `dataInicio`, `dataFim`, `idAnimal`, `idServico`, `atendido`) VALUES
+(1, '2023-06-30 11:31:45', '2023-06-30 12:01:45', 1, 1, 0),
+(2, '2023-04-22 02:50:54', '2023-04-22 02:50:54', 2, 3, 0);
 
 -- --------------------------------------------------------
 

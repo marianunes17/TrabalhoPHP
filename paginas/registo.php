@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-
 <?php
 require 'head.php';
-
 require_once('../basedados/basedados.h');
 
 if (isset($_POST['registar'])) {
@@ -18,15 +14,12 @@ if (isset($_POST['registar'])) {
 
     $result = $conn->query($alteraUtilizador);
 }
-
-
-
 ?>
-<title> PetShop </title>
+
+<title> PetShop | Registar </title>
 
 <body>
     <?php require 'header.php'; ?>
-
 
     <!-- Contact Start -->
     <div class="container-fluid pt-5">
@@ -74,9 +67,6 @@ if (isset($_POST['registar'])) {
     </div>
     <!-- Contact End -->
 
-
-
     <?php require 'footer.php'; ?>
 </body>
-
 </html>

@@ -3,28 +3,22 @@
 
 <?php
 require 'head.php';
-
 require_once('../basedados/basedados.h');
 
 
-$sqlServico = "SELECT * FROM servicos";
-$sqlServicoInfo = mysqli_query($conn, $sqlServico);
+$sqlServico = mysqli_query($conn, "SELECT * FROM servicos");
 
-$sqlFuncionarios = "SELECT * FROM utilizadores WHERE tipo='funcionario'";
-$sqlFuncionariosInfo = mysqli_query($conn, $sqlFuncionarios);
+$sqlFuncionarios = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
 
-if (!$sqlServicoInfo || !$sqlFuncionariosInfo) {
+if (!$sqlServico || !$sqlFuncionarios) {
     die('Could not get data: ' . mysqli_error($conn)); // se não funcionar dá erro
 }
-
 ?>
-
 
 <title> PetShop | Serviços </title>
 
 <body>
     <?php require 'header.php'; ?>
-
 
     <!-- Services Start -->
     <div class="container-fluid bg-light pt-5">
@@ -33,24 +27,22 @@ if (!$sqlServicoInfo || !$sqlFuncionariosInfo) {
                 <h1 class="display-4 m-0"><span class="text-primary">Serviços</span> </h1>
             </div>
             <div class="row pb-3">
-
                 <?php
-                while ($row = mysqli_fetch_array($sqlServicoInfo)) {
-                    echo '  <div class="col-md-12 col-lg-6 mb-4">
-                            <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-                                <img class="img-fluid w-50 align-self-center" src="' . $row['imagem'] . ' ">
-                                <h3 class="flaticon-grooming display-3 font-weight-normal text-secondary mb-3"></h3>
-                                <h3 class="mb-3 text-capitalize"> ' . $row['nome'] . ' </h3>
-                                <p>' . $row['descricao'] . '</p>   
-                            </div>
-                        </div>';
-                }
+                while ($sqlServicoInfo = mysqli_fetch_array($sqlServico)) {
                 ?>
+                    <div class="col-md-12 col-lg-6 mb-4">
+                        <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
+                            <img class="img-fluid w-50 align-self-center" src="<?php echo $sqlServicoInfo['imagem'] ?>">
+                            <h3 class="flaticon-grooming display-3 font-weight-normal text-secondary mb-3"></h3>
+                            <h3 class="mb-3 text-capitalize"> <?php echo $sqlServicoInfo['nomeServico'] ?> </h3>
+                            <p> <?php echo $sqlServicoInfo['descricao'] ?> </p>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>
     <!-- Services End -->
-
 
 
     <!-- Team Start -->
@@ -61,35 +53,29 @@ if (!$sqlServicoInfo || !$sqlFuncionariosInfo) {
         </div>
         <div class="row">
             <?php
-            while ($row = mysqli_fetch_array($sqlFuncionariosInfo)) {
-                echo '
-            <div class="col-lg-4 col-md-6">
-                <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="' . $row['imagem'] . '" alt="">
-                    <div class="card-body text-center p-0">
-                        <div class="team-text d-flex flex-column justify-content-center bg-light">
-                            <h5 class="text-capitalize"> ' . $row['nome'] . ' </h5>
-                        </div>
-                        <div class="team-social d-flex align-items-center justify-content-center bg-dark">
-                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
+            while ($sqlFuncionariosInfo = mysqli_fetch_array($sqlFuncionarios)) {
+            ?>
+                <div class="col-lg-4 col-md-6">
+                    <div class="team card position-relative overflow-hidden border-0 mb-4">
+                        <img class="card-img-top" src="<?php echo $sqlFuncionariosInfo['imagem'] ?>" alt="">
+                        <div class="card-body text-center p-0">
+                            <div class="team-text d-flex flex-column justify-content-center bg-light">
+                                <h5 class="text-capitalize"> <?php echo $sqlFuncionariosInfo['nomeUtilizador'] ?> </h5>
+                            </div>
+                            <div class="team-social d-flex align-items-center justify-content-center bg-dark">
+                                <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>';
-            }
-            ?>
+            <?php } ?>
 
         </div>
     </div>
     <!-- Team End -->
-
-
-
-
-
 
 
 
@@ -101,12 +87,12 @@ if (!$sqlServicoInfo || !$sqlFuncionariosInfo) {
             </div>
             <div class="row">
                 <?php
-                while ($row = mysqli_fetch_array($sqlServicoInfo)) {
-                    echo '
+                while ($sqlServicoInfo = mysqli_fetch_array($sqlServico)) {
+                ?>
                     <div class="col-lg-3 mb-4">
                         <div class="card border-0">
                             <div class="card-header position-relative border-0 p-0 mb-4">
-                                <img class="card-img-top" src="' . $row['imagem'] . '" alt="">
+                                <img class="card-img-top" src="<?php echo $sqlServicoInfo['imagem'] ?>" alt="">
                                 <div class="position-absolute d-flex flex-column align-items-center justify-content-center w-100 h-100" style="top: 0; left: 0; z-index: 1; background: rgba(0, 0, 0, .5);">
                                     <h3 class="text-secondary mb-3">Standard</h3>
                                     <h1 class="display-4 text-white mb-0">
@@ -126,8 +112,8 @@ if (!$sqlServicoInfo || !$sqlFuncionariosInfo) {
                                 <a href="" class="btn btn-secondary btn-block p-3" style="border-radius: 0;">Signup Now</a>
                             </div>
                         </div>
-                    </div> ';
-                } ?>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -142,25 +128,19 @@ if (!$sqlServicoInfo || !$sqlFuncionariosInfo) {
                     <div class="bg-primary py-5 px-4 px-sm-5">
                         <form class="py-5">
                             <div class="form-group">
-                                <input type="text" class="form-control border-0 p-4" placeholder="Your Name"
-                                    required="required" />
+                                <input type="text" class="form-control border-0 p-4" placeholder="Your Name" required="required" />
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control border-0 p-4" placeholder="Your Email"
-                                    required="required" />
+                                <input type="email" class="form-control border-0 p-4" placeholder="Your Email" required="required" />
                             </div>
                             <div class="form-group">
                                 <div class="date" id="date" data-target-input="nearest">
-                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input"
-                                        placeholder="Reservation Date" data-target="#date"
-                                        data-toggle="datetimepicker" />
+                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input" placeholder="Reservation Date" data-target="#date" data-toggle="datetimepicker" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="time" id="time" data-target-input="nearest">
-                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input"
-                                        placeholder="Reservation Time" data-target="#time"
-                                        data-toggle="datetimepicker" />
+                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input" placeholder="Reservation Time" data-target="#time" data-toggle="datetimepicker" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -226,9 +206,6 @@ if (!$sqlServicoInfo || !$sqlFuncionariosInfo) {
     </div>
     <!-- Booking Start -->
 
-
-
     <?php require 'footer.php'; ?>
 </body>
-
 </html>

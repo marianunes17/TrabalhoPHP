@@ -5,22 +5,20 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
-$sqlServico = "SELECT * FROM servicos";
-$retval = mysqli_query($conn, $sqlServico);
-if (!$retval) {
-    die('Could not get data: ' . mysqli_error($conn)); // se não funcionar dá erro
-}
+$sqlServicos = mysqli_query($conn, "SELECT * FROM servicos");
 
+$sqlAnimais = mysqli_query($conn, "SELECT * FROM animais WHERE idDono =" . $_SESSION['id']);
+
+if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] != 'admin')) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
 ?>
 
-
-
-<title> PetShop | Reservas </title>
+<title> PetShop | Reservar Serviço </title>
 
 <body>
     <?php require 'header.php'; ?>
 
-    <!-- Booking Start -->
     <div class="container-fluid bg-light">
         <div class="container py-5 px-4 px-sm-5">
             <div class="d-flex flex-column text-center">
@@ -28,61 +26,64 @@ if (!$retval) {
             </div>
 
             <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <form class="py-5">
-                        <div class="form-group">
-                            <input type="text" class="form-control border-0 p-4" placeholder="Nome"
-                                required="required" />
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control border-0 p-4" placeholder="Email"
-                                required="required" />
-                        </div>
-                        <div class="form-group">
-                            <div class="date" id="date" data-target-input="nearest">
-                                <input type="text" class="form-control border-0 p-4 datetimepicker-input"
-                                    placeholder="Data da Reserva" data-target="#date" data-toggle="datetimepicker" />
+                <div class="col-lg-12 py-5">
+                    <div class="control-group">
+                        <div class="row justify-content-center  ">
+                            <div class="col-1 align-self-center">
+                                <label> Data: </label>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="time" id="time" data-target-input="nearest">
-                                <input type="text" class="form-control border-0 p-4 datetimepicker-input"
-                                    placeholder="Hora da Reserva" data-target="#time" data-toggle="datetimepicker" />
+                            <div class="col-11">
+                                <input type="datetime-local" name="data" class="form-control border-0 p-4 text-capitalize" placeholder="Data" required="required" />
                             </div>
+                            <p class="help-block text-danger"> </p>
                         </div>
-                        <div class="form-group">
-                            <select class="custom-select border-0 px-4" style="height: 47px;">
-                                <option selected>Selecione um Serviço</option>
+                    </div>
 
-                                <?php
-                                while ($row = mysqli_fetch_array($retval)) {
-                                    echo '<option value="' . $row['id'] . '"> ' . $row['nomeUtilizador'] . '</option> ';
-                                }
-                                ?>
-                            </select>
+                    <div class="control-group">
+                        <div class="row justify-content-center  ">
+                            <div class="col-1 align-self-center">
+                                <label> Serviço: </label>
+                            </div>
+                            <div class="col-11">
+                                <select class="form-control form-control-lg">
+                                    <option value="" disabled="disabled" selected>Selecione um Serviço</option>
+                                    <?php
+                                    while ($sqlServicosInfo = mysqli_fetch_array($sqlServicos)) {
+                                        echo '<option value="' . $sqlServicosInfo['id'] . '"> ' . $sqlServicosInfo['nomeServico'] . '</option> ';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <p class="help-block text-danger"> </p>
                         </div>
-                        <div class="form-group">
-                            <select class="custom-select border-0 px-4" style="height: 47px;">
-                                <option selected>Selecionar animal</option>
-                                <option value="1">animal 1</option>
-                                <option value="2">animal 1</option>
-                                <option value="3">animal 1</option>
-                            </select>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="row justify-content-center  ">
+                            <div class="col-1 align-self-center">
+                                <label> Animal: </label>
+                            </div>
+                            <div class="col-11">
+                                <select class="form-control form-control-lg">
+                                    <option value="" disabled="disabled" selected>Selecione um Animal</option>
+                                    <?php
+                                    while ($sqlAnimaisInfo = mysqli_fetch_array($sqlAnimais)) {
+                                        echo '<option value="' . $sqlAnimaisInfo['id'] . '"> ' . $sqlAnimaisInfo['nomeAnimal'] . '</option> ';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <p class="help-block text-danger"> </p>
                         </div>
-                        <div>
-                            <button class="btn btn-primary py-3 px-5" type="submit"
-                                id="sendMessageButton">Reservar</button>
-                        </div>
+                    </div>
+
+                    <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Reservar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Booking Start -->
-
 
     <?php require 'footer.php'; ?>
-
 </body>
-
 </html>

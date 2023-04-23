@@ -4,14 +4,12 @@
 <?php
 require 'head.php';
 require_once('../basedados/basedados.h');
-
-
 ?>
+
 <title> PetShop </title>
 
 <body>
     <?php require 'header.php'; ?>
-
 
     <!-- Contact Start -->
     <div class="container-fluid pt-5">
@@ -43,17 +41,10 @@ require_once('../basedados/basedados.h');
                     <h6 class="text-secondary mb-3 text-right">Registar</h6>
                 </a>
             </div>
-
-
         </div>
     </div>
     <!-- Contact End -->
 
-
-
-    <?php
-    require 'footer.php';
-    ?>
+    <?php require 'footer.php'; ?>
 </body>
-
 </html>

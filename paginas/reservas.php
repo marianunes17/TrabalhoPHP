@@ -5,27 +5,15 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
-$reservas = mysqli_query($conn, "SELECT * FROM reservas r
+$sqlReservas = mysqli_query($conn, "SELECT * FROM reservas r
                                  JOIN animais a
                                  ON r.idAnimal = a.id AND 
                                  a.idDono='" . $_SESSION["id"] . "'");
-$reservasInfo = mysqli_fetch_array($reservas);
+                                 
+if ( !isset($_SESSION["nomeUtilizador"]) ) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
 
-
-
-$animais = mysqli_query($conn, "SELECT * FROM animais a
-                                JOIN utilizadores u    
-                                WHERE a.idDono='" . $_SESSION["id"] . "'");
-$animaisInfo = mysqli_fetch_array($animais);
-
-
-$servico = mysqli_query($conn, "SELECT * FROM servicos s
-                                JOIN reservas r
-                                ON  s.id = r.idServico
-                                JOIN animais a
-                                ON r.idAnimal = a.id AND
-                                a.idDono ='" . $_SESSION["id"] . "'");
-$servicoInfo = mysqli_fetch_array($servico);
 ?>
 <title> PetShop | Reservas </title>
 
@@ -35,6 +23,10 @@ $servicoInfo = mysqli_fetch_array($servico);
 
     <div class="container-fluid bg-light pt-5">
         <div class="container">
+
+        <a type="button" class="btn btn-primary float-right" href="adicionarreserva.php">Adicionar</a>
+
+
             <table class="table">
                 <thead>
                     <tr>
@@ -50,25 +42,25 @@ $servicoInfo = mysqli_fetch_array($servico);
                 </thead>
                 <tbody>
                     <?php
-                    while ($reservasInfo = mysqli_fetch_array($reservas)) {
+                    while ($sqlReservasInfo = mysqli_fetch_array($sqlReservas)) {
                     ?>
 
                         <tr>
                             <td scope="row">
-                                <?php echo $animaisInfo['nomeAnimal'] ?>
+                                <?php echo $sqlReservas['nomeAnimal'] ?>
                             </td>
                             <td scope="row">
-                                <?php echo $reservasInfo['dataInicio'] ?>
+                                <?php echo $sqlReservas['dataInicio'] ?>
                             </td>
                             <td scope="row">
-                                <?php echo $reservasInfo['dataFim'] ?>
+                                <?php echo $sqlReservas['dataFim'] ?>
                             </td>
                             <td scope="row">
-                                <?php echo $servicoInfo['nomeServico'] ?>
+                                <?php echo $sqlReservas['nomeServico'] ?>
                             </td>
 
                             <!-- 
-                            <td scope="row"> <a type="button" class="btn btn-primary" href="editarutilizador.php?id=<?php echo $reserva['id']; ?>">Editar</a>
+                            <td scope="row"> <a type="button" class="btn btn-primary" href="editarutilizador.php?id=<?php echo $sqlReserva['id']; ?>">Editar</a>
                             </td>
                             <td scope="row"> <a type="button" class="btn btn-primary" href="eliminarutilizador.php?id=<?php echo $reserva['id']; ?>">Eliminar</a>
                             </td>

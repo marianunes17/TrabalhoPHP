@@ -5,13 +5,11 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
-$sqlServico = "SELECT * FROM servicos";
-$sqlServico1 = mysqli_query($conn, $sqlServico);
+$sqlServico = mysqli_query($conn, "SELECT * FROM servicos");
 
-$sqlFuncionarios = "SELECT * FROM utilizadores WHERE tipo='funcionario'";
-$sqlFuncionarios1 = mysqli_query($conn, $sqlFuncionarios);
+$sqlFuncionarios = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
 
-if (!$sqlServico1 || !$sqlFuncionarios1) {
+if (!$sqlServico || !$sqlFuncionarios) {
     die('Could not get data: ' . mysqli_error($conn)); // se não funcionar dá erro
 }
 
@@ -122,17 +120,17 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
             <div class="row pb-3">
 
                 <?php
-                while ($row = mysqli_fetch_array($sqlServico1)) {
-                    echo '  <div class="col-md-12 col-lg-6 mb-4">
-                            <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-                                <img class="img-fluid w-50 align-self-center" src="' . $row['imagem'] . ' ">
-                                <h3 class="flaticon-grooming display-3 font-weight-normal text-secondary mb-3"></h3>
-                                <h3 class="mb-3 text-capitalize"> ' . $row['nomeUtilizador'] . ' </h3>
-                                <p>' . $row['descricao'] . '</p>   
-                            </div>
-                        </div>';
-                }
+                while ($sqlServicoInfo = mysqli_fetch_array($sqlServico)) {
                 ?>
+                    <div class="col-md-12 col-lg-6 mb-4">
+                        <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
+                            <img class="img-fluid w-50 align-self-center" src="<?php echo $sqlServicoInfo['imagem'] ?>">
+                            <h3 class="flaticon-grooming display-3 font-weight-normal text-secondary mb-3"></h3>
+                            <h3 class="mb-3 text-capitalize"> <?php echo $sqlServicoInfo['nomeServico'] ?> </h3>
+                            <p> <?php echo $sqlServicoInfo['descricao'] ?> </p>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -195,9 +193,6 @@ if (!$sqlServico1 || !$sqlFuncionarios1) {
     </div>
     <!-- Testimonial End -->
 
-
     <?php require 'footer.php'; ?>
-
 </body>
-
 </html>

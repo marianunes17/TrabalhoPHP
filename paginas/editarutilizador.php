@@ -12,7 +12,6 @@ if (isset($_POST['atualizar'])) {
     $tipoutilizador = $_POST['tipo'];
     $idutilizador = $_POST['id'];
 
-
     $alteraUtilizador = ("UPDATE utilizadores SET nomeUtilizador = '$nomeutilizador',
         email='$emailutilizador', telemovel=$telemovelutilizador,
         tipo='$tipoutilizador' WHERE id=$idutilizador"
@@ -38,7 +37,10 @@ if (isset($_GET['id'])) {
 }
 
 $utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
-$utilizadoresInfo = mysqli_fetch_array($utilizadores);
+
+if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] != 'admin')) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
 
 ?>
 
@@ -60,6 +62,9 @@ $utilizadoresInfo = mysqli_fetch_array($utilizadores);
                 </ol>
             </nav>
 
+            <div class="d-flex flex-column text-center">
+                <h1 class="display-4 m-0"><span class="text-primary text-capitalize">Editar Utilizador <?php echo $nomeutilizador ?> </span> </h1>
+            </div>
 
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-8 mb-5">
@@ -112,10 +117,11 @@ $utilizadoresInfo = mysqli_fetch_array($utilizadores);
                                             <label> Tipo: </label>
                                         </div>
                                         <div class="col-11 form-group">
-                                            <select class="form-select">
-                                                <option name="tipo" value="cliente"> Cliente </option>
-                                                <option name="tipo" value="funcionario"> Funcionario </option>
-                                                <option name="tipo" value="admin"> Administrador </option>
+                                            <select name="tipo" class="form-select">
+                                                <option value="" disabled="disabled" selected> <?php echo $tipoutilizador ?> </option>
+                                                <option value="cliente"> Cliente </option>
+                                                <option value="funcionario"> Funcionario </option>
+                                                <option value="admin"> Administrador </option>
                                             </select>
                                         </div>
                                     </div>
@@ -135,5 +141,4 @@ $utilizadoresInfo = mysqli_fetch_array($utilizadores);
 
     <?php require "footer.php"; ?>
 </body>
-
 </html>

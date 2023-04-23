@@ -3,8 +3,12 @@
 
 <?php
 require 'head.php';
+require_once('../basedados/basedados.h');
 
+$sqlFuncionario = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
+$sqlFuncionarioInfo = mysqli_fetch_array($conn, $sqlFuncionario);
 ?>
+
 <title> PetShop | Sobre </title>
 
 <body>
@@ -21,7 +25,7 @@ require 'head.php';
                 <p class="mb-4"> Preservamos os animais de estimação e o seu bem estar, focamo-nos no amor e dedicação para com eles. </p>
                 <p class="mb-4"> Temos em conta o tipo de animal, pelo, raça. Atendemos as diferentes necessidades de cada um</p>
                 <p class="mb-4"> Para alem de cuidarmos dos animais como se fossem nossos apoiamos os nossos clientes para que nas suas casas possam cuidar dos seus animais de estimação da melhor maneira.</p>
-                
+
             </div>
             <div class="col-lg-5">
                 <div class="row px-3">
@@ -40,7 +44,6 @@ require 'head.php';
     </div>
     <!-- About End -->
 
-
     <!-- Features Start -->
     <div class="container-fluid bg-light">
         <div class="container">
@@ -51,22 +54,21 @@ require 'head.php';
                 <div class="col-lg-7 py-5 py-lg-0 px-3 px-lg-5">
                     <h1 class="display-4 mb-4"><span class="text-primary">Porque escolher os nossos </span>serviços?</h1>
                     <ul class="list-inline">
-                    <li>
-                        <h5><i class="fa fa-check-double text-secondary mr-3"></i>Melhor Serviço</h5>
-                    </li> <br>
-                    <li>
-                        <h5><i class="fa fa-check-double text-secondary mr-3"></i>Emergências</h5>
-                    </li> <br>
-                    <li>
-                        <h5><i class="fa fa-check-double text-secondary mr-3"></i>Suporte 24 horas por dia</h5>
-                    </li>
-                </ul>
+                        <li>
+                            <h5><i class="fa fa-check-double text-secondary mr-3"></i>Melhor Serviço</h5>
+                        </li> <br>
+                        <li>
+                            <h5><i class="fa fa-check-double text-secondary mr-3"></i>Emergências</h5>
+                        </li> <br>
+                        <li>
+                            <h5><i class="fa fa-check-double text-secondary mr-3"></i>Suporte 24 horas por dia</h5>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
     <!-- Features End -->
-
 
     <!-- Team Start -->
     <div class="container mt-5 pt-5 pb-3">
@@ -76,43 +78,29 @@ require 'head.php';
         </div>
         <div class="row">
             <?php
-            while ($row = mysqli_fetch_array($sqlFuncionarios1)) {
-                echo '
-            <div class="col-lg-4 col-md-6">
-                <div class="team card position-relative overflow-hidden border-0 mb-4">
-                    <img class="card-img-top" src="' . $row['imagem'] . '" alt="">
-                    <div class="card-body text-center p-0">
-                        <div class="team-text d-flex flex-column justify-content-center bg-light">
-                            <h5 class="text-capitalize"> ' . $row['nome'] . ' </h5>
-                        </div>
-                        <div class="team-social d-flex align-items-center justify-content-center bg-dark">
-                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
+            while ($sqlFuncionarioInfo = mysqli_fetch_array($sqlFuncionario)) {
+            ?>
+                <div class="col-4">
+                    <div class="team card position-relative overflow-hidden border-0 mb-4">
+                        <img class="card-img-top" src="<?php echo $sqlFuncionarioInfo['imagem'] ?>" alt="">
+                        <div class="card-body text-center p-0">
+                            <div class="team-text d-flex flex-column justify-content-center bg-light">
+                                <h5 class="text-capitalize"> <?php echo $sqlFuncionarioInfo['nomeUtilizador'] ?> </h5>
+                            </div>
+                            <div class="team-social d-flex align-items-center justify-content-center bg-dark">
+                                <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-outline-primary rounded-circle text-center px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>';
-            }
-            ?>
+                </div>';
+            <?php } ?>
         </div>
-        
     </div>
     <!-- Team End -->
 
-
-
-
-
-
-
-
-
-    
-
-
     <?php require 'footer.php'; ?>
 </body>
-
 </html>

@@ -8,16 +8,24 @@ require_once('../basedados/basedados.h');
 $utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
 $utilizadoresInfo = mysqli_fetch_array($utilizadores);
 
-
-$reservas = mysqli_query($conn, "SELECT * FROM reservas r
+if (($_SESSION['tipo'] == "admin")) {
+    $reservas = mysqli_query($conn, "SELECT * FROM reservas r
     	                         INNER JOIN servicos s
                                  ON r.idServico = s.id 
                                  INNER JOIN animais a
-                                 ON r.idAnimal = a.id
-                                 JOIN servicosfuncionarios sf
-                                 ON s.id = sf.idServico AND
-                                 sf.idFuncionario='" . $_SESSION["id"] . "'");
-$reservasInfo = mysqli_fetch_array($reservas);
+                                 ON r.idAnimal = a.id");
+} else {
+    $reservas = mysqli_query($conn, "SELECT * FROM reservas r
+                                    INNER JOIN servicos s
+                                    ON r.idServico = s.id 
+                                    INNER JOIN animais a
+                                    ON r.idAnimal = a.id
+                                    JOIN servicosfuncionarios sf
+                                    ON s.id = sf.idServico AND
+                                    sf.idFuncionario='" . $_SESSION["id"] . "'");
+
+}
+$reservasInfo = mysqli_fetch_array($utilizadores);
 ?>
 
 <title> PetShop | Gerir </title>
@@ -34,12 +42,14 @@ $reservasInfo = mysqli_fetch_array($reservas);
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <?php if (($_SESSION['tipo'] == "admin")) { ?>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="utilizadores-tab" data-bs-toggle="tab" href="#utilizadores" type="button" role="tab" aria-controls="utilizadores" aria-selected="true"> Gerir Utilizadores
+                        <button class="nav-link active" id="utilizadores-tab" data-bs-toggle="tab" href="#utilizadores"
+                            type="button" role="tab" aria-controls="utilizadores" aria-selected="true"> Gerir Utilizadores
                     </li>
                 <?php } ?>
 
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="reservas-tab" data-bs-toggle="tab" data-bs-target="#reservas" type="button" role="tab" aria-controls="reservas-tab" aria-selected="false">Gerir
+                    <button class="nav-link" id="reservas-tab" data-bs-toggle="tab" data-bs-target="#reservas"
+                        type="button" role="tab" aria-controls="reservas-tab" aria-selected="false">Gerir
                         Reservas</button>
                 </li>
             </ul>
@@ -48,7 +58,8 @@ $reservasInfo = mysqli_fetch_array($reservas);
                 <!-- -------------------------- UTILIZADORES -------------------------- -->
                 <?php if (($_SESSION['tipo'] == "admin")) { ?>
 
-                    <div class="tab-pane fade show active opacity-100 py-4" id="utilizadores" role="tabpanel" aria-labelledby="utilizadores-tab">
+                    <div class="tab-pane fade show active opacity-100 py-4" id="utilizadores" role="tabpanel"
+                        aria-labelledby="utilizadores-tab">
                         <a type="button" class="btn btn-primary float-right" href="adicionarutilizador.php">Adicionar</a>
 
 
@@ -67,7 +78,7 @@ $reservasInfo = mysqli_fetch_array($reservas);
                             <tbody>
                                 <?php
                                 while ($utilizadoresInfo = mysqli_fetch_array($utilizadores)) {
-                                ?>
+                                    ?>
 
                                     <tr>
                                         <td scope="row ">
@@ -82,11 +93,13 @@ $reservasInfo = mysqli_fetch_array($reservas);
                                         <td scope="row">
                                             <?php echo "<label class='text-capitalize font-weight-normal'>" . $utilizadoresInfo['tipo'] . " </label>"; ?>
                                         </td>
-                                        <td scope="row"> 
-                                            <a type="button" class="btn btn-primary" href="editarutilizador.php?id=<?php echo $utilizadoresInfo['id']; ?>">Editar</a>
-                                        </td>                                        
-                                        <td scope="row"> 
-                                            <a type="button" class="btn btn-primary" href="eliminarutilizador.php?id=<?php echo $utilizadoresInfo['id']; ?>">Eliminar</a>
+                                        <td scope="row">
+                                            <a type="button" class="btn btn-primary"
+                                                href="editarutilizador.php?id=<?php echo $utilizadoresInfo['id']; ?>">Editar</a>
+                                        </td>
+                                        <td scope="row">
+                                            <a type="button" class="btn btn-primary"
+                                                href="eliminarutilizador.php?id=<?php echo $utilizadoresInfo['id']; ?>">Eliminar</a>
                                         </td>
                                     </tr>
 
@@ -97,11 +110,13 @@ $reservasInfo = mysqli_fetch_array($reservas);
                 <?php } ?>
 
                 <!-- -------------------------- RESERVAS -------------------------- -->
-                <div class="tab-pane fade opacity-100 py-4" id="reservas" role="tabpanel" aria-labelledby="reservas-tab">
+                <div class="tab-pane fade opacity-100 py-4" id="reservas" role="tabpanel"
+                    aria-labelledby="reservas-tab">
                     <a type="button" class="btn btn-primary float-right" href="adicionarreserva.php">Adicionar</a>
 
                     <table class="table">
                         <thead>
+
                             <tr>
                                 <th scope="col">Animal</th>
                                 <th scope="col">Inicio</th>
@@ -116,7 +131,10 @@ $reservasInfo = mysqli_fetch_array($reservas);
                         </thead>
 
                         <tbody>
-                                <tr>
+                            <tr>
+                                <?php
+                                while ($reservasInfo = mysqli_fetch_array($reservas)) {
+                                    ?>
                                     <td scope="row">
                                         <?php echo "<label class='text-capitalize font-weight-normal'>" . $reservasInfo['nomeAnimal'] . " </label>"; ?>
                                     </td>
@@ -136,6 +154,7 @@ $reservasInfo = mysqli_fetch_array($reservas);
                             </td>
                             -->
                                 </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

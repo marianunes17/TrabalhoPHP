@@ -7,6 +7,7 @@ require_once('../basedados/basedados.h');
 
 $utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
 $utilizadoresInfo = mysqli_fetch_array($utilizadores);
+$reservas;
 
 if (($_SESSION['tipo'] == "admin")) {
     $reservas = mysqli_query($conn, "SELECT * FROM reservas r
@@ -122,6 +123,8 @@ $reservasInfo = mysqli_fetch_array($utilizadores);
                                 <th scope="col">Inicio</th>
                                 <th scope="col">Fim</th>
                                 <th scope="col">Serviço</th>
+                                <th scope="col">Atender</th>
+
                                 <!-- 
                                 <th scope="col">Funcionário</th>
                                 <th scope="col">Editar</th>
@@ -147,11 +150,20 @@ $reservasInfo = mysqli_fetch_array($utilizadores);
                                     <td scope="row">
                                         <?php echo "<label class='text-capitalize font-weight-normal'>" . $reservasInfo['nomeServico'] . " </label>"; ?>
                                     </td>
+                                    <?php if ($reservasInfo['atendido'] == 0) { ?>
+                                        <td scope="row"><a type="button" class="btn btn-primary"
+                                                href="atenderreserva.php?id=<?php echo $reservasInfo['id']; ?>">Atender</a>
+                                        </td>
+                                    <?php } else { ?>
+                                        <td scope="row"><input type="button" disabled class="btn btn-primary" value="Atendido">
+                                        </td>
+                                    <?php } ?>
                                     <!-- 
                             <td scope="row"> <a type="button" class="btn btn-primary" href="editarutilizador.php?id=<?php echo $reserva['id']; ?>">Editar</a>
                             </td>
-                            <td scope="row"> <a type="button" class="btn btn-primary" href="eliminarutilizador.php?id=<?php echo $reserva['id']; ?>">Eliminar</a>
-                            </td>
+                            <td scope="row"> <a type="button" class="btn btn-primary"
+                                            href="eliminarreserva.php?id=<?php echo $reserva['id']; ?>">Eliminar</a>
+                                    </td>
                             -->
                                 </tr>
                             <?php } ?>

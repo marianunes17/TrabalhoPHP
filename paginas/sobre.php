@@ -6,13 +6,12 @@ require 'head.php';
 require_once('../basedados/basedados.h');
 
 $sqlFuncionario = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
-$sqlFuncionarioInfo = mysqli_fetch_array($conn, $sqlFuncionario);
 ?>
 
 <title> PetShop | Sobre </title>
 
 <body>
-    <?php require 'header.php'; ?>
+    <?php require 'header.php'?>
 
     <!-- About Start -->
     <div class="container py-5">
@@ -25,8 +24,8 @@ $sqlFuncionarioInfo = mysqli_fetch_array($conn, $sqlFuncionario);
                 <p class="mb-4"> Preservamos os animais de estimação e o seu bem estar, focamo-nos no amor e dedicação para com eles. </p>
                 <p class="mb-4"> Temos em conta o tipo de animal, pelo, raça. Atendemos as diferentes necessidades de cada um</p>
                 <p class="mb-4"> Para alem de cuidarmos dos animais como se fossem nossos apoiamos os nossos clientes para que nas suas casas possam cuidar dos seus animais de estimação da melhor maneira.</p>
-
             </div>
+            
             <div class="col-lg-5">
                 <div class="row px-3">
                     <div class="col-12 p-0">
@@ -95,7 +94,7 @@ $sqlFuncionarioInfo = mysqli_fetch_array($conn, $sqlFuncionario);
                             </div>
                         </div>
                     </div>
-                </div>';
+                </div>
             <?php } ?>
         </div>
     </div>

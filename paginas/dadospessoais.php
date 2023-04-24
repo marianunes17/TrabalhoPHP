@@ -46,7 +46,7 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                         </div>
                         <div class="col-6">
                             <a type="button" class="btn btn-primary float-right" href="editarDadosPessoais.php?id=<?php echo $_SESSION['id']; ?>">Editar</a>
-                                        
+
                         </div>
                     </div>
 
@@ -95,50 +95,57 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                 <!-- -------------------------- ANIMAIS -------------------------- -->
                 <div class="tab-pane fade opacity-100  py-4" id="animais" role="tabpanel" aria-labelledby="animais-tab">
                     <div class="d-flex flex-column">
-                        <h4 class="mb-3"><span class="text-primary">Animais</span> </h4>
-                    </div>
-
-                    <?php
-                    while ($animaisInfo = mysqli_fetch_array($animais)) {
-                    ?>
                         <div class="row justify-content-center mb-2 pt-4">
                             <div class="col-6 align-self-center">
-                                <h5> <?php echo $animaisInfo['nomeAnimal'] ?> </h5>
+                                <h4 class="mb-3"><span class="text-primary">Animais</span> </h4>
                             </div>
-
-                            <div class="col-6">
-                                <a type="button" class="btn btn-primary float-right" href="editarAnimal.php">Editar</a>
-
+                            <div class="col-6 align-self-center">
+                                <a type="button" class="btn btn-primary float-right" href="adicionarutilizador.php">Adicionar</a>
                             </div>
                         </div>
 
-                        <div class="row justify-content-center ">
-                            <div class="col-1 align-self-center">
-                                <label class="font-weight-bold"> Tipo: </label>
-                            </div>
-                            <div class="col-11">
-                                <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['tipo'] ?> </label>
-                            </div>
-                        </div>
+                        <?php
+                        while ($animaisInfo = mysqli_fetch_array($animais)) {
+                        ?>
+                            <div class="row justify-content-center mb-2 pt-4">
+                                <div class="col-6 align-self-center">
+                                    <h5> <?php echo $animaisInfo['nomeAnimal'] ?> </h5>
+                                </div>
 
-                        <div class="row justify-content-center ">
-                            <div class="col-1 align-self-center">
-                                <label class="font-weight-bold"> Raça: </label>
-                            </div>
-                            <div class="col-11">
-                                <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['raca'] ?> </label>
-                            </div>
-                        </div>
+                                <div class="col-6">
+                                    <a type="button" class="btn btn-primary float-right" href="editarAnimal.php">Editar</a>
 
-                        <div class="row justify-content-center ">
-                            <div class="col-1 align-self-center">
-                                <label class="font-weight-bold"> Pelo: </label>
+                                </div>
                             </div>
-                            <div class="col-11">
-                                <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['pelo'] ?> </label>
+
+                            <div class="row justify-content-center ">
+                                <div class="col-1 align-self-center">
+                                    <label class="font-weight-bold"> Tipo: </label>
+                                </div>
+                                <div class="col-11">
+                                    <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['tipo'] ?> </label>
+                                </div>
                             </div>
-                        </div>
-                    <?php } ?>
+
+                            <div class="row justify-content-center ">
+                                <div class="col-1 align-self-center">
+                                    <label class="font-weight-bold"> Raça: </label>
+                                </div>
+                                <div class="col-11">
+                                    <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['raca'] ?> </label>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center ">
+                                <div class="col-1 align-self-center">
+                                    <label class="font-weight-bold"> Pelo: </label>
+                                </div>
+                                <div class="col-11">
+                                    <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['pelo'] ?> </label>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -146,5 +153,4 @@ if (!isset($_SESSION["nomeUtilizador"])) {
 
     <?php require "footer.php"; ?>
 </body>
-
 </html>

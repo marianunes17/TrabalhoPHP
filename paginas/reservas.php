@@ -10,10 +10,9 @@ $sqlReservas = mysqli_query($conn, "SELECT DISTINCT  * FROM reservas r
                                     ON r.idServico = s.id 
                                     INNER JOIN animais a
                                     ON r.idAnimal = a.id
-                                    WHERE a.idDono=" . $_SESSION["id"] . "
-                                    GROUP BY a.id");
+                                    WHERE a.idDono=" . $_SESSION["id"]);
 
-if ( !isset($_SESSION["nomeUtilizador"]) ) {
+if (!isset($_SESSION["nomeUtilizador"])) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 
@@ -23,14 +22,12 @@ if ( !isset($_SESSION["nomeUtilizador"]) ) {
 <body>
     <?php require 'header.php'; ?>
 
-
     <div class="container-fluid bg-light pt-5">
         <div class="container">
             <div class="d-flex flex-column text-center">
                 <h1 class="display-4 m-0"><span class="text-primary">Reservas</span> </h1>
             </div>
-        <a type="button" class="btn btn-primary float-right" href="adicionarreserva.php">Adicionar</a>
-
+            <a type="button" class="btn btn-primary float-right" href="adicionarreserva.php">Adicionar</a>
 
             <table class="table">
                 <thead>
@@ -70,7 +67,6 @@ if ( !isset($_SESSION["nomeUtilizador"]) ) {
                             <td scope="row"> <a type="button" class="btn btn-primary" href="eliminarutilizador.php?id=<?php echo $reserva['id']; ?>">Eliminar</a>
                             </td>
                             -->
-
                         </tr>
 
                     <?php
@@ -78,13 +74,9 @@ if ( !isset($_SESSION["nomeUtilizador"]) ) {
                     ?>
                 </tbody>
             </table>
-
         </div>
     </div>
 
-
     <?php require "footer.php"; ?>
-
 </body>
-
 </html>

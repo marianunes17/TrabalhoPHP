@@ -5,17 +5,20 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
-$sqlReservas = mysqli_query($conn, "SELECT * FROM reservas r
-                                 JOIN animais a
-                                 ON r.idAnimal = a.id AND 
-                                 a.idDono='" . $_SESSION["id"] . "'");
-                                 
+$sqlReservas = mysqli_query($conn, "SELECT DISTINCT  * FROM reservas r
+                                    INNER JOIN servicos s
+                                    ON r.idServico = s.id 
+                                    INNER JOIN animais a
+                                    ON r.idAnimal = a.id
+                                    WHERE a.idDono=" . $_SESSION["id"] . "
+                                    GROUP BY a.id");
+
 if ( !isset($_SESSION["nomeUtilizador"]) ) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 
 ?>
-<title> PetShop | Reservas </title>
+<title> PetShop | Reservas Feitas </title>
 
 <body>
     <?php require 'header.php'; ?>
@@ -23,7 +26,9 @@ if ( !isset($_SESSION["nomeUtilizador"]) ) {
 
     <div class="container-fluid bg-light pt-5">
         <div class="container">
-
+            <div class="d-flex flex-column text-center">
+                <h1 class="display-4 m-0"><span class="text-primary">Reservas</span> </h1>
+            </div>
         <a type="button" class="btn btn-primary float-right" href="adicionarreserva.php">Adicionar</a>
 
 
@@ -47,16 +52,16 @@ if ( !isset($_SESSION["nomeUtilizador"]) ) {
 
                         <tr>
                             <td scope="row">
-                                <?php echo $sqlReservas['nomeAnimal'] ?>
+                                <?php echo $sqlReservasInfo['nomeAnimal'] ?>
                             </td>
                             <td scope="row">
-                                <?php echo $sqlReservas['dataInicio'] ?>
+                                <?php echo $sqlReservasInfo['dataInicio'] ?>
                             </td>
                             <td scope="row">
-                                <?php echo $sqlReservas['dataFim'] ?>
+                                <?php echo $sqlReservasInfo['dataFim'] ?>
                             </td>
                             <td scope="row">
-                                <?php echo $sqlReservas['nomeServico'] ?>
+                                <?php echo $sqlReservasInfo['nomeServico'] ?>
                             </td>
 
                             <!-- 

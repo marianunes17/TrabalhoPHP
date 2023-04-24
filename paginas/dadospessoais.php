@@ -35,11 +35,20 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                 </li>
             </ul>
 
-            
+
             <div class="tab-content" id="myTabContent">
                 <!-- -------------------------- DADOS PESSOAIS -------------------------- -->
                 <div class="tab-pane fade show active opacity-100 py-4" id="dados" role="tabpanel" aria-labelledby="dados-tab">
-                    <a type="button" class="btn btn-primary float-right" href="editarDadosPessoais.php">Editar</a>
+
+                    <div class="row justify-content-center ">
+                        <div class="col-6">
+                            <h4 class="mb-3"><span class="text-primary">Dados Pessoais</span> </h4>
+                        </div>
+                        <div class="col-6">
+                            <a type="button" class="btn btn-primary float-right" href="editarDadosPessoais.php?id=<?php echo $_SESSION['id']; ?>">Editar</a>
+                                        
+                        </div>
+                    </div>
 
                     <div class="row justify-content-center ">
                         <div class="col-1">
@@ -48,22 +57,27 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                         <div class="col-11 align-self-center">
                             <label class='text-capitalize font-weight-normal'> <?php echo $_SESSION['nomeUtilizador'] ?> </label>
                         </div>
+                    </div>
 
+                    <div class="row justify-content-center ">
                         <div class="col-1 align-self-center">
                             <label class="font-weight-bold"> Email: </label>
                         </div>
                         <div class="col-11">
                             <label class="font-weight-normal"> <?php echo $_SESSION['email'] ?> </label>
                         </div>
+                    </div>
 
+                    <div class="row justify-content-center ">
                         <div class="col-1 align-self-center">
                             <label class="font-weight-bold"> Telemovel: </label>
                         </div>
                         <div class="col-11">
                             <label class="font-weight-normal"> <?php echo $_SESSION['telemovel'] ?> </label>
                         </div>
-
-                        <?php if ($_SESSION['tipo'] == 'funcionario') { ?>
+                    </div>
+                    <?php if ($_SESSION['tipo'] == 'funcionario') { ?>
+                        <div class="row justify-content-center ">
                             <div class="col-1">
                                 <label class="font-weight-bold"> Serviço: </label>
                             </div>
@@ -74,34 +88,49 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                                     </label> <br>
                                 <?php } ?>
                             </div>
-                        <?php } ?>
-                    </div>
+                        </div>
+                    <?php } ?>
                 </div>
 
                 <!-- -------------------------- ANIMAIS -------------------------- -->
-                <div class="tab-pane fade opacity-100  py-4" id="animais" role="tabpanel" aria-labelledby="animais-tab" tabindex="0">
+                <div class="tab-pane fade opacity-100  py-4" id="animais" role="tabpanel" aria-labelledby="animais-tab">
+                    <div class="d-flex flex-column">
+                        <h4 class="mb-3"><span class="text-primary">Animais</span> </h4>
+                    </div>
+
                     <?php
                     while ($animaisInfo = mysqli_fetch_array($animais)) {
                     ?>
+                        <div class="row justify-content-center mb-2 pt-4">
+                            <div class="col-6 align-self-center">
+                                <h5> <?php echo $animaisInfo['nomeAnimal'] ?> </h5>
+                            </div>
 
-                        <div class="row justify-content-center pb-2">
-                            <h4> <?php echo $animaisInfo['nomeAnimal'] ?> </h4>
+                            <div class="col-6">
+                                <a type="button" class="btn btn-primary float-right" href="editarAnimal.php">Editar</a>
 
+                            </div>
+                        </div>
 
+                        <div class="row justify-content-center ">
                             <div class="col-1 align-self-center">
                                 <label class="font-weight-bold"> Tipo: </label>
                             </div>
                             <div class="col-11">
                                 <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['tipo'] ?> </label>
                             </div>
+                        </div>
 
+                        <div class="row justify-content-center ">
                             <div class="col-1 align-self-center">
                                 <label class="font-weight-bold"> Raça: </label>
                             </div>
                             <div class="col-11">
                                 <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['raca'] ?> </label>
                             </div>
+                        </div>
 
+                        <div class="row justify-content-center ">
                             <div class="col-1 align-self-center">
                                 <label class="font-weight-bold"> Pelo: </label>
                             </div>
@@ -111,47 +140,7 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                         </div>
                     <?php } ?>
                 </div>
-
-
-                <!-- -------------------------- RESERVAS -------------------------- -->
-                <div class="tab-pane fade py-4" id="reservas" role="tabpanel" aria-labelledby="reservas-tab" tabindex="0">
-                    <?php
-                    if ($reservasInfo['idDono'] == $SESSION['id']) {
-                        while ($reservasInfo = mysqli_fetch_array($animais)) {
-                    ?>
-
-                            <div class="row justify-content-center pb-2">
-                                <h4> <?php echo $reservasInfo['nomeAnimal'] ?> </h4>
-
-
-                                <div class="col-1 align-self-center">
-                                    <label class="font-weight-bold"> Tipo: </label>
-                                </div>
-                                <div class="col-11">
-                                    <label class="font-weight-normal text-capitalize"> <?php echo $reservasInfo['tipo'] ?> </label>
-                                </div>
-
-                                <div class="col-1 align-self-center">
-                                    <label class="font-weight-bold"> Raça: </label>
-                                </div>
-                                <div class="col-11">
-                                    <label class="font-weight-normal text-capitalize"> <?php echo $reservasInfo['raca'] ?> </label>
-                                </div>
-
-                                <div class="col-1 align-self-center">
-                                    <label class="font-weight-bold"> Pelo: </label>
-                                </div>
-                                <div class="col-11">
-                                    <label class="font-weight-normal text-capitalize"> <?php echo $reservasInfo['pelo'] ?> </label>
-                                </div>
-                            </div>
-
-                    <?php
-                        }
-                    }
-                    ?>
-                </div>
-            </div>;
+            </div>
         </div>
     </div>
 

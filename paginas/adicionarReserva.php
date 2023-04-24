@@ -9,7 +9,7 @@ $sqlServicos = mysqli_query($conn, "SELECT * FROM servicos");
 
 $sqlAnimais = mysqli_query($conn, "SELECT * FROM animais WHERE idDono =" . $_SESSION['id']);
 
-if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] != 'admin')) {
+if ( !isset($_SESSION["nomeUtilizador"]) ) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 ?>

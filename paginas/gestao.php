@@ -56,7 +56,6 @@ if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] == 'cliente')) {
                 <div class="tab-pane fade show active opacity-100 py-4" id="reservas" role="tabpanel" aria-labelledby="reservas-tab">
                     <table class="table">
                         <thead>
-
                             <tr>
                                 <th scope="col">Animal</th>
                                 <th scope="col">Inicio</th>

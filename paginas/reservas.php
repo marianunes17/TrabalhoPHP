@@ -10,7 +10,8 @@ $sqlReservas = mysqli_query($conn, "SELECT DISTINCT  * FROM reservas r
                                     ON r.idServico = s.id 
                                     INNER JOIN animais a
                                     ON r.idAnimal = a.id
-                                    WHERE a.idDono=" . $_SESSION["id"]);
+                                    WHERE a.idDono=" . $_SESSION["id"] . "
+                                    ORDER BY r.dataInicio DESC");
 
 if (!isset($_SESSION["nomeUtilizador"])) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
@@ -79,4 +80,5 @@ if (!isset($_SESSION["nomeUtilizador"])) {
 
     <?php require "footer.php"; ?>
 </body>
+
 </html>

@@ -17,8 +17,8 @@ if (isset($_POST['atualizar'])) {
     );
     $result = $conn->query($alteraUtilizador);
 
-    
-echo '<meta http-equiv="refresh" content="0; url=dadospessoais.php">';
+
+    echo '<meta http-equiv="refresh" content="0; url=dadospessoais.php">';
 }
 
 if (isset($_GET['id'])) {

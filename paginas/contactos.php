@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html>
 
-<?php 
-require 'head.php'; 
-
-
+<?php
+require 'head.php';
 ?>
 <title> PetShop </title>
 
 <body>
     <?php require 'header.php'; ?>
 
-
     <div class="row py-3 px-lg-5">
-            <div class="col-lg-12 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <div class="d-inline-flex flex-column text-center pr-4 border-right">
-                        <h6>Horario</h6>
-                        <p class="m-0">8.00 - 21.00PM</p>
-                    </div>
-                    <div class="d-inline-flex flex-column text-center px-4 border-right">
-                        <h6>Email</h6>
-                        <p class="m-0">petshop@email.com</p>
-                    </div>
-                    <div class="d-inline-flex flex-column text-center pl-4">
-                        <h6>Telefone</h6>
-                        <p class="m-0">961245666</p>
-                        <p class="m-0">271245666</p>
-                    </div>
+        <div class="col-lg-12 text-center text-lg-right">
+            <div class="d-inline-flex align-items-center">
+                <div class="d-inline-flex flex-column text-center pr-4 border-right">
+                    <h6>Horario</h6>
+                    <p class="m-0">8.00 - 21.00PM</p>
+                </div>
+                <div class="d-inline-flex flex-column text-center px-4 border-right">
+                    <h6>Email</h6>
+                    <p class="m-0">petshop@email.com</p>
+                </div>
+                <div class="d-inline-flex flex-column text-center pl-4">
+                    <h6>Telefone</h6>
+                    <p class="m-0">961245666</p>
+                    <p class="m-0">271245666</p>
                 </div>
             </div>
         </div>
+    </div>
 
     <!-- Contact Start -->
     <div class="container-fluid pt-5">
@@ -77,8 +74,6 @@ require 'head.php';
         </div>
     </div>
     <!-- Contact End -->
-
-
 
     <?php require 'footer.php'; ?>
 </body>

@@ -153,4 +153,5 @@ if (!isset($_SESSION["nomeUtilizador"])) {
 
     <?php require "footer.php"; ?>
 </body>
+
 </html>

@@ -69,4 +69,5 @@ if (isset($_POST['registar'])) {
 
     <?php require 'footer.php'; ?>
 </body>
+
 </html>

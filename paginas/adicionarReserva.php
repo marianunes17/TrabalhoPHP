@@ -14,17 +14,18 @@ if (isset($_POST['reservar'])) {
     $idAnimal = $_POST['idAnimal'];
     $idServico = $_POST['idServico'];
 
+    $sql = "SELECT TIMESTAMPDIFF(MINUTE, r.dataInicio, '1212-11-07 17:11:00')>=30, FROM reservas r";
 
-    if ($idServico == 1 ||  $idServico == 3) {
-        $alteraUtilizador = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico) values
-    ('$dataInicio', date_add(dataInicio, INTERVAL 30 MINUTE), '$idAnimal', '$idServico') ");
-    } else {
-        $alteraUtilizador = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico) values
-    ('$dataInicio', date_add(dataInicio, INTERVAL 1 HOUR), '$idAnimal', '$idServico') ");
+    if ($sql) {
+        if ($idServico == 1 ||  $idServico == 3) {
+            $alteraUtilizador = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico) values
+        ('$dataInicio', date_add(dataInicio, INTERVAL 30 MINUTE), '$idAnimal', '$idServico') ");
+        } else {
+            $alteraUtilizador = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico) values
+        ('$dataInicio', date_add(dataInicio, INTERVAL 1 HOUR), '$idAnimal', '$idServico') ");
+        }
+        echo '<meta http-equiv="refresh" content="0; url=reservas.php">';
     }
-
-
-    echo '<meta http-equiv="refresh" content="0; url=reservas.php">';
 }
 
 if (!isset($_SESSION["nomeUtilizador"])) {
@@ -106,4 +107,5 @@ if (!isset($_SESSION["nomeUtilizador"])) {
 
     <?php require 'footer.php'; ?>
 </body>
+
 </html>

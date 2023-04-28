@@ -11,7 +11,7 @@ $sqlFuncionario = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='fu
 <title> PetShop | Sobre </title>
 
 <body>
-    <?php require 'header.php'?>
+    <?php require 'header.php' ?>
 
     <!-- About Start -->
     <div class="container py-5">
@@ -25,7 +25,7 @@ $sqlFuncionario = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='fu
                 <p class="mb-4"> Temos em conta o tipo de animal, pelo, raça. Atendemos as diferentes necessidades de cada um</p>
                 <p class="mb-4"> Para alem de cuidarmos dos animais como se fossem nossos apoiamos os nossos clientes para que nas suas casas possam cuidar dos seus animais de estimação da melhor maneira.</p>
             </div>
-            
+
             <div class="col-lg-5">
                 <div class="row px-3">
                     <div class="col-12 p-0">
@@ -102,4 +102,5 @@ $sqlFuncionario = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='fu
 
     <?php require 'footer.php'; ?>
 </body>
+
 </html>

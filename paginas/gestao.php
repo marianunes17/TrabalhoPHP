@@ -61,9 +61,9 @@ if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] == 'cliente')) {
                                 <th scope="col">Inicio</th>
                                 <th scope="col">Fim</th>
                                 <th scope="col">Serviço</th>
-                                
+
                                 <?php if (($_SESSION['tipo'] == "funcionario")) { ?>
-                                <th scope="col">Atender</th>
+                                    <th scope="col">Atender</th>
                                 <?php } ?>
 
                                 <?php if (($_SESSION['tipo'] == "admin")) { ?>

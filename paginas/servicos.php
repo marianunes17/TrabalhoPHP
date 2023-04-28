@@ -208,4 +208,5 @@ if (!$sqlServico || !$sqlFuncionarios) {
 
     <?php require 'footer.php'; ?>
 </body>
+
 </html>

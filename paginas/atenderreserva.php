@@ -11,4 +11,3 @@ if (isset($_GET['id'])) {
 if ( !isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] != 'funcionario') ) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
-?>

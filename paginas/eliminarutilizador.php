@@ -13,4 +13,3 @@ if (!isset($_SESSION["nomeUtilizador"]) ) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 echo '<meta http-equiv="refresh" content="0; url=gestao.php">';
-?>

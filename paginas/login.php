@@ -47,4 +47,5 @@ require_once('../basedados/basedados.h');
 
     <?php require 'footer.php'; ?>
 </body>
+
 </html>

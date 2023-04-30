@@ -10,9 +10,20 @@ $animais = mysqli_query($conn, "SELECT * FROM animais WHERE idDono='" . $_SESSIO
 $reservas = mysqli_query($conn, "SELECT * FROM reservas WHERE idAnimal='" . $_SESSION["id"] . "'");
 
 $servicoFuncionario = mysqli_query($conn, "SELECT * FROM servicos s 
-                                            JOIN servicosfuncionarios sf
-                                            ON s.id = sf.idServico AND
-                                            sf.idFuncionario='" . $_SESSION["id"] . "'");
+                                           JOIN servicosfuncionarios sf
+                                           ON s.id = sf.idServico AND
+                                           sf.idFuncionario='" . $_SESSION["id"] . "'");
+
+
+if (!$animais) {
+    echo ("Erro: " . $animais($con));
+
+} else if (!$reservas) {
+    echo ("Erro: " . $reservas($con));
+
+} else if (!$servicoFuncionario) {
+    echo ("Erro: " . $servicoFuncionario($con));
+}
 
 if (!isset($_SESSION["nomeUtilizador"])) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
@@ -100,48 +111,52 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                                 <h4 class="mb-3"><span class="text-primary">Animais</span> </h4>
                             </div>
                             <div class="col-6 align-self-center">
-                                <a type="button" class="btn btn-primary float-right" href="adicionarutilizador.php">Adicionar</a>
+                                <a type="button" class="btn btn-primary float-right" href="adicionaranimal.php">Adicionar</a>
                             </div>
                         </div>
+
+
 
                         <?php
                         while ($animaisInfo = mysqli_fetch_array($animais)) {
                         ?>
-                            <div class="row justify-content-center mb-2 pt-4">
-                                <div class="col-6 align-self-center">
-                                    <h5> <?php echo $animaisInfo['nomeAnimal'] ?> </h5>
+                            <div class="pb-4">
+                                <div class="row justify-content-center mb-2">
+                                    <div class="col-6 align-self-center">
+                                        <h5> <?php echo $animaisInfo['nomeAnimal'] ?> </h5>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <a type="button" class="btn btn-primary float-right ml-2" href="editarAnimal.php?id=<?php echo $animaisInfo['id']; ?>">Editar</a>
+                                        <a type="button" class="btn btn-primary float-right" href="eliminarAnimal.php?id=<?php echo $animaisInfo['id']; ?>">Eliminar</a>
+                                    </div>
                                 </div>
 
-                                <div class="col-6">
-                                    <a type="button" class="btn btn-primary float-right" href="editarAnimal.php">Editar</a>
+                                <div class="row justify-content-center ">
+                                    <div class="col-1 align-self-center">
+                                        <label class="font-weight-bold"> Tipo: </label>
+                                    </div>
+                                    <div class="col-11">
+                                        <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['tipo'] ?> </label>
+                                    </div>
+                                </div>
 
+                                <div class="row justify-content-center ">
+                                    <div class="col-1 align-self-center">
+                                        <label class="font-weight-bold"> Raça: </label>
+                                    </div>
+                                    <div class="col-11">
+                                        <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['raca'] ?> </label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row justify-content-center ">
-                                <div class="col-1 align-self-center">
-                                    <label class="font-weight-bold"> Tipo: </label>
-                                </div>
-                                <div class="col-11">
-                                    <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['tipo'] ?> </label>
-                                </div>
-                            </div>
-
-                            <div class="row justify-content-center ">
-                                <div class="col-1 align-self-center">
-                                    <label class="font-weight-bold"> Raça: </label>
-                                </div>
-                                <div class="col-11">
-                                    <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['raca'] ?> </label>
-                                </div>
-                            </div>
-
-                            <div class="row justify-content-center ">
-                                <div class="col-1 align-self-center">
-                                    <label class="font-weight-bold"> Pelo: </label>
-                                </div>
-                                <div class="col-11">
-                                    <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['pelo'] ?> </label>
+                                <div class="row justify-content-center ">
+                                    <div class="col-1 align-self-center">
+                                        <label class="font-weight-bold"> Pelo: </label>
+                                    </div>
+                                    <div class="col-11">
+                                        <label class="font-weight-normal text-capitalize"> <?php echo $animaisInfo['pelo'] ?> </label>
+                                    </div>
                                 </div>
                             </div>
                         <?php } ?>

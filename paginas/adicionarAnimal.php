@@ -12,9 +12,19 @@ if (isset($_POST['adicionar'])) {
     $pelo = $_POST['pelo'];
     $idutilizador = $_SESSION['id'];
 
-
-    $alteraUtilizador = mysqli_query($conn, "INSERT INTO animais(nomeAnimal, tipo, raca, pelo, idDono) values
+    $adicionarAnimal = mysqli_query($conn, "INSERT INTO animais(nomeAnimal, tipo, raca, pelo, idDono) values
     ('$nome','$tipo', '$raca', '$pelo', '$idutilizador') ");
+
+
+    if (!$adicionarAnimal) {
+        echo ("Erro: " . $adicionarAnimal($con));
+    } else {
+        if ($_SESSION['tipo'] == 'admin') {
+            echo '<meta http-equiv="refresh" content="0; url=gestao.php">';
+        } else {
+            echo '<meta http-equiv="refresh" content="0; url=dadosPessoais.php">';
+        }
+    }
 }
 
 if (!isset($_SESSION["nomeUtilizador"])) {
@@ -34,22 +44,21 @@ if (!isset($_SESSION["nomeUtilizador"])) {
             </div>
 
             <div class="contact-form">
-                <form name="sentMessage" id="contactForm" novalidate="novalidate" method="POST">
+                <form method="POST">
                     <input type="text" class="invisible" name="id" class="form-control p-4 text-capitalize" placeholder="id" />
 
-                    <div class="control-group">
-                        <div class="row justify-content-center  ">
+                    <div class="control-group pb-3">
+                        <div class="row justify-content-center">
                             <div class="col-1 align-self-center">
                                 <label> Nome: </label>
                             </div>
                             <div class="col-11">
                                 <input type="text" name="nome" class="form-control p-4 text-capitalize" placeholder="Nome" required="required" data-validation-required-message="Nome" />
                             </div>
-                            <p class="help-block text-danger"> </p>
                         </div>
                     </div>
 
-                    <div class="control-group">
+                    <div class="control-group pb-3">
                         <div class="row justify-content-center  ">
                             <div class="col-1 align-self-center">
                                 <label> Tipo: </label>
@@ -60,24 +69,22 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                                     <option value="cão"> Cão </option>
                                     <option value="gato"> Gato </option>
                                 </select>
-                                <p class="help-block text-danger"> </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="control-group">
+                    <div class="control-group pb-3">
                         <div class="row justify-content-center  ">
                             <div class="col-1 align-self-center">
                                 <label> Raça: </label>
                             </div>
                             <div class="col-11">
                                 <input type="text" name="raca" class="form-control p-4" placeholder="Raça" required="required" data-validation-required-message="Telemóvel" />
-                                <p class="help-block text-danger"> </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="control-group">
+                    <div class="control-group pb-3">
                         <div class="row justify-content-center  ">
                             <div class="col-1 align-self-center">
                                 <label> Pelo: </label>
@@ -89,12 +96,11 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                                     <option value="longo"> Longo </option>
                                     <option value="sem pelo"> Sem pelo </option>
                                 </select>
-                                <p class="help-block text-danger"> </p>
                             </div>
                         </div>
                     </div>
 
-                    <div>
+                    <div class="control-group">
                         <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton" name='adicionar'>Guardar</button>
                         <a class="btn btn-primary py-3 px-5" id="sendMessageButton" href="dadospessoais.php">Cancelar</a>
                     </div>

@@ -5,15 +5,14 @@ require_once('../basedados/basedados.h');
 $utilizador = $_POST['nome'];
 $password = $_POST['password'];
 
-$sqlLogin = "SELECT * FROM utilizadores WHERE 
-        nomeUtilizador='$utilizador' AND password='$password' ";
-$sqlLoginInfo = mysqli_query($conn, $sqlLogin);
+$login = mysqli_query($conn, "SELECT * FROM utilizadores WHERE 
+        nomeUtilizador='$utilizador' AND password='$password' ");
 
-if (!$sqlLoginInfo) {
-  die('Could not get data: ' . mysqli_error($conn)); // se não funcionar dá erro
+if (!$login) {
+  echo ("Erro: " . $login($con));
 }
 
-if (($row = mysqli_fetch_array($sqlLoginInfo)) != null) {
+if (($row = mysqli_fetch_array($login)) != null) {
   $_SESSION['nomeUtilizador'] = $utilizador;
   $_SESSION['password'] = $row['password'];
   $_SESSION['email'] = $row['email'];

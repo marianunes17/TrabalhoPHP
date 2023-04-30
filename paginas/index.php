@@ -5,12 +5,15 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
-$sqlServico = mysqli_query($conn, "SELECT * FROM servicos");
+$servicos = mysqli_query($conn, "SELECT * FROM servicos");
 
-$sqlFuncionarios = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
+$funcionarios = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
 
-if (!$sqlServico || !$sqlFuncionarios) {
-    die('Could not get data: ' . mysqli_error($conn)); // se não funcionar dá erro
+
+if(! $servicos){
+    echo ("Erro: " . $servicos($con));
+} else if(! $funcionarios){
+    echo ("Erro: " . $funcionarios($con));
 }
 
 ?>
@@ -120,14 +123,14 @@ if (!$sqlServico || !$sqlFuncionarios) {
             <div class="row pb-3">
 
                 <?php
-                while ($sqlServicoInfo = mysqli_fetch_array($sqlServico)) {
+                while ($servicoInfo = mysqli_fetch_array($servicos)) {
                 ?>
                     <div class="col-md-12 col-lg-6 mb-4">
                         <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-                            <img class="img-fluid w-50 align-self-center" src="<?php echo $sqlServicoInfo['imagem'] ?>">
+                            <img class="img-fluid w-50 align-self-center" src="<?php echo $servicoInfo['imagem'] ?>">
                             <h3 class="flaticon-grooming display-3 font-weight-normal text-secondary mb-3"></h3>
-                            <h3 class="mb-3 text-capitalize"> <?php echo $sqlServicoInfo['nomeServico'] ?> </h3>
-                            <p> <?php echo $sqlServicoInfo['descricao'] ?> </p>
+                            <h3 class="mb-3 text-capitalize"> <?php echo $servicoInfo['nomeServico'] ?> </h3>
+                            <p> <?php echo $servicoInfo['descricao'] ?> </p>
                         </div>
                     </div>
                 <?php } ?>

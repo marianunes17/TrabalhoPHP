@@ -5,7 +5,11 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
-$sqlFuncionario = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
+$funcionario = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
+
+if(! $funcionarios){
+    echo ("Erro: " . $funcionarios($con));
+}
 ?>
 
 <title> PetShop | Sobre </title>
@@ -77,14 +81,14 @@ $sqlFuncionario = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='fu
         </div>
         <div class="row">
             <?php
-            while ($sqlFuncionarioInfo = mysqli_fetch_array($sqlFuncionario)) {
+            while ($funcionarioInfo = mysqli_fetch_array($funcionario)) {
             ?>
                 <div class="col-4">
                     <div class="team card position-relative overflow-hidden border-0 mb-4">
-                        <img class="card-img-top" src="<?php echo $sqlFuncionarioInfo['imagem'] ?>" alt="">
+                        <img class="card-img-top" src="<?php echo $funcionarioInfo['imagem'] ?>" alt="">
                         <div class="card-body text-center p-0">
                             <div class="team-text d-flex flex-column justify-content-center bg-light">
-                                <h5 class="text-capitalize"> <?php echo $sqlFuncionarioInfo['nomeUtilizador'] ?> </h5>
+                                <h5 class="text-capitalize"> <?php echo $funcionarioInfo['nomeUtilizador'] ?> </h5>
                             </div>
                             <div class="team-social d-flex align-items-center justify-content-center bg-dark">
                                 <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 36px; height: 36px;" href="#"><i class="fab fa-twitter"></i></a>

@@ -5,13 +5,19 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
-$sqlReservas = mysqli_query($conn, "SELECT DISTINCT  * FROM reservas r
-                                    INNER JOIN servicos s
-                                    ON r.idServico = s.id 
-                                    INNER JOIN animais a
-                                    ON r.idAnimal = a.id
-                                    WHERE a.idDono=" . $_SESSION["id"] . "
-                                    ORDER BY r.dataInicio DESC");
+$reservas = mysqli_query($conn, "SELECT DISTINCT 
+                                 r.*, a.nomeAnimal, s.nomeServico
+                                 FROM reservas r
+                                 INNER JOIN servicos s
+                                 ON r.idServico = s.id 
+                                 INNER JOIN animais a
+                                 ON r.idAnimal = a.id
+                                 WHERE a.idDono=" . $_SESSION["id"] . "
+                                 ORDER BY r.dataInicio DESC");
+
+if (!$reservas) {
+    echo ("Erro: " . $reservas($con));
+} 
 
 if (!isset($_SESSION["nomeUtilizador"])) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
@@ -37,6 +43,7 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                         <th scope="col">Inicio</th>
                         <th scope="col">Fim</th>
                         <th scope="col">Serviço</th>
+
                         <!-- 
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th> 
@@ -45,29 +52,38 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                 </thead>
                 <tbody>
                     <?php
-                    while ($sqlReservasInfo = mysqli_fetch_array($sqlReservas)) {
+                    while ($reservasInfo = mysqli_fetch_array($reservas)) {
                     ?>
 
                         <tr>
                             <td scope="row">
-                                <?php echo $sqlReservasInfo['nomeAnimal'] ?>
+                                <?php echo $reservasInfo['nomeAnimal'] ?>
                             </td>
                             <td scope="row">
-                                <?php echo $sqlReservasInfo['dataInicio'] ?>
+                                <?php echo $reservasInfo['dataInicio'] ?>
                             </td>
                             <td scope="row">
-                                <?php echo $sqlReservasInfo['dataFim'] ?>
+                                <?php echo $reservasInfo['dataFim'] ?>
                             </td>
                             <td scope="row">
-                                <?php echo $sqlReservasInfo['nomeServico'] ?>
+                                <?php echo $reservasInfo['nomeServico'] ?>
                             </td>
 
-                            <!-- 
-                            <td scope="row"> <a type="button" class="btn btn-primary" href="editarutilizador.php?id=<?php echo $sqlReserva['id']; ?>">Editar</a>
-                            </td>
-                            <td scope="row"> <a type="button" class="btn btn-primary" href="eliminarutilizador.php?id=<?php echo $reserva['id']; ?>">Eliminar</a>
-                            </td>
-                            -->
+
+                            <?php
+                            if ($reservasInfo['atendido'] == 0) {
+                                echo '
+                            <td scope="row">
+                            <a type="button" class="btn btn-primary" href="editarutilizador.php?id=' . $reservasInfo['id'] . '">Editar</a>
+                             </td>
+
+                             
+                            <td scope="row">
+                            <a type="button" class="btn btn-primary" href="eliminarReserva.php?id=' . $reservasInfo['id'] . '">Eliminar</a>
+                             </td>
+                            ';
+                            }
+                            ?>
                         </tr>
 
                     <?php

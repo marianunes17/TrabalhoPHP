@@ -5,40 +5,46 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+$utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
+
+
 if (isset($_POST['atualizar'])) {
-    $nomeutilizador = $_POST['nomeutilizador'];
-    $emailutilizador = $_POST['email'];
-    $passwordutilizador = $_POST['password'];
-    $telemovelutilizador = $_POST['telemovel'];
+    $nomeUtilizador = $_POST['nomeUtilizador'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $telemovel = $_POST['telemovel'];
     $idutilizador = $_POST['id'];
 
-    $alteraUtilizador = ("UPDATE utilizadores SET nomeUtilizador = '$nomeutilizador', password = '$passwordutilizador',
-    email='$emailutilizador', telemovel=$telemovelutilizador WHERE id=$idutilizador"
-    );
-    $result = $conn->query($alteraUtilizador);
+    $alteraUtilizador = mysqli_query($conn, "UPDATE utilizadores SET nomeUtilizador = '$nomeUtilizador', password = '$password',
+    email='$email', telemovel='$telemovel' WHERE id=$idutilizador");
 
-
-    echo '<meta http-equiv="refresh" content="0; url=dadospessoais.php">';
+    if (!$utilizadores) {
+        echo ("Erro: " . $utilizadores($con));
+    } else {
+        echo '<meta http-equiv="refresh" content="0; url=dadospessoais.php">';
+    }
 }
 
 if (isset($_GET['id'])) {
     $idutilizador = $_GET['id'];
 
-    $sql = ("SELECT * FROM utilizadores WHERE id='$idutilizador'");
-    $result = $conn->query($sql);
+    $utilizador = mysqli_query($conn, "SELECT * FROM utilizadores WHERE id='$idutilizador'");
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+    if ($utilizador->num_rows > 0) {
+        while ($row = $utilizador->fetch_assoc()) {
             $idutilizador = $row['id'];
-            $nomeutilizador = $row['nomeUtilizador'];
-            $emailutilizador = $row['email'];
-            $passwordutilizador = $row['password'];
-            $telemovelutilizador = $row['telemovel'];
+            $nomeUtilizador = $row['nomeUtilizador'];
+            $email = $row['email'];
+            $password = $row['password'];
+            $telemovel = $row['telemovel'];
         }
+    }
+
+    if (!$utilizador) {
+        echo ("Erro: " . $utilizador($con));
     }
 }
 
-$utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
 
 if (!isset($_SESSION["nomeUtilizador"])) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
@@ -56,68 +62,60 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                 <h1 class="display-4 m-0"><span class="text-primary">Editar Dados Pessoais</span> </h1>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-12 mb-5">
-                    <div class="contact-form">
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate" method="POST">
+            <div class="contact-form">
+                <form method="POST">
+                    <input type="text" name="id" class="form-control p-4 text-capitalize invisible" placeholder="id" <?php echo "value='" . $idutilizador . "'"; ?> />
 
-                            <input type="text" class="invisible" name="id" class="form-control p-4 text-capitalize" placeholder="id" <?php echo "value='" . $idutilizador . "'"; ?> />
-
-                            <div class="control-group">
-                                <div class="row justify-content-center  ">
-                                    <div class="col-1 align-self-center">
-                                        <label> Nome: </label>
-                                    </div>
-                                    <div class="col-11">
-                                        <input type="text" name="nomeutilizador" class="form-control p-4 text-capitalize" placeholder="Nome" required="required" data-validation-required-message="Nome" <?php echo "value='" . $nomeutilizador . "'"; ?> />
-                                    </div>
-                                    <p class="help-block text-danger"> </p>
-                                </div>
+                    <div class="control-group pb-3">
+                        <div class="row justify-content-center">
+                            <div class="col-1 align-self-center">
+                                <label> Nome: </label>
                             </div>
-
-                            <div class="control-group">
-                                <div class="row justify-content-center  ">
-                                    <div class="col-1 align-self-center">
-                                        <label> Email: </label>
-                                    </div>
-                                    <div class="col-11">
-                                        <input type="email" name="email" class="form-control p-4" placeholder="Email" required="required" data-validation-required-message="Email" <?php echo "value='" . $emailutilizador . "'"; ?> />
-                                    </div>
-                                    <p class="help-block text-danger"> </p>
-                                </div>
+                            <div class="col-11">
+                                <input type="text" name="nomeUtilizador" class="form-control border-0 p-4 text-capitalize" placeholder="Nome" <?php echo "value='" . $nomeUtilizador . "'"; ?> required />
                             </div>
-
-
-                            <div class="control-group">
-                                <div class="row justify-content-center  ">
-                                    <div class="col-1 align-self-center">
-                                        <label> Password: </label>
-                                    </div>
-                                    <div class="col-11">
-                                        <input type="password" name="password" class="form-control p-4" placeholder="Email" required="required" data-validation-required-message="Email" <?php echo "value='" . $emailutilizador . "'"; ?> />
-                                    </div>
-                                    <p class="help-block text-danger"> </p>
-                                </div>
-                            </div>
-
-                            <div class="control-group">
-                                <div class="row justify-content-center  ">
-                                    <div class="col-1 align-self-center">
-                                        <label> Telemovel: </label>
-                                    </div>
-                                    <div class="col-11">
-                                        <input type="telemovel" name="telemovel" class="form-control p-4" placeholder="Telemovel" required="required" data-validation-required-message="Telemóvel" <?php echo "value='" . $telemovelutilizador . "'"; ?> />
-                                        <p class="help-block text-danger"> </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton" name='atualizar'>Guardar</button>
-                                <a class="btn btn-primary py-3 px-5" id="sendMessageButton" href="dadospessoais.php">Cancelar</a>
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="control-group pb-3">
+                        <div class="row justify-content-center  ">
+                            <div class="col-1 align-self-center">
+                                <label> Email: </label>
+                            </div>
+                            <div class="col-11">
+                                <input type="email" name="email" class="form-control p-4" placeholder="Email" <?php echo "value='" . $email . "'"; ?> required />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="control-group pb-3">
+                        <div class="row justify-content-center  ">
+                            <div class="col-1 align-self-center">
+                                <label> Password: </label>
+                            </div>
+                            <div class="col-11">
+                                <input type="password" name="password" class="form-control p-4" placeholder="Password" <?php echo "value='" . $password . "'"; ?> required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group pb-3">
+                        <div class="row justify-content-center  ">
+                            <div class="col-1 align-self-center">
+                                <label> Telemovel: </label>
+                            </div>
+                            <div class="col-11">
+                                <input type="tel" name="telemovel" class="form-control p-4" placeholder="Telemovel" <?php echo "value='" . $telemovel . "'"; ?> required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <button class="btn btn-primary py-3 px-5" type="submit" name='atualizar'>Guardar</button>
+                        <a class="btn btn-primary py-3 px-5" href="dadospessoais.php">Cancelar</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

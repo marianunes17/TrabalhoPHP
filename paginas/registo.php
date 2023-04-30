@@ -9,10 +9,14 @@ if (isset($_POST['registar'])) {
     $telemovelutilizador = $_POST['telemovel'];
 
 
-    $alteraUtilizador = ("INSERT INTO utilizadores(nomeUtilizador, password, email, telemovel, tipo) values
-    ('$nomeutilizador','$password', '$emailutilizador', $telemovelutilizador, '') ");
+    $registo = (mysqli_query($conn, "INSERT INTO utilizadores(nomeUtilizador, password, email, telemovel, tipo) values
+    ('$nomeutilizador','$password', '$emailutilizador', $telemovelutilizador, '') "));
 
-    $result = $conn->query($alteraUtilizador);
+    if (!$registo) {
+        echo ("Erro: " . $registo($con));
+    } else {
+        echo '<meta http-equiv="refresh" content="0; url=index.php">';
+    }
 }
 ?>
 

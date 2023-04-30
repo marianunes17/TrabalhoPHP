@@ -5,24 +5,40 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
-$sqlUtilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
+$utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
 
 if (($_SESSION['tipo'] == "admin")) {
-    $sqlReservas = mysqli_query($conn, "SELECT * FROM reservas r
-    	                         INNER JOIN servicos s
-                                 ON r.idServico = s.id 
-                                 INNER JOIN animais a
-                                 ON r.idAnimal = a.id");
-} else {
-    $sqlReservas = mysqli_query($conn, "SELECT * FROM reservas r
+    $reservas = mysqli_query($conn, "SELECT DISTINCT 
+                                    r.*, a.nomeAnimal, s.nomeServico
+                                    FROM reservas r
                                     INNER JOIN servicos s
                                     ON r.idServico = s.id 
                                     INNER JOIN animais a
                                     ON r.idAnimal = a.id
+                                    ORDER BY r.dataInicio DESC");
+    if (!$reservas) {
+        echo ("Erro: " . $reservas($con));
+    }
+
+} else {
+    $reservas = mysqli_query($conn, "SELECT DISTINCT
+                                    r.*, a.nomeAnimal, s.nomeServico
+                                    FROM reservas r
+                                    JOIN servicos s
+                                    ON r.idServico = s.id 
+                                    JOIN animais a
+                                    ON r.idAnimal = a.id
                                     JOIN servicosfuncionarios sf
                                     ON s.id = sf.idServico AND
-                                    sf.idFuncionario='" . $_SESSION["id"] . "'");
+                                    sf.idFuncionario='" . $_SESSION["id"] . "'
+                                    ORDER BY r.dataInicio DESC ");
+
+    if (!$reservas) {
+        echo ("Erro: " . $reservas($con));
+    }
 }
+
+
 
 if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] == 'cliente')) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
@@ -82,39 +98,39 @@ if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] == 'cliente')) {
 
                         <tbody>
                             <?php
-                            while ($sqlReservasInfo = mysqli_fetch_array($sqlReservas)) {
+                            while ($reservasInfo = mysqli_fetch_array($reservas)) {
                             ?>
                                 <tr>
                                     <td scope="row">
                                         <label class='text-capitalize font-weight-normal'>
-                                            <?php echo $sqlReservasInfo['nomeAnimal']; ?>
+                                            <?php echo $reservasInfo['nomeAnimal']; ?>
                                         </label>
                                     </td>
                                     <td scope="row">
-                                        <?php echo "<label class='text-capitalize font-weight-normal'>" . $sqlReservasInfo['dataInicio'] . " </label>"; ?>
+                                        <?php echo "<label class='text-capitalize font-weight-normal'>" . $reservasInfo['dataInicio'] . " </label>"; ?>
                                     </td>
                                     <td scope="row">
-                                        <?php echo "<label class='text-capitalize font-weight-normal'>" . $sqlReservasInfo['dataFim'] . " </label>"; ?>
+                                        <?php echo "<label class='text-capitalize font-weight-normal'>" . $reservasInfo['dataFim'] . " </label>"; ?>
                                     </td>
                                     <td scope="row">
-                                        <?php echo "<label class='text-capitalize font-weight-normal'>" . $sqlReservasInfo['nomeServico'] . " </label>"; ?>
+                                        <?php echo "<label class='text-capitalize font-weight-normal'>" . $reservasInfo['nomeServico'] . " </label>"; ?>
                                     </td>
 
-                                    <?php if ($sqlReservasInfo['atendido'] == 0) { ?>
+                                    <?php if ($reservasInfo['atendido'] == 0) { ?>
                                         <?php if (($_SESSION['tipo'] == "funcionario")) { ?>
                                             <td scope="row">
-                                                <a type="button" class="btn btn-primary" href="atenderReserva.php?id=<?php echo $sqlReservasInfo['id']; ?>">Atender</a>
+                                                <a type="button" class="btn btn-primary" href="atenderReserva.php?id=<?php echo $reservasInfo['id']; ?>">Atender</a>
                                             </td>
                                         <?php }
                                         if (($_SESSION['tipo'] == "admin")) { ?>
                                             <td scope="row"> Por atender </td>
 
                                             <td scope="row">
-                                                <a type="button" class="btn btn-primary" href="editarReserva.php?id=<?php echo $sqlReservasInfo['id']; ?>">Editar</a>
+                                                <a type="button" class="btn btn-primary" href="editarReserva.php?id=<?php echo $reservasInfo['id']; ?>">Editar</a>
                                             </td>
 
                                             <td scope="row">
-                                                <a type="button" class="btn btn-primary" href="eliminarReserva.php?id=<?php echo $sqlReservasInfo['id']; ?>">Eliminar</a>
+                                                <a type="button" class="btn btn-primary" href="eliminarReserva.php?id=<?php echo $reservasInfo['id']; ?>">Eliminar</a>
                                             </td>
                                         <?php } ?>
 
@@ -164,27 +180,27 @@ if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] == 'cliente')) {
                             </thead>
                             <tbody>
                                 <?php
-                                while ($sqlUtilizadoresInfo = mysqli_fetch_array($sqlUtilizadores)) {
+                                while ($utilizadoresInfo = mysqli_fetch_array($utilizadores)) {
                                 ?>
 
                                     <tr>
                                         <td scope="row ">
-                                            <?php echo "<label class=' text-capitalize font-weight-normal'>" . $sqlUtilizadoresInfo['nomeUtilizador'] . " </label>"; ?>
+                                            <?php echo "<label class=' text-capitalize font-weight-normal'>" . $utilizadoresInfo['nomeUtilizador'] . " </label>"; ?>
                                         </td>
                                         <td scope="row">
-                                            <?php echo "<label class=' text-capitalize font-weight-normal'>" . $sqlUtilizadoresInfo['email'] . " </label>"; ?>
+                                            <?php echo "<label class=' text-capitalize font-weight-normal'>" . $utilizadoresInfo['email'] . " </label>"; ?>
                                         </td>
                                         <td scope="row">
-                                            <?php echo "<label class=' text-capitalize font-weight-normal'>" . $sqlUtilizadoresInfo['telemovel'] . " </label>"; ?>
+                                            <?php echo "<label class=' text-capitalize font-weight-normal'>" . $utilizadoresInfo['telemovel'] . " </label>"; ?>
                                         </td>
                                         <td scope="row">
-                                            <?php echo "<label class='text-capitalize font-weight-normal'>" . $sqlUtilizadoresInfo['tipo'] . " </label>"; ?>
+                                            <?php echo "<label class='text-capitalize font-weight-normal'>" . $utilizadoresInfo['tipo'] . " </label>"; ?>
                                         </td>
                                         <td scope="row">
-                                            <a type="button" class="btn btn-primary" href="editarutilizador.php?id=<?php echo $sqlUtilizadoresInfo['id']; ?>">Editar</a>
+                                            <a type="button" class="btn btn-primary" href="editarutilizador.php?id=<?php echo $utilizadoresInfo['id']; ?>">Editar</a>
                                         </td>
                                         <td scope="row">
-                                            <a type="button" class="btn btn-primary" href="eliminarutilizador.php?id=<?php echo $sqlUtilizadoresInfo['id']; ?>">Eliminar</a>
+                                            <a type="button" class="btn btn-primary" href="eliminarutilizador.php?id=<?php echo $utilizadoresInfo['id']; ?>">Eliminar</a>
                                         </td>
                                     </tr>
 

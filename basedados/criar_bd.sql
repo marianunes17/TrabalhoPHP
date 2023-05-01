@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 01-Maio-2023 às 02:06
+-- Tempo de geração: 01-Maio-2023 às 22:13
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -41,7 +41,7 @@ CREATE TABLE `animais` (
 --
 
 INSERT INTO `animais` (`id`, `nomeAnimal`, `tipo`, `raca`, `pelo`, `idDono`) VALUES
-(1, 'Snoopy', '', 'Épagneul Breton', '', 4),
+(1, 'Snoopy', 'cão', 'Épagneul Breton', 'curto', 4),
 (2, 'Riscas', 'gato', '', 'curto', 4),
 (3, 'Flocky', 'cão', 'Podengo', 'curto', 2),
 (13, 'Flash', 'gato', 'Épagneul Bretonn', 'curto', 5);
@@ -68,8 +68,8 @@ CREATE TABLE `reservas` (
 
 INSERT INTO `reservas` (`id`, `dataInicio`, `dataFim`, `idAnimal`, `idServico`, `idFuncionario`, `atendido`) VALUES
 (1, '2023-06-30 11:31:45', '2023-06-30 12:01:45', 1, 1, 1, 1),
-(5, '2023-04-23 22:48:54', '2023-04-23 22:48:54', 3, 1, 1, 1),
-(23, '1212-11-11 12:01:00', '1212-11-11 13:01:00', 2, 4, 1, 0),
+(5, '2023-04-23 22:48:54', '2023-04-23 22:48:54', 3, 1, 3, 1),
+(23, '2023-05-01 15:22:45', '2023-05-01 16:22:45', 2, 4, 1, 0),
 (27, '2022-04-25 17:20:00', '2022-04-25 17:50:00', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
@@ -145,11 +145,12 @@ CREATE TABLE `utilizadores` (
 --
 
 INSERT INTO `utilizadores` (`id`, `nomeUtilizador`, `password`, `email`, `telemovel`, `tipo`, `imagem`) VALUES
-(1, 'joao', 'joao', 'joao@hotmail.com', 961234567, 'funcionario', 'funcionario3.jpg'),
-(2, 'cliente', 'cliente', 'cliente@gmail.com', 2147483647, 'cliente', ''),
-(3, 'joana', 'joana', 'joana@hotmail.com', 968254821, 'funcionario', 'funcionario1.jpg'),
-(4, 'maria', 'maria', 'maria@hotmail.com', 2147483647, 'funcionario', 'funcionario2.jpg'),
-(5, 'Admin', 'admin@hotmail.com', 'admin@hotmail.com', 9692, 'admin', '');
+(1, 'joao', 'dccd96c256bc7dd39bae41a405f25e43', 'joao@hotmail.com', 961234567, 'funcionario', 'funcionario3.jpg'),
+(2, 'cliente', '4983a0ab83ed86e0e7213c8783940193', 'cliente@gmail.com', 2147483647, 'cliente', ''),
+(3, 'joana', '18f01959ff46071d73905d549cafde20', 'joana@hotmail.com', 968254821, 'funcionario', 'funcionario1.jpg'),
+(4, 'maria', '263bce650e68ab4e23f28263760b9fa5', 'maria@hotmail.com', 2147483647, 'funcionario', 'funcionario2.jpg'),
+(5, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@hotmail.com', 9692, 'admin', ''),
+(22, 'rui', '0eb46665addf43389ae950050f787a45', 'rui@rui.pt', 91, '', NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -175,8 +176,7 @@ ALTER TABLE `reservas`
 -- Índices para tabela `servicos`
 --
 ALTER TABLE `servicos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `imagem` (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `servicosfuncionarios`
@@ -191,9 +191,7 @@ ALTER TABLE `servicosfuncionarios`
 --
 ALTER TABLE `utilizadores`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `password_2` (`password`,`email`,`nomeUtilizador`) USING HASH,
-  ADD KEY `password_3` (`password`(768)),
-  ADD KEY `email` (`email`(768)) USING HASH;
+  ADD UNIQUE KEY `nomeUtilizador` (`nomeUtilizador`,`email`) USING HASH;
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -227,7 +225,7 @@ ALTER TABLE `servicosfuncionarios`
 -- AUTO_INCREMENT de tabela `utilizadores`
 --
 ALTER TABLE `utilizadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restrições para despejos de tabelas

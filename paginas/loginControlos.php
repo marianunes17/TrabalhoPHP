@@ -3,7 +3,7 @@ require 'head.php';
 require_once('../basedados/basedados.h');
 
 $utilizador = $_POST['nome'];
-$password = $_POST['password'];
+$password = md5($_POST['password']);
 
 $login = mysqli_query($conn, "SELECT * FROM utilizadores WHERE 
         nomeUtilizador='$utilizador' AND password='$password' ");

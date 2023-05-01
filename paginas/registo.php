@@ -4,7 +4,7 @@ require_once('../basedados/basedados.h');
 
 if (isset($_POST['registar'])) {
     $nomeutilizador = $_POST['nome'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
     $emailutilizador = $_POST['email'];
     $telemovelutilizador = $_POST['telemovel'];
 

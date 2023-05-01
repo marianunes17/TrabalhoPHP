@@ -12,8 +12,8 @@ $animais = mysqli_query($conn, "SELECT * FROM animais WHERE idDono =" . $_SESSIO
 $funcionarios = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo ='funcionario' ");
 
 if (isset($_POST['reservar'])) {
-    $dataInicio = $_POST['dataInicio'];
     $idAnimal = $_POST['idAnimal'];
+    $dataInicio = $_POST['dataInicio'];
     $idServico = $_POST['idServico'];
 
     $reservas = "SELECT TIMESTAMPDIFF(MINUTE, r.dataInicio, '1212-11-07 17:11:00')>=30, FROM reservas r";
@@ -52,7 +52,7 @@ if (!isset($_SESSION["nomeUtilizador"])) {
 }
 ?>
 
-<title> PetShop | Reserva </title>
+<title> PetShop | Adicionar Reserva </title>
 
 <body>
     <?php require 'header.php'; ?>
@@ -60,7 +60,7 @@ if (!isset($_SESSION["nomeUtilizador"])) {
     <div class="container-fluid bg-light">
         <div class="container py-5 px-4 px-sm-5">
             <div class="d-flex flex-column text-center">
-                <h1 class="display-4 mb-5"><span class="text-primary">Reserva</span> </h1>
+                <h1 class="display-4 mb-5"><span class="text-primary">Adicionar Reserva</span> </h1>
             </div>
 
             <div class="contact-form">

@@ -5,7 +5,7 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
-$funcionario = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
+$funcionarios = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
 
 if(! $funcionarios){
     echo ("Erro: " . $funcionarios($con));
@@ -81,7 +81,7 @@ if(! $funcionarios){
         </div>
         <div class="row">
             <?php
-            while ($funcionarioInfo = mysqli_fetch_array($funcionario)) {
+            while ($funcionarioInfo = mysqli_fetch_array($funcionarios)) {
             ?>
                 <div class="col-4">
                     <div class="team card position-relative overflow-hidden border-0 mb-4">

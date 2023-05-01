@@ -13,6 +13,7 @@ if (!$login) {
 }
 
 if (($row = mysqli_fetch_array($login)) != null) {
+  if( ($_SESSION['tipo'] = $row['tipo']) != null)  {
   $_SESSION['nomeUtilizador'] = $utilizador;
   $_SESSION['password'] = $row['password'];
   $_SESSION['email'] = $row['email'];
@@ -20,7 +21,12 @@ if (($row = mysqli_fetch_array($login)) != null) {
   $_SESSION['tipo'] = $row['tipo'];
   $_SESSION['id'] = $row['id'];
 
-  echo '<meta http-equiv="refresh" content="2; url=index.php">';
+  echo '<meta http-equiv="refresh" content="0; url=index.php">';
+
 } else {
-  header("Refresh:0.1; Login.php");
+  echo '<meta http-equiv="refresh" content="0; url=login.php">';
+}
+
+} else {
+  echo '<meta http-equiv="refresh" content="0; url=login.php">';
 }

@@ -29,15 +29,14 @@ if (($_SESSION['tipo'] == "admin")) {
                                     JOIN animais a
                                     ON r.idAnimal = a.id
                                     JOIN servicosfuncionarios sf
-                                    ON s.id = sf.idServico AND
-                                    sf.idFuncionario='" . $_SESSION["id"] . "'
+                                    ON s.id = sf.idServico 
+                                    WHERE r.idFuncionario='" . $_SESSION["id"] . "'
                                     ORDER BY r.dataInicio DESC ");
 
     if (!$reservas) {
         echo ("Erro: " . $reservas($con));
     }
 }
-
 
 
 if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] == 'cliente')) {

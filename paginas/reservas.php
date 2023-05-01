@@ -15,6 +15,9 @@ $reservas = mysqli_query($conn, "SELECT DISTINCT
                                  WHERE a.idDono=" . $_SESSION["id"] . "
                                  ORDER BY r.dataInicio DESC");
 
+
+
+
 if (!$reservas) {
     echo ("Erro: " . $reservas($con));
 } 
@@ -43,11 +46,9 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                         <th scope="col">Inicio</th>
                         <th scope="col">Fim</th>
                         <th scope="col">Serviço</th>
-
-                        <!-- 
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th> 
-                        -->
+                        <th scope="col"></th>
+                        <th scope="col"></th> 
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -74,14 +75,25 @@ if (!isset($_SESSION["nomeUtilizador"])) {
                             if ($reservasInfo['atendido'] == 0) {
                                 echo '
                             <td scope="row">
-                            <a type="button" class="btn btn-primary" href="editarutilizador.php?id=' . $reservasInfo['id'] . '">Editar</a>
+                            <a type="button" class="btn btn-primary" href="editarReserva.php?id=' . $reservasInfo['id'] . '">Editar</a>
                              </td>
 
                              
                             <td scope="row">
-                            <a type="button" class="btn btn-primary" href="eliminarReserva.php?id=' . $reservasInfo['id'] . '">Eliminar</a>
+                            <a type="button" class="btn btn-primary" href="editarReserva.php?id=' . $reservasInfo['id'] . '">Eliminar</a>
                              </td>
                             ';
+                            } else {
+                                echo '
+                                <td scope="row">
+                                <a type="button" disabled class="btn btn-primary">Editar</a>
+                                 </td>
+    
+                                 
+                                <td scope="row">
+                                <a type="button" disabled class="btn btn-primary">Eliminar</a>
+                                 </td>
+                                ';
                             }
                             ?>
                         </tr>

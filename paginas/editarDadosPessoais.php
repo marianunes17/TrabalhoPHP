@@ -5,6 +5,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"])) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 $utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
 
 
@@ -43,11 +47,6 @@ if (isset($_GET['id'])) {
     if (!$utilizador) {
         echo ("Erro: " . $utilizador($con));
     }
-}
-
-
-if (!isset($_SESSION["nomeUtilizador"])) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 ?>
 

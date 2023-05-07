@@ -15,7 +15,6 @@ if(! $servicos){
 } else if(! $funcionarios){
     echo ("Erro: " . $funcionarios($con));
 }
-
 ?>
 <title> PetShop </title>
 

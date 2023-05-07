@@ -3,6 +3,11 @@ require 'head.php';
 require_once('../basedados/basedados.h');
 
 
+if (!isset($_SESSION["nomeUtilizador"])) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
+
 if (isset($_GET['id'])) {
     $idAnimal = $_GET['id'];
 
@@ -21,9 +26,4 @@ if (isset($_GET['id'])) {
     } else {
         echo '<meta http-equiv="refresh" content="0; url=dadosPessoais.php">';
     }
-}
-
-
-if (!isset($_SESSION["nomeUtilizador"])) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }

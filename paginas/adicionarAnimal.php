@@ -5,6 +5,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"])) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 if (isset($_POST['adicionar'])) {
     $nome = $_POST['nome'];
     $tipo = $_POST['tipo'];
@@ -25,10 +29,6 @@ if (isset($_POST['adicionar'])) {
             echo '<meta http-equiv="refresh" content="0; url=dadosPessoais.php">';
         }
     }
-}
-
-if (!isset($_SESSION["nomeUtilizador"])) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 ?>
 

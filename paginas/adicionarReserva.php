@@ -5,6 +5,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"])) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 $servicos = mysqli_query($conn, "SELECT * FROM servicos");
 
 $animais = mysqli_query($conn, "SELECT * FROM animais WHERE idDono =" . $_SESSION['id']);
@@ -43,12 +47,6 @@ if (isset($_POST['reservar'])) {
     } else {
         echo '<meta http-equiv="refresh" content="0; url=reservas.php">';
     }
-}
-
-
-
-if (!isset($_SESSION["nomeUtilizador"])) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 ?>
 

@@ -5,6 +5,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"])) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 $reservas = mysqli_query($conn, "SELECT DISTINCT 
                                  r.*, a.nomeAnimal, s.nomeServico
                                  FROM reservas r
@@ -16,16 +20,9 @@ $reservas = mysqli_query($conn, "SELECT DISTINCT
                                  ORDER BY r.dataInicio DESC");
 
 
-
-
 if (!$reservas) {
     echo ("Erro: " . $reservas($con));
 } 
-
-if (!isset($_SESSION["nomeUtilizador"])) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
-}
-
 ?>
 <title> PetShop | Reservas Feitas </title>
 

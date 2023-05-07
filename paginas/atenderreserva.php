@@ -2,6 +2,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] != 'funcionario')) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 if (isset($_GET['id'])) {
     $idReserva = $_GET['id'];
 
@@ -12,8 +16,4 @@ if (isset($_GET['id'])) {
     } else {
         echo '<meta http-equiv="refresh" content="0; url=gestao.php">';
     }
-}
-
-if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] != 'funcionario')) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }

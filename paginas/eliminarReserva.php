@@ -2,6 +2,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"])) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 if (isset($_GET['id'])) {
     $idReserva = $_GET['id'];
 
@@ -16,10 +20,4 @@ if (isset($_GET['id'])) {
             echo '<meta http-equiv="refresh" content="0; url=reservas.php">';
         }
     }
-}
-
-
-
-if (!isset($_SESSION["nomeUtilizador"])) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }

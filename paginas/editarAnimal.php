@@ -5,6 +5,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"]) ||  $_SESSION["id"] != $idDono) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 if (isset($_POST['atualizar'])) {
     $idAnimal = $_POST['idAnimal'];
     $nomeAnimal = $_POST['nomeAnimal'];
@@ -40,10 +44,6 @@ if (isset($_GET['id'])) {
             $idDono = $row['idDono'];
         }
     }
-}
-
-if (!isset($_SESSION["nomeUtilizador"]) ||  $_SESSION["id"] != $idDono) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 ?>
 

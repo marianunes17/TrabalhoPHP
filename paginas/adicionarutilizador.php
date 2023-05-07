@@ -5,6 +5,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"])  || ($_SESSION['tipo'] != 'admin')) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 if (isset($_POST['adicionar'])) {
     $nomeutilizador = $_POST['nome'];
     $password = md5($_POST['nome')];
@@ -21,10 +25,6 @@ if (isset($_POST['adicionar'])) {
     } else {
         echo '<meta http-equiv="refresh" content="0; url=gestao.php">';
     }
-}
-
-if (!isset($_SESSION["nomeUtilizador"])  || ($_SESSION['tipo'] != 'admin')) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 ?>
 

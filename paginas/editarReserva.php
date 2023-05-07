@@ -5,6 +5,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"])) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 if (isset($_POST['atualizar'])) {
     $idReserva = $_POST['idReserva'];
     $dataInicio = $_POST['dataInicio'];
@@ -37,10 +41,6 @@ if (isset($_GET['id'])) {
             $idServico = $row['idServico'];
         }
     }
-}
-
-if (!isset($_SESSION["nomeUtilizador"])) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 ?>
 

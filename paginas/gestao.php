@@ -5,6 +5,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] == 'cliente')) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 $utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
 
 if (($_SESSION['tipo'] == "admin")) {
@@ -36,11 +40,6 @@ if (($_SESSION['tipo'] == "admin")) {
     if (!$reservas) {
         echo ("Erro: " . $reservas($con));
     }
-}
-
-
-if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] == 'cliente')) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 ?>
 

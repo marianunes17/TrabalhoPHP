@@ -5,6 +5,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] != 'admin')) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 if (isset($_POST['atualizar'])) {
     $nomeutilizador = $_POST['nomeutilizador'];
     $emailutilizador = $_POST['email'];
@@ -44,11 +48,6 @@ if (isset($_GET['id'])) {
 }
 
 $utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
-
-if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] != 'admin')) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
-}
-
 ?>
 
 <title> PetShop | Editar utilizador

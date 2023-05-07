@@ -5,6 +5,10 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+if (!isset($_SESSION["nomeUtilizador"])) {
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+}
+
 $animais = mysqli_query($conn, "SELECT * FROM animais WHERE idDono='" . $_SESSION["id"] . "'");
 
 $reservas = mysqli_query($conn, "SELECT * FROM reservas WHERE idAnimal='" . $_SESSION["id"] . "'");
@@ -23,10 +27,6 @@ if (!$animais) {
 
 } else if (!$servicoFuncionario) {
     echo ("Erro: " . $servicoFuncionario($con));
-}
-
-if (!isset($_SESSION["nomeUtilizador"])) {
-    echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 ?>
 <title> PetShop | Dados Pessoais </title>

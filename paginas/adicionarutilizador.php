@@ -11,7 +11,7 @@ if (!isset($_SESSION["nomeUtilizador"])  || ($_SESSION['tipo'] != 'admin')) {
 
 if (isset($_POST['adicionar'])) {
     $nomeutilizador = $_POST['nome'];
-    $password = md5($_POST['nome')];
+    $password = md5($_POST['nome']);
     $emailutilizador = $_POST['email'];
     $telemovelutilizador = $_POST['telemovel'];
     $tipoutilizador = $_POST['tipo'];

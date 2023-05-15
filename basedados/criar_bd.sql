@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 01-Maio-2023 às 22:13
+-- Tempo de geração: 15-Maio-2023 às 22:13
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -20,6 +20,68 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `criar_bd`
 --
+CREATE DATABASE IF NOT EXISTS `criar_bd` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `criar_bd`;
+
+-- --------------------------------------------------------
+
+
+DROP TABLE IF EXISTS `servicosfuncionarios`;
+DROP TABLE IF EXISTS `reservas`;
+DROP TABLE IF EXISTS `animais`;
+DROP TABLE IF EXISTS `utilizadores`;
+DROP TABLE IF EXISTS `servicos`;
+
+--
+-- Estrutura da tabela `utilizadores`
+--
+
+CREATE TABLE `utilizadores` (
+  `id` int(11) NOT NULL,
+  `nomeUtilizador` text NOT NULL,
+  `password` text NOT NULL,
+  `email` text NOT NULL,
+  `telemovel` int(13) NOT NULL,
+  `tipo` enum('cliente','funcionario','admin') DEFAULT NULL,
+  `imagem` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `utilizadores`
+--
+
+INSERT INTO `utilizadores` (`id`, `nomeUtilizador`, `password`, `email`, `telemovel`, `tipo`, `imagem`) VALUES
+(1, 'joao', 'dccd96c256bc7dd39bae41a405f25e43', 'joao@hotmail.com', 961234567, 'funcionario', 'funcionario3.jpg'),
+(2, 'cliente', '4983a0ab83ed86e0e7213c8783940193', 'cliente@gmail.com', 2147483647, 'cliente', ''),
+(3, 'joana', '18f01959ff46071d73905d549cafde20', 'joana@hotmail.com', 968254821, 'funcionario', 'funcionario1.jpg'),
+(4, 'maria', '263bce650e68ab4e23f28263760b9fa5', 'maria@hotmail.com', 2147483647, 'funcionario', 'funcionario2.jpg'),
+(5, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@hotmail.com', 9692, 'admin', ''),
+(22, 'rui', '0eb46665addf43389ae950050f787a45', 'rui@rui.pt', 91, '', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `servicos`
+--
+
+CREATE TABLE `servicos` (
+  `id` int(11) NOT NULL,
+  `nomeServico` text NOT NULL,
+  `descricao` text NOT NULL,
+  `duracao` int(11) NOT NULL,
+  `preco` int(11) NOT NULL,
+  `imagem` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `servicos`
+--
+
+INSERT INTO `servicos` (`id`, `nomeServico`, `descricao`, `duracao`, `preco`, `imagem`) VALUES
+(1, 'Banho de cão', 'Lavagem do pelo feita com shampoo especifico para cada tipo de pelo', 30, 30, 'banhocao.png'),
+(2, 'Corte de cão', 'Escovagem de pelo para remover os pelos portes e corte do pelo', 60, 50, 'cortecao.png'),
+(3, 'Banho de gato', 'Lavagem do pelo feita com shampoo adequado para cada tipo de pelo e/ou raça', 30, 25, 'banhogato.png'),
+(4, 'Corte de gato', 'Escovagem de pelo para remover os pelos portes e tosquia do pelo ', 30, 40, 'cortegato.png');
 
 -- --------------------------------------------------------
 
@@ -72,33 +134,6 @@ INSERT INTO `reservas` (`id`, `dataInicio`, `dataFim`, `idAnimal`, `idServico`, 
 (23, '2023-05-01 15:22:45', '2023-05-01 16:22:45', 2, 4, 1, 0),
 (27, '2022-04-25 17:20:00', '2022-04-25 17:50:00', 1, 1, 1, 1);
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `servicos`
---
-
-CREATE TABLE `servicos` (
-  `id` int(11) NOT NULL,
-  `nomeServico` text NOT NULL,
-  `descricao` text NOT NULL,
-  `duracao` int(11) NOT NULL,
-  `preco` int(11) NOT NULL,
-  `imagem` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `servicos`
---
-
-INSERT INTO `servicos` (`id`, `nomeServico`, `descricao`, `duracao`, `preco`, `imagem`) VALUES
-(1, 'Banho de cão', 'Lavagem do pelo feita com shampoo especifico para cada tipo de pelo', 30, 30, 'banhocao.png'),
-(2, 'Corte de cão', 'Escovagem de pelo para remover os pelos portes e corte do pelo', 60, 50, 'cortecao.png'),
-(3, 'Banho de gato', 'Lavagem do pelo feita com shampoo adequado para cada tipo de pelo e/ou raça', 30, 25, 'banhogato.png'),
-(4, 'Corte de gato', 'Escovagem de pelo para remover os pelos portes e tosquia do pelo ', 30, 40, 'cortegato.png');
-
--- --------------------------------------------------------
-
 --
 -- Estrutura da tabela `servicosfuncionarios`
 --
@@ -123,34 +158,6 @@ INSERT INTO `servicosfuncionarios` (`id`, `idFuncionario`, `idServico`) VALUES
 (7, 3, 3),
 (8, 4, 3),
 (9, 3, 1);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `utilizadores`
---
-
-CREATE TABLE `utilizadores` (
-  `id` int(11) NOT NULL,
-  `nomeUtilizador` text NOT NULL,
-  `password` text NOT NULL,
-  `email` text NOT NULL,
-  `telemovel` int(13) NOT NULL,
-  `tipo` enum('cliente','funcionario','admin') DEFAULT NULL,
-  `imagem` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `utilizadores`
---
-
-INSERT INTO `utilizadores` (`id`, `nomeUtilizador`, `password`, `email`, `telemovel`, `tipo`, `imagem`) VALUES
-(1, 'joao', 'dccd96c256bc7dd39bae41a405f25e43', 'joao@hotmail.com', 961234567, 'funcionario', 'funcionario3.jpg'),
-(2, 'cliente', '4983a0ab83ed86e0e7213c8783940193', 'cliente@gmail.com', 2147483647, 'cliente', ''),
-(3, 'joana', '18f01959ff46071d73905d549cafde20', 'joana@hotmail.com', 968254821, 'funcionario', 'funcionario1.jpg'),
-(4, 'maria', '263bce650e68ab4e23f28263760b9fa5', 'maria@hotmail.com', 2147483647, 'funcionario', 'funcionario2.jpg'),
-(5, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@hotmail.com', 9692, 'admin', ''),
-(22, 'rui', '0eb46665addf43389ae950050f787a45', 'rui@rui.pt', 91, '', NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -252,6 +259,7 @@ ALTER TABLE `servicosfuncionarios`
   ADD CONSTRAINT `servicosfuncionarios_ibfk_1` FOREIGN KEY (`idFuncionario`) REFERENCES `utilizadores` (`id`),
   ADD CONSTRAINT `servicosfuncionarios_ibfk_2` FOREIGN KEY (`idServico`) REFERENCES `servicos` (`id`);
 COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

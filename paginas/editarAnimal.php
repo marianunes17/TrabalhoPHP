@@ -5,6 +5,7 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+//se a variavel nao foi iniciada vai para o index
 if (!isset($_SESSION["nomeUtilizador"]) ||  $_SESSION["id"] != $idDono) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
@@ -23,7 +24,7 @@ if (isset($_POST['atualizar'])) {
 
 
     if (!$alteraAnimal) {
-        echo ("Erro: " . $alteraAnimal($con));
+        echo ("Erro ao editar animal: " . $alteraAnimal($con));
     } else {
         echo '<meta http-equiv="refresh" content="0; url=dadospessoais.php">';
     }

@@ -5,6 +5,7 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+//se a variavel nao foi iniciada vai para o index
 if (!isset($_SESSION["nomeUtilizador"])) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
@@ -20,13 +21,13 @@ $servicoFuncionario = mysqli_query($conn, "SELECT * FROM servicos s
 
 
 if (!$animais) {
-    echo ("Erro: " . $animais($con));
+    echo ("Erro ao selecionar animais: " . $animais($con));
 
 } else if (!$reservas) {
-    echo ("Erro: " . $reservas($con));
+    echo ("Erro ao selecionar reservas: " . $reservas($con));
 
 } else if (!$servicoFuncionario) {
-    echo ("Erro: " . $servicoFuncionario($con));
+    echo ("Erro ao selecionar dados do funcionario: " . $servicoFuncionario($con));
 }
 ?>
 <title> PetShop | Dados Pessoais </title>

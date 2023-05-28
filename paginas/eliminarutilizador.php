@@ -2,6 +2,7 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+//se a variavel nao foi iniciada vai para o index
 if (!isset($_SESSION["nomeUtilizador"])) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
@@ -19,11 +20,11 @@ if (isset($_GET['id'])) {
     $aeliminarUtilizador =  mysqli_query($conn, "DELETE u FROM utilizadores u WHERE u.id=$idutilizador");
 
     if (!$eliminarReservas) {
-        echo ("Erro: " . $eliminarReservas($con));
+        echo ("Erro ao eliminar todas as reservas do utilizador: " . $eliminarReservas($con));
     } else if (!$eliminarAnimal) {
-        echo ("Erro: " . $eliminarAnimal($con));
+        echo ("Erro ao eliminar todos os animais do utilizador: " . $eliminarAnimal($con));
     } else if (!$aeliminarUtilizador) {
-        echo ("Erro: " . $aeliminarUtilizador($con));
+        echo ("Erro ao eliminar o utilizador: " . $aeliminarUtilizador($con));
     } else {
         echo '<meta http-equiv="refresh" content="0; url=gestao.php">';
     }

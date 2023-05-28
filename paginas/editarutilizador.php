@@ -21,7 +21,7 @@ if (isset($_POST['atualizar'])) {
         tipo='$tipoutilizador' WHERE id=$idutilizador");
 
     if (!$alteraUtilizador) {
-        echo ("Erro: " . $alteraUtilizador($con));
+        echo ("Erro ao: " . $alteraUtilizador($con));
     } else {
         echo '<meta http-equiv="refresh" content="0; url=gestao.php">';
     }
@@ -43,7 +43,7 @@ if (isset($_GET['id'])) {
     }
 
     if (!$utilizador) {
-        echo ("Erro: " . $utilizador($con));
+        echo ("Erro ao selecionar o utilizador: " . $utilizador($con));
     }
 }
 

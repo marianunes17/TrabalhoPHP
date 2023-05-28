@@ -23,7 +23,7 @@ if (isset($_POST['atualizar'])) {
 
 
     if (!$alteraReserva) {
-        echo ("Erro: " . $alteraReserva($con));
+        echo ("Erro ao editar a reserva: " . $alteraReserva($con));
     } else {
         echo '<meta http-equiv="refresh" content="0; url=reservas.php">';
     }

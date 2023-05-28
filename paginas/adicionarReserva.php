@@ -5,6 +5,7 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+//se a variavel nao foi iniciada vai para o index
 if (!isset($_SESSION["nomeUtilizador"])) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
@@ -19,31 +20,29 @@ if (isset($_POST['reservar'])) {
     $idAnimal = $_POST['idAnimal'];
     $dataInicio = $_POST['dataInicio'];
     $idServico = $_POST['idServico'];
+    $idFuncionario = $_POST['idFuncionario'];
 
-    $reservas = "SELECT TIMESTAMPDIFF(MINUTE, r.dataInicio, '1212-11-07 17:11:00')>=30, FROM reservas r";
+   
 
-    if ($reservas) {
-        if ($idServico == 1 ||  $idServico == 3) {
-            $adicionarReserva = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico) values
-        ('$dataInicio', date_add(dataInicio, INTERVAL 30 MINUTE), '$idAnimal', '$idServico') ");
-        } else {
-            $adicionarReserva = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico) values
-        ('$dataInicio', date_add(dataInicio, INTERVAL 1 HOUR), '$idAnimal', '$idServico') ");
-        }
+    if ($idServico == 1 ||  $idServico == 3) {
+        $adicionarReserva = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico, idFuncionario) values
+    ('$dataInicio', date_add(dataInicio, INTERVAL 30 MINUTE), '$idAnimal', '$idServico', '$idFuncionario') ");
+    } else {
+        $adicionarReserva = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico, idFuncionario) values
+    ('$dataInicio', date_add(dataInicio, INTERVAL 1 HOUR), '$idAnimal', '$idServico', '$idFuncionario') ");
     }
+    
 
 
     //Verifica se há erros na consulta
     if (!$servicos) {
-        echo ("Erro: " . $servicos($con));
+        echo ("Erro ao selecionar os serviços: " . $servicos($con));
     } else if (!$animais) {
-        echo ("Erro: " . $animais($con));
+        echo ("Erro ao selecionar os animais: " . $animais($con));
     } else if (!$funcionarios) {
-        echo ("Erro: " . $funcionarios($con));
-    } else if (!$reservas) {
-        echo ("Erro: " . $reservas($con));
+        echo ("Erro ao selecionar os funcionarios: " . $funcionarios($con));
     } else if (!$adicionarReserva) {
-        echo ("Erro: " . $reservas($adicionarReserva));
+        echo ("Erro ao adicionar a reserva: " . $adicionarReserva);
     } else {
         echo '<meta http-equiv="refresh" content="0; url=reservas.php">';
     }
@@ -92,7 +91,7 @@ if (isset($_POST['reservar'])) {
                         </div>
                     </div>
 
-                    <div class="control-group pb-3" id="idFuncionario"> <!--  style="visibility:hidden" -->
+                    <div class="control-group pb-3" id="idFuncionario">
                         <div class="row justify-content-center">
                             <div class="col-1 align-self-center">
                                 <label> Funcionario: </label>
@@ -102,9 +101,7 @@ if (isset($_POST['reservar'])) {
                                     <option value="" disabled="disabled" selected>Selecione um Funcionario</option>
                                     <?php
                                     while ($funcionariosInfo = mysqli_fetch_array($funcionarios)) {
-                                        //if ($tagname = $dom->getElementById('idServico')->value) {
                                         echo '<option class="text-capitalize" value="' . $funcionariosInfo['id'] . '"> ' . $funcionariosInfo['nomeUtilizador'] . '</option> ';
-                                        //}
                                     }
                                     ?>
                                 </select>
@@ -140,16 +137,6 @@ if (isset($_POST['reservar'])) {
     </div>
 
     <?php require 'footer.php'; ?>
-    <!--
-    <script type="text/javascript">
-        function selecionarServico() {
-            var servico = document.getElementById("idServico").value;
-            if (servico == 1 || servico == 2) {
-                document.getElementById("idFuncionario").style.visibility = "visible";
-            }
-        }
-    </script>
-    -->
 </body>
 
 </html>

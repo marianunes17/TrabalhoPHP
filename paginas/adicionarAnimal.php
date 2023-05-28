@@ -5,6 +5,7 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+//se a variavel nao foi iniciada vai para o index
 if (!isset($_SESSION["nomeUtilizador"])) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
@@ -21,7 +22,8 @@ if (isset($_POST['adicionar'])) {
 
 
     if (!$adicionarAnimal) {
-        echo ("Erro: " . $adicionarAnimal($con));
+        echo ("Erro ao adicionar animal: " . $adicionarAnimal($con));
+        
     } else {
         if ($_SESSION['tipo'] == 'admin') {
             echo '<meta http-equiv="refresh" content="0; url=gestao.php">';

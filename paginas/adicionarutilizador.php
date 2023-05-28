@@ -5,13 +5,14 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
+//se a variavel nao foi iniciada vai para o index
 if (!isset($_SESSION["nomeUtilizador"])  || ($_SESSION['tipo'] != 'admin')) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 
 if (isset($_POST['adicionar'])) {
     $nomeutilizador = $_POST['nome'];
-    $password = md5($_POST['nome']);
+    $password = $_POST['nome'];
     $emailutilizador = $_POST['email'];
     $telemovelutilizador = $_POST['telemovel'];
     $tipoutilizador = $_POST['tipo'];
@@ -21,7 +22,7 @@ if (isset($_POST['adicionar'])) {
     ('$nomeutilizador','$password', '$emailutilizador', $telemovelutilizador, '$tipoutilizador') ");
 
     if (!$adicionarUtilizador) {
-        echo ("Erro: " . $adicionarUtilizador($con));
+        echo ("Erro ao adicionar utilizador: " . $adicionarUtilizador($con));
     } else {
         echo '<meta http-equiv="refresh" content="0; url=gestao.php">';
     }

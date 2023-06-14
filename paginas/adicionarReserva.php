@@ -15,7 +15,7 @@ $servicos = mysqli_query($conn, "SELECT * FROM servicos");
 $animais = mysqli_query($conn, "SELECT * FROM animais WHERE idDono =" . $_SESSION['id']);
 
 $funcionarios = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo ='funcionario' ");
-$adicionarReserva;
+
 if (isset($_POST['reservar'])) {
     $idAnimal = $_POST['idAnimal'];
     $dataInicio = $_POST['dataInicio'];

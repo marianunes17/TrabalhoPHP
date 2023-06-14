@@ -9,11 +9,11 @@ if (!isset($_SESSION["nomeUtilizador"])) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 
+
 if (isset($_POST['atualizar'])) {
     $idReserva = $_POST['idReserva'];
     $dataInicio = $_POST['dataInicio'];
     $idServico = $_POST['idServico'];
-
 
     if ($idServico == 1 ||  $idServico == 3) {
         $alteraReserva = mysqli_query($conn, "UPDATE reservas SET id = $idReserva, dataInicio='$dataInicio', dataFim=date_add(dataInicio, INTERVAL 30 MINUTE), idServico='$idServico' WHERE id=$idReserva");
@@ -25,13 +25,35 @@ if (isset($_POST['atualizar'])) {
     if (!$alteraReserva) {
         echo ("Erro ao editar a reserva: " . $alteraReserva($con));
     } else {
-        echo '<meta http-equiv="refresh" content="0; url=reservas.php">';
+
+        if ($_SESSION["tipo"] == 'admin') {
+            echo '<meta http-equiv="refresh" content="0; url=gestao.php">';
+        } else {
+            echo '<meta http-equiv="refresh" content="0; url=reservas.php">';
+        }
     }
 }
 
 if (isset($_GET['id'])) {
     $idReserva = $_GET['id'];
+    $idUtilizador = $_SESSION['id'];
 
+    if ($_SESSION["tipo"] != 'admin') {
+        $reservasUtilizador = mysqli_query($conn, "SELECT * FROM animais a INNER JOIN reservas r ON r.idAnimal = a.id WHERE a.idDono='$idUtilizador' AND atendido=0 ");
+
+        $verifica = false;
+
+        while ($reservasInfo = mysqli_fetch_array($reservasUtilizador)) {
+            if ($reservasInfo['id'] == $idReserva) {
+                $verifica = true;
+                break;
+            }
+        }
+
+        if ($verifica == false) {
+            echo '<meta http-equiv="refresh" content="0; url=reservas.php">';
+        }
+    }
     $reservas = mysqli_query($conn, "SELECT * FROM reservas WHERE id='$idReserva'");
 
     if ($reservas->num_rows > 0) {

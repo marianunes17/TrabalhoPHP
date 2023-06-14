@@ -9,6 +9,7 @@ if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION['tipo'] != 'admin')) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 
+
 if (isset($_POST['atualizar'])) {
     $nomeutilizador = $_POST['nomeutilizador'];
     $emailutilizador = $_POST['email'];
@@ -114,24 +115,21 @@ $utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
                     </div>
 
 
-                    <?php if ($_SESSION['tipo'] == 'admin') { ?>
-                        <div class="control-group pb-3">
-                            <div class="row justify-content-center  ">
-                                <div class="col-1 align-self-center">
-                                    <label> Tipo: </label>
-                                </div>
-                                <div class="col-11 form-group">
-                                    <select name="tipo" class="form-select">
-                                        <option value="" disabled="disabled" selected> <?php echo $tipoutilizador ?> </option>
-                                        <option value="cliente"> Cliente </option>
-                                        <option value="funcionario"> Funcionario </option>
-                                        <option value="admin"> Administrador </option>
-                                    </select>
-                                </div>
+                    <div class="control-group pb-3">
+                        <div class="row justify-content-center  ">
+                            <div class="col-1 align-self-center">
+                                <label> Tipo: </label>
+                            </div>
+                            <div class="col-11 form-group">
+                                <select name="tipo" class="form-select">
+                                    <option value="" disabled="disabled" selected> <?php echo $tipoutilizador ?> </option>
+                                    <option value="cliente"> Cliente </option>
+                                    <option value="funcionario"> Funcionario </option>
+                                    <option value="admin"> Administrador </option>
+                                </select>
                             </div>
                         </div>
-                    <?php } ?>
-
+                    </div>
                     <div>
                         <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton" name='atualizar'>Guardar</button>
                         <a class="btn btn-primary py-3 px-5" id="sendMessageButton" href="gestao.php">Cancelar</a>

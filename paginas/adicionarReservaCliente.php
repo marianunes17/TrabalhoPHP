@@ -5,17 +5,22 @@
 require 'head.php';
 require_once('../basedados/basedados.h');
 
-//se a variavel nao foi iniciada vai para o index
-if (!isset($_SESSION["nomeUtilizador"])) {
+//se a variavel nao foi iniciada ou se for cliente, vai para o index
+if (!isset($_SESSION["nomeUtilizador"]) || ($_SESSION["tipo"] == 'cliente')) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 
 $servicos = mysqli_query($conn, "SELECT * FROM servicos");
 
-$animais = mysqli_query($conn, "SELECT * FROM animais WHERE idDono =" . $_SESSION['id']);
+$animais = mysqli_query($conn, "SELECT * FROM animais WHERE idDono != " . $_SESSION["id"]);
 
-$funcionarios = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo ='funcionario' ");
-$adicionarReserva;
+$funcionarios = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario' ");
+
+$utilizadoresAnimais = mysqli_query($conn, "SELECT a.id, u.nomeUtilizador, a.nomeAnimal FROM animais a 
+                                            JOIN  utilizadores u
+                                            ON u.id = a.idDono
+                                            WHERE u.id != " . $_SESSION["id"]);
+
 if (isset($_POST['reservar'])) {
     $idAnimal = $_POST['idAnimal'];
     $dataInicio = $_POST['dataInicio'];
@@ -24,12 +29,12 @@ if (isset($_POST['reservar'])) {
 
     $dataAtual = date("Y-m-d h:i:sa");
 
-
     if ($dataInicio >= $dataAtual) {
         if ($idServico == 1 ||  $idServico == 3) {
             $adicionarReserva = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico, idFuncionario) values
         ('$dataInicio', date_add(dataInicio, INTERVAL 30 MINUTE), '$idAnimal', '$idServico', '$idFuncionario') ");
-        } else {
+        
+    } else {
             $adicionarReserva = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico, idFuncionario) values
         ('$dataInicio', date_add(dataInicio, INTERVAL 1 HOUR), '$idAnimal', '$idServico', '$idFuncionario') ");
         }
@@ -48,7 +53,7 @@ if (isset($_POST['reservar'])) {
     } else if (!$funcionarios) {
         echo ("Erro ao selecionar os funcionarios: " . $funcionarios($con));
     } else {
-        echo '<meta http-equiv="refresh" content="0; url=reservas.php">';
+        echo '<meta http-equiv="refresh" content="0; url=gestao.php">';
     }
 }
 ?>
@@ -66,6 +71,7 @@ if (isset($_POST['reservar'])) {
 
             <div class="contact-form">
                 <form method="POST">
+
                     <div class="control-group pb-3">
                         <div class="row justify-content-center">
                             <div class="col-1 align-self-center">
@@ -122,8 +128,9 @@ if (isset($_POST['reservar'])) {
                                 <select class="form-control form-control-md" name='idAnimal'>
                                     <option disabled="disabled" selected>Selecione um Animal</option>
                                     <?php
-                                    while ($animaisInfo = mysqli_fetch_array($animais)) {
-                                        echo '<option class="text-capitalize" value="' . $animaisInfo['id'] . '"> ' . $animaisInfo['nomeAnimal'] . '</option> ';
+                                    while ($utilizadoresAnimaisInfo = mysqli_fetch_array($utilizadoresAnimais)) {
+                                        echo '<option class="text-capitalize" value="' . $utilizadoresAnimaisInfo['id'] . '"> '
+                                            . $utilizadoresAnimaisInfo['nomeAnimal'] . " - " . $utilizadoresAnimaisInfo['nomeUtilizador'] . '</option> ';
                                     }
                                     ?>
                                 </select>
@@ -139,6 +146,15 @@ if (isset($_POST['reservar'])) {
             </div>
         </div>
     </div>
+
+    <script>
+        function getVal() {
+            const val = document.querySelector('idUtilizador').value;
+            console.log(val);
+
+            document.getElementById("idUtilizador").innerHTML = x;
+        }
+    </script>
 
     <?php require 'footer.php'; ?>
 </body>

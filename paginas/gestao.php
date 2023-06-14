@@ -23,7 +23,6 @@ if (($_SESSION['tipo'] == "admin")) {
     if (!$reservas) {
         echo ("Erro: " . $reservas($con));
     }
-
 } else {
     $reservas = mysqli_query($conn, "SELECT DISTINCT
                                     r.*, a.nomeAnimal, s.nomeServico
@@ -68,6 +67,8 @@ if (($_SESSION['tipo'] == "admin")) {
 
                 <!-- -------------------------- RESERVAS -------------------------- -->
                 <div class="tab-pane fade show active opacity-100 py-4" id="reservas" role="tabpanel" aria-labelledby="reservas-tab">
+                    <a type="button" class="btn btn-primary float-right" href="adicionarReservaCliente.php">Adicionar</a>
+
                     <table class="table">
                         <thead>
                             <tr>

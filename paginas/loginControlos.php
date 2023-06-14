@@ -1,5 +1,6 @@
 <?php
-require 'head.php';
+session_start();
+
 require_once('../basedados/basedados.h');
 
 $utilizador = $_POST['nome'];
@@ -7,6 +8,7 @@ $password = $_POST['password'];
 
 $login = mysqli_query($conn, "SELECT * FROM utilizadores WHERE 
         nomeUtilizador='$utilizador' AND password='$password' ");
+
 
 if (!$login) {
   echo ("Erro: " . $login($con));

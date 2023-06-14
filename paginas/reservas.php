@@ -77,7 +77,7 @@ if (!$reservas) {
 
                              
                             <td scope="row">
-                            <a type="button" class="btn btn-primary" href="editarReserva.php?id=' . $reservasInfo['id'] . '">Eliminar</a>
+                            <a type="button" class="btn btn-primary" href="eliminarReserva.php?id=' . $reservasInfo['id'] . '">Eliminar</a>
                              </td>
                             ';
                             } else {

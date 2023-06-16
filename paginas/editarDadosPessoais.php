@@ -18,6 +18,8 @@ if (isset($_POST['atualizar'])) {
     $telemovel = $_POST['telemovel'];
     $idutilizador = $_POST['id'];
 
+
+
     $alteraUtilizador = mysqli_query($conn, "UPDATE utilizadores SET nomeUtilizador = '$nomeUtilizador', password = '$password',
     email='$email', telemovel='$telemovel' WHERE id=$idutilizador");
 
@@ -31,20 +33,26 @@ if (isset($_POST['atualizar'])) {
 if (isset($_GET['id'])) {
     $idutilizador = $_GET['id'];
 
-    $utilizador = mysqli_query($conn, "SELECT * FROM utilizadores WHERE id='$idutilizador'");
+    if ($_SESSION['id'] != $idutilizador) {
+        echo $idutilizador;
+        echo '<meta http-equiv="refresh" content="0; url=dadospessoais.php">';
+    } else {
 
-    if ($utilizador->num_rows > 0) {
-        while ($row = $utilizador->fetch_assoc()) {
-            $idutilizador = $row['id'];
-            $nomeUtilizador = $row['nomeUtilizador'];
-            $email = $row['email'];
-            $password = $row['password'];
-            $telemovel = $row['telemovel'];
+        $utilizador = mysqli_query($conn, "SELECT * FROM utilizadores WHERE id='$idutilizador'");
+
+        if ($utilizador->num_rows > 0) {
+            while ($row = $utilizador->fetch_assoc()) {
+                $idutilizador = $row['id'];
+                $nomeUtilizador = $row['nomeUtilizador'];
+                $email = $row['email'];
+                $password = $row['password'];
+                $telemovel = $row['telemovel'];
+            }
         }
-    }
 
-    if (!$utilizador) {
-        echo ("Erro ao selecionar o utilizador: " . $utilizador($con));
+        if (!$utilizador) {
+            echo ("Erro ao selecionar o utilizador: " . $utilizador($con));
+        }
     }
 }
 ?>

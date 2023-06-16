@@ -6,7 +6,7 @@ require 'head.php';
 require_once('../basedados/basedados.h');
 
 //se a variavel nao foi iniciada vai para o index
-if (!isset($_SESSION["nomeUtilizador"]) ||  $_SESSION["id"] != $idDono) {
+if (!isset($_SESSION["nomeUtilizador"])) {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 
@@ -44,6 +44,10 @@ if (isset($_GET['id'])) {
             $pelo = $row['pelo'];
             $idDono = $row['idDono'];
         }
+    }
+
+    if ($_SESSION["id"] != $idDono) {
+        echo '<meta http-equiv="refresh" content="0; url=dadospessoais.php">';
     }
 }
 ?>

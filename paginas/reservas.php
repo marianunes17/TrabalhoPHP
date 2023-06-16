@@ -22,7 +22,7 @@ $reservas = mysqli_query($conn, "SELECT DISTINCT
 
 if (!$reservas) {
     echo ("Erro: " . $reservas($con));
-} 
+}
 ?>
 <title> PetShop | Reservas Feitas </title>
 
@@ -44,8 +44,8 @@ if (!$reservas) {
                         <th scope="col">Fim</th>
                         <th scope="col">Serviço</th>
                         <th scope="col"></th>
-                        <th scope="col"></th> 
-                        
+                        <th scope="col"></th>
+
                     </tr>
                 </thead>
                 <tbody>

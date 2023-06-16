@@ -33,8 +33,7 @@ if (isset($_POST['reservar'])) {
         if ($idServico == 1 ||  $idServico == 3) {
             $adicionarReserva = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico, idFuncionario) values
         ('$dataInicio', date_add(dataInicio, INTERVAL 30 MINUTE), '$idAnimal', '$idServico', '$idFuncionario') ");
-        
-    } else {
+        } else {
             $adicionarReserva = mysqli_query($conn, "INSERT INTO reservas(dataInicio, dataFim, idAnimal, idServico, idFuncionario) values
         ('$dataInicio', date_add(dataInicio, INTERVAL 1 HOUR), '$idAnimal', '$idServico', '$idFuncionario') ");
         }

@@ -23,13 +23,8 @@ if (isset($_POST['adicionar'])) {
 
     if (!$adicionarAnimal) {
         echo ("Erro ao adicionar animal: " . $adicionarAnimal($con));
-        
     } else {
-        if ($_SESSION['tipo'] == 'admin') {
-            echo '<meta http-equiv="refresh" content="0; url=gestao.php">';
-        } else {
-            echo '<meta http-equiv="refresh" content="0; url=dadosPessoais.php">';
-        }
+        echo '<meta http-equiv="refresh" content="0; url=dadosPessoais.php">';
     }
 }
 ?>

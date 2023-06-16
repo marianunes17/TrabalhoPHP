@@ -22,10 +22,8 @@ $servicoFuncionario = mysqli_query($conn, "SELECT * FROM servicos s
 
 if (!$animais) {
     echo ("Erro ao selecionar animais: " . $animais($con));
-
 } else if (!$reservas) {
     echo ("Erro ao selecionar reservas: " . $reservas($con));
-
 } else if (!$servicoFuncionario) {
     echo ("Erro ao selecionar dados do funcionario: " . $servicoFuncionario($con));
 }

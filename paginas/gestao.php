@@ -13,12 +13,14 @@ $utilizadores = mysqli_query($conn, "SELECT * FROM utilizadores");
 
 if (($_SESSION['tipo'] == "admin")) {
     $reservas = mysqli_query($conn, "SELECT DISTINCT 
-                                    r.*, a.nomeAnimal, s.nomeServico
+                                    r.*, a.nomeAnimal, s.nomeServico, u.nomeUtilizador AS nomeFuncionario
                                     FROM reservas r
                                     INNER JOIN servicos s
                                     ON r.idServico = s.id 
                                     INNER JOIN animais a
                                     ON r.idAnimal = a.id
+                                    INNER JOIN utilizadores u
+                                    ON r.idFuncionario = u.id
                                     ORDER BY r.dataInicio DESC");
     if (!$reservas) {
         echo ("Erro: " . $reservas($con));
@@ -82,16 +84,11 @@ if (($_SESSION['tipo'] == "admin")) {
                                 <?php } ?>
 
                                 <?php if (($_SESSION['tipo'] == "admin")) { ?>
+                                    <th scope="col">Funcionáio</th>
                                     <th scope="col">Estado</th>
                                     <th scope="col">Editar</th>
                                     <th scope="col">Eliminar Reserva</th>
                                 <?php } ?>
-
-                                <!-- 
-                                <th scope="col">Funcionário</th>
-                                <th scope="col">Editar</th>
-                                <th scope="col">Eliminar</th>
-                                 -->
                             </tr>
                         </thead>
 
@@ -114,6 +111,14 @@ if (($_SESSION['tipo'] == "admin")) {
                                     <td scope="row">
                                         <?php echo "<label class='text-capitalize font-weight-normal'>" . $reservasInfo['nomeServico'] . " </label>"; ?>
                                     </td>
+
+
+                                    <?php if (($_SESSION['tipo'] == "admin")) { ?>
+
+
+                                        <td scope="row"> <?php echo "<label class='text-capitalize font-weight-normal'>" .  $reservasInfo['nomeFuncionario'] . " </label>";  ?> </td>
+                                    <?php } ?>
+
 
                                     <?php if ($reservasInfo['atendido'] == 0) { ?>
                                         <?php if (($_SESSION['tipo'] == "funcionario")) { ?>

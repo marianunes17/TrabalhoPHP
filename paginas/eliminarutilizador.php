@@ -3,7 +3,7 @@ require 'head.php';
 require_once('../basedados/basedados.h');
 
 //se a variavel nao foi iniciada vai para o index
-if (!isset($_SESSION["nomeUtilizador"]) || $_SESSION["nomeUtilizador"] != 'admin' ) {
+if (!isset($_SESSION["nomeUtilizador"]) || $_SESSION["nomeUtilizador"] != 'admin') {
     echo '<meta http-equiv="refresh" content="0; url=index.php">';
 }
 

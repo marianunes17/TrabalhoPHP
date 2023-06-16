@@ -7,7 +7,7 @@ require_once('../basedados/basedados.h');
 
 $funcionarios = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
 
-if(! $funcionarios){
+if (!$funcionarios) {
     echo ("Erro: " . $funcionarios($con));
 }
 ?>

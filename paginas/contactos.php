@@ -74,7 +74,7 @@ require 'head.php';
                 </div>
             </div>
             <div class="col-12 mb-n2 p-0">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3064.4418109593707!2d-7.514567984622169!3d39.81951097943908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd3d5ea6bb2280e1%3A0x1c460157bc4b46c8!2sEscola%20Superior%20de%20Tecnologia%20-%20Instituto%20Polit%C3%A9cnico%20de%20Castelo%20Branco!5e0!3m2!1spt-PT!2spt!4v1686421336387!5m2!1spt-PT!2spt"  style="width: 100%; height: 500px; border:0;"  frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3064.4418109593707!2d-7.514567984622169!3d39.81951097943908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd3d5ea6bb2280e1%3A0x1c460157bc4b46c8!2sEscola%20Superior%20de%20Tecnologia%20-%20Instituto%20Polit%C3%A9cnico%20de%20Castelo%20Branco!5e0!3m2!1spt-PT!2spt!4v1686421336387!5m2!1spt-PT!2spt" style="width: 100%; height: 500px; border:0;" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
             </div>
         </div>
     </div>

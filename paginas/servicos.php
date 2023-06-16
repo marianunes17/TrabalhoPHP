@@ -10,9 +10,9 @@ $servicos = mysqli_query($conn, "SELECT * FROM servicos");
 
 $funcionarios = mysqli_query($conn, "SELECT * FROM utilizadores WHERE tipo='funcionario'");
 
-if (! $servicos) {
+if (!$servicos) {
     echo ("Erro: " . $servicos($con));
-} else if(! $funcionarios){
+} else if (!$funcionarios) {
     echo ("Erro: " . $funcionarios($con));
 }
 

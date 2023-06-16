@@ -15,10 +15,15 @@ if (isset($_POST['atualizar'])) {
     $dataInicio = $_POST['dataInicio'];
     $idServico = $_POST['idServico'];
 
-    if ($idServico == 1 ||  $idServico == 3) {
-        $alteraReserva = mysqli_query($conn, "UPDATE reservas SET id = $idReserva, dataInicio='$dataInicio', dataFim=date_add(dataInicio, INTERVAL 30 MINUTE), idServico='$idServico' WHERE id=$idReserva");
-    } else {
-        $alteraReserva = mysqli_query($conn, "UPDATE reservas SET id = $idReserva, dataInicio='$dataInicio', dataFim=date_add(dataInicio, INTERVAL 1 HOUR), idServico='$idServico' WHERE id=$idReserva");
+
+    $dataAtual = date("Y-m-d h:i:sa");
+
+    if ($dataInicio >= $dataAtual) {
+        if ($idServico == 1 ||  $idServico == 3) {
+            $alteraReserva = mysqli_query($conn, "UPDATE reservas SET id = $idReserva, dataInicio='$dataInicio', dataFim=date_add(dataInicio, INTERVAL 30 MINUTE), idServico='$idServico' WHERE id=$idReserva");
+        } else {
+            $alteraReserva = mysqli_query($conn, "UPDATE reservas SET id = $idReserva, dataInicio='$dataInicio', dataFim=date_add(dataInicio, INTERVAL 1 HOUR), idServico='$idServico' WHERE id=$idReserva");
+        }
     }
 
 

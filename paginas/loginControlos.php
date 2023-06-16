@@ -15,20 +15,18 @@ if (!$login) {
 }
 
 if (($row = mysqli_fetch_array($login)) != null) {
-  if( ($_SESSION['tipo'] = $row['tipo']) != null)  {
-  $_SESSION['nomeUtilizador'] = $utilizador;
-  $_SESSION['password'] = $row['password'];
-  $_SESSION['email'] = $row['email'];
-  $_SESSION['telemovel'] = $row['telemovel'];
-  $_SESSION['tipo'] = $row['tipo'];
-  $_SESSION['id'] = $row['id'];
+  if (($_SESSION['tipo'] = $row['tipo']) != null) {
+    $_SESSION['nomeUtilizador'] = $utilizador;
+    $_SESSION['password'] = $row['password'];
+    $_SESSION['email'] = $row['email'];
+    $_SESSION['telemovel'] = $row['telemovel'];
+    $_SESSION['tipo'] = $row['tipo'];
+    $_SESSION['id'] = $row['id'];
 
-  echo '<meta http-equiv="refresh" content="0; url=index.php">';
-
-} else {
-  echo '<meta http-equiv="refresh" content="0; url=login.php">';
-}
-
+    echo '<meta http-equiv="refresh" content="0; url=index.php">';
+  } else {
+    echo '<meta http-equiv="refresh" content="0; url=login.php">';
+  }
 } else {
   echo '<meta http-equiv="refresh" content="0; url=login.php">';
 }
